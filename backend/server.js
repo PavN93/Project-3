@@ -1,8 +1,9 @@
 const express = require('express');
 // const mongoose = require('mongoose');
-require('dotenv').config();
+require('dotenv').config({ path:'../.env' });
 
-const PORT = process.env.PORT || 3001;
+
+const PORT = process.env.PORT || 3002;
 const db = process.env.MONGODB_URI || 'mongodb://localhost/workout';
 
 // Middleware
