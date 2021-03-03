@@ -3,7 +3,7 @@ const express = require('express');
 require('dotenv').config({ path:'../.env' });
 
 
-const PORT = process.env.PORT || 3002;
+const PORT = process.env.PORT || 3001;
 const db = process.env.MONGODB_URI || 'mongodb://localhost/workout';
 
 // Middleware
