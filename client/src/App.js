@@ -10,7 +10,6 @@ function App() {
     (async () => {
       try {
         const response = await fetch('/test');
-        console.log(response);
         const payload = await response.json();
         setText(payload.message);
         setFetching(false);
