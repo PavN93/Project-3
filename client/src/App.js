@@ -1,15 +1,16 @@
-import './App.css';
+import "./App.css";
 import { useState, useEffect } from "react";
+import Home from "./pages/Homepage/homepage";
 
 function App() {
-  const [ fetching, setFetching ] = useState(true);
-  const [ text, setText ] = useState('');
+  const [fetching, setFetching] = useState(true);
+  const [text, setText] = useState("");
 
   // hit endpoint when component is mounted
   useEffect(() => {
     (async () => {
       try {
-        const response = await fetch('/test');
+        const response = await fetch("/test");
         const payload = await response.json();
         setText(payload.message);
         setFetching(false);
@@ -20,9 +21,15 @@ function App() {
   }, []);
 
   return (
-      fetching ? 
-      <h1>Please wait...</h1> :
-      <h1>Message from endpoint: {text}</h1> 
+    // Need to randomise the background image, but I've dropped one in for ref for now.
+    <div
+      className="backgroundImage"
+      style={{ backgroundImage: "url(/bg-1.jpg)" }}
+    >
+      <div className="pageContent">
+        <Home />
+      </div>
+    </div>
   );
 }
 
