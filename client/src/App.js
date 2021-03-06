@@ -1,5 +1,5 @@
 import "./App.css";
-import Home from "./pages/Homepage/homepage";
+import Routed from './routes/Routed';
 
 function App() {
   // Random background
@@ -36,7 +36,7 @@ function App() {
     >
       <div className="pageContent">
         <button onClick={addUserToDb}>Click to add user</button>
-        <Home />
+        <Routed />
       </div>
     </div>
   );
