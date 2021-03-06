@@ -1,10 +1,8 @@
 import "./App.css";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import Home from "./pages/Homepage/homepage";
 
 function App() {
-  const [fetching, setFetching] = useState(true);
-  const [text, setText] = useState("");
 
   // hit endpoint when component is mounted
   useEffect(() => {
@@ -12,8 +10,7 @@ function App() {
       try {
         const response = await fetch("/test");
         const payload = await response.json();
-        setText(payload.message);
-        setFetching(false);
+        console.log(payload.message);
       } catch (error) {
         console.log(error);
       }

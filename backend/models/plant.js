@@ -3,9 +3,18 @@ const Schema = mongoose.Schema;
 
 const plantSchema = new Schema({
   userId: String, // points to specific user
-  name: String,
-  description: String,
-  occurence: String,
+  name: {
+    type: String,
+    trim: true
+  },
+  description: {
+    type: String,
+    trim: true
+  },
+  occurence: {
+    type: String,
+    trim: true
+  },
   // any more details that treffle.io provides
 })
 

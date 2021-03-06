@@ -6,10 +6,17 @@ const userSchema = new Schema({
     type: String,
     trim: true,
     required: 'Username is required',
-    unique
+    unique: true
   },
-  password: String,
-  bio: String,
+  password: {
+    type: String,
+    trim: true,
+    required: 'Password cannot be empty',
+  },
+  bio: {
+    type: String,
+    trim: true
+  },
   avatar: String, // points to images collection
 })
 
