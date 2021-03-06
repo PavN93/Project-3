@@ -13,6 +13,12 @@ const userSchema = new Schema({
     trim: true,
     required: 'Password cannot be empty',
   },
+  email: {
+    type: String,
+    trim: true,
+    required: 'email is required',
+    unique: true
+  },
   bio: {
     type: String,
     trim: true

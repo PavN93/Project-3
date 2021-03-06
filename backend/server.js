@@ -10,6 +10,7 @@ const db = process.env.MONGODB_URI || 'mongodb://localhost/plantica';
 const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use('/api', require('./routes/api-routes'));
 app.use('/', require('./routes/html-routes'));
 
 // Connect to db, start server, handle error
