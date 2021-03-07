@@ -1,5 +1,6 @@
 import "./App.css";
-import Routed from './routes/Routed';
+import Routed from "./routes/routed";
+
 
 function App() {
   // Random background
