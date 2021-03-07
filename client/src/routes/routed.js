@@ -10,3 +10,5 @@ const Routed = () => {
 }
 
 export default Routed;
+
+//more routes to be added 
