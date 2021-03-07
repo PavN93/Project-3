@@ -1,5 +1,5 @@
 import { HashRouter as Router, Route } from 'react-router-dom';
-import Home from "./pages/Homepage/homepage";
+import Home from "../pages/Homepage/homepage";
 
 const Routed = () => {
   return (
@@ -9,6 +9,6 @@ const Routed = () => {
   )
 }
 
-export default Routed;
 
+export default Routed;
 //more routes to be added 
