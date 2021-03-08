@@ -3,14 +3,11 @@ import './image.css';
 
 
 
-class ImageUpload extends React.Component{
-  state = {
-    imageUrl: null,
-    imageAlt: null,
-  }
+function ImageUpload(){
+  
+const [imageUrl] = null;
+const [imageAlt] = null;
 
-  render() {
-    const { imageUrl, imageAlt } = this.state;
 
     return (
       <main className="App">
@@ -33,7 +30,7 @@ class ImageUpload extends React.Component{
       </main>
     );
   }
-}
+
 
 export default ImageUpload;
   
