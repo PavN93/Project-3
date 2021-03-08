@@ -1,8 +1,11 @@
+const User = require('../models/user');
+
 const router = require('express').Router();
 
 router.get('/test', (req, res) => {
-  console.log('endpoint hit');
-  res.json({ message: 'Home Page' });
+  console.log('get endpoint hit (html-routes), triggered after page load');
+  res.json({ message: 'Home page' });
 });
+
 
 module.exports = router;
