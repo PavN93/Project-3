@@ -1,18 +1,16 @@
 import React from "react";
 import Menu from "../../components/Menu/Menu";
-import About from "../../components/About/About";
-import Search from "../../components/Search/Search";
+import LoginForm from "../../components/LoginForm/LoginForm"
 import Footer from "../../components/Footer/Footer";
 
-function Home() {
+function Login() {
   return (
     <div>
       <Menu />
-      <About />
-      <Search />
+      <LoginForm />
       <Footer />
     </div>
   );
 }
 
-export default Home;
+export default Login;

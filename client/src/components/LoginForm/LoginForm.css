@@ -1,0 +1,18 @@
+.loginContainer {
+  background-color: #efebe8;
+  color: #2a3b19;
+  margin: 50px;
+  padding: 20px;
+}
+
+.loginContainer input {
+  margin: 5px;
+  padding: 5px;
+}
+
+.loginContainer button {
+  background-color: #2a3b19;
+  color: #efebe8;
+  margin-top: 10px;
+  padding: 5px;
+}
