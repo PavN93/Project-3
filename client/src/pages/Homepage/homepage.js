@@ -1,9 +1,9 @@
 import React from "react";
-import Menu from "../../components/Menu/menu";
-import Weather from "../../components/Weather/weather"
-import About from "../../components/About/about";
-import Search from "../../components/Search/search";
-import Footer from "../../components/Footer/footer";
+import Menu from "../../components/Menu/Menu";
+import Weather from "../../components/Weather/Weather"
+import About from "../../components/About/About";
+import Search from "../../components/Search/Search";
+import Footer from "../../components/Footer/Footer";
 
 function Home() {
   return (
