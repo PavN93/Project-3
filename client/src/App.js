@@ -40,8 +40,8 @@ function App() {
       style={{ backgroundImage: `url(/bg-${bg}.jpg)` }}
     >
       <div className="pageContent">
-        <button onClick={addUserToDb}>Click to add user</button>
         <Routed />
+        <button onClick={addUserToDb}>Click to add user</button>
       </div>
     </div>
   );
