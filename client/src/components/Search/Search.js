@@ -26,9 +26,8 @@ const Search = () => {
 
   return (
     <div className="container">
-      <form className="form-inline">
-      <i className="fas fa-search"></i>
-        <input 
+      <form className="ui form">
+        <input
           value={search}
           onChange={handleInputChange}
           className="input"
@@ -36,11 +35,14 @@ const Search = () => {
           placeholder="Search plants"
         />
         <button
-          onClick={handleFormSubmit}
-          className="btn btn-light"
+          className="ui animated button"
           type="submit"
+          onClick={handleFormSubmit}
         >
-          Search
+          <div className="visible content">Search</div>
+          <div className="hidden content">
+            <i aria-hidden="true" className="search icon"></i>
+          </div>
         </button>
       </form>
     </div>

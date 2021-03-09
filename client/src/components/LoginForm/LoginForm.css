@@ -25,3 +25,10 @@
   margin-top: 10px;
   padding: 5px;
 }
+
+.passwordIcon {
+   position: absolute;
+   top: 65px;
+   right: 10px;
+   z-index: 1000;
+}
