@@ -8,7 +8,6 @@ function ImageUpload(){
 const [imageUrl] = null;
 const [imageAlt] = null;
 
-
     return (
       <main className="App">
         <section className="left-side">

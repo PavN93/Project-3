@@ -6,6 +6,7 @@ import Search from "../../components/Search/Search";
 import Footer from "../../components/Footer/Footer";
 
 function Home() {
+  
   return (
     <div>
       <Menu />

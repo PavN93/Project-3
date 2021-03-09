@@ -1,14 +1,17 @@
 import "./App.css";
 import Routed from "./routes/Routed";
-
+import { useContext } from 'react';
+import UserAuthContext from '../src/context/UserAuth';
 
 
 function App() {
+
   // declare how many backgrounds there are for randomizing
   const bgAmount = 11;
-
   // Random background
   const bg = Math.floor(Math.random() * bgAmount) + 1;
+
+  const { userLoggedIn, loginToggle } = useContext(UserAuthContext);
 
   // hit endpoint when component is mounted
   const addUserToDb = () => {
@@ -34,7 +37,6 @@ function App() {
   }
 
   return (
-    // Need to randomise the background image, but I've dropped one in for ref for now.
     <div
       className="backgroundImage"
       style={{ backgroundImage: `url(/bg-${bg}.jpg)` }}
@@ -42,6 +44,21 @@ function App() {
       <div className="pageContent">
         <Routed />
         <button onClick={addUserToDb}>Click to add user</button>
+        {userLoggedIn ?
+          (<>
+            <p
+              style={{ color: 'white' }}>Logged in - click to log out
+            </p>
+            <button onClick={loginToggle}>Log out</button>
+          </>
+          ) :
+          (<>
+            <p
+              style={{ color: 'white' }}>Logged out - click to log in
+            </p>
+            <button onClick={loginToggle}>Log in</button>
+          </>)
+        }
       </div>
     </div>
   );
