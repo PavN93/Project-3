@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./Search.css";
 
 const Search = () => {
+  // I'd like to add some sort of loader(spinner) so the user knows the search is in progress
   const [fetchResults, setFetchResults] = useState([]);
   const [search, setSearch] = useState();
 
