@@ -5,6 +5,7 @@ html body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   display: block;
   justify-content: center;
+  background-color: rgb(16, 19, 12);
 }
 
 .backgroundImage {

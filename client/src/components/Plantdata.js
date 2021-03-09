@@ -2,6 +2,7 @@ import { useState, useEffect,} from "react";
 
 
 const PlantData = ({ search, sort, setSort, value }) => {
+  
   const [plants, setPlants] = useState([]);
 
   // fetch data and render on page load once
