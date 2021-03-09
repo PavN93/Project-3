@@ -2,11 +2,10 @@ import React from "react";
 
 import "./Menu.css"
 
-
 const Menu = () => {
   return (
-    <div>
-      <p className="menuText">This is where the menu icon will be. FAB to Toolbar</p>
+    <div className='clover-div'>
+      <img className='clover-logo' src={`${process.env.PUBLIC_URL}/logo.png`}></img>
     </div>
   );
 };

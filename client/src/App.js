@@ -1,10 +1,14 @@
 import "./App.css";
-import Routed from "./routes/routed";
+import Routed from "./routes/Routed";
+
 
 
 function App() {
+  // declare how many backgrounds there are for randomizing
+  const bgAmount = 11;
+
   // Random background
-  const bg = Math.floor(Math.random() * 5) + 1;
+  const bg = Math.floor(Math.random() * bgAmount) + 1;
 
   // hit endpoint when component is mounted
   const addUserToDb = () => {
@@ -36,8 +40,8 @@ function App() {
       style={{ backgroundImage: `url(/bg-${bg}.jpg)` }}
     >
       <div className="pageContent">
-        <button onClick={addUserToDb}>Click to add user</button>
         <Routed />
+        <button onClick={addUserToDb}>Click to add user</button>
       </div>
     </div>
   );
