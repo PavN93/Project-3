@@ -1,33 +1,103 @@
-import React from "react";
+import React, { Component } from "react";
 import "./LoginForm.css";
 
-const Login = () => {
-  
-  return (
-    <section className="container">
-      <div className="loginContainer">
-      <h1>Login</h1>
-      <form className="ui form">
-        <div className="field">
-          <input placeholder="Email Address" />
+class Login extends Component {
+  state = {
+    email: "",
+    password: "",
+    isChecked: false,
+    icon: "eye slash icon",
+    inputType: "password",
+  };
+
+  componentDidMount() {
+    if (localStorage.checkbox && localStorage.email !== "") {
+      this.setState({
+        isChecked: true,
+        email: localStorage.email,
+        password: localStorage.password,
+      });
+    }
+  }
+
+  togglePassword = () => {
+    let { icon, inputType } = this.state;
+    this.setState({
+      icon: icon === "eye slash icon" ? "eye icon" : "eye slash icon",
+      inputType: inputType === "password" ? "text" : "password",
+    });
+  };
+
+  onChangeValue = (event) => {
+    this.setState({
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  onChangeCheckbox = (event) => {
+    this.setState({
+      isChecked: event.target.checked,
+    });
+  };
+
+  loginSubmit = () => {
+    const { email, password, isChecked } = this.state;
+    if (isChecked && email !== "") {
+      localStorage.email = email;
+      localStorage.password = password;
+      localStorage.checkbox = isChecked;
+    }
+  };
+
+  render() {
+    const { email, password, isChecked, inputType, icon } = this.state;
+    return (
+      <section className="container">
+        <div className="loginContainer">
+          <h1>Login</h1>
+          <form className="ui form">
+            <div className="field">
+              <input
+                name="email"
+                placeholder="Email Address"
+                value={email}
+                onChange={this.onChangeValue}
+              />
+            </div>
+            <div className="field">
+              <input
+                name="password"
+                type={inputType}
+                placeholder="Password"
+                value={password}
+                onChange={this.onChangeValue}
+              />
+              <div className="passwordIcon">
+                <i className={icon} onClick={this.togglePassword}></i>
+              </div>
+            </div>
+            <div className="field">
+              <div className="ui checkbox">
+                <input
+                  type="checkbox"
+                  value={isChecked}
+                  onChange={this.onChangeCheckbox}
+                />
+                <label>Remember me?</label>
+              </div>
+            </div>
+            <button className="ui animated button" onClick={this.loginSubmit}>
+              <div className="visible content">Login</div>
+              <div className="hidden content">
+                <i aria-hidden="true" className="sign-in icon"></i>
+              </div>
+            </button>
+          </form>
+          <p>Not a member? Sign up today.</p>
         </div>
-        <div className="field">
-          <input placeholder="Password" />
-        </div>
-        <div className="field">
-          <div className="ui checkbox">
-            <input type="checkbox" class="hidden" readonly="" tabindex="0" />
-            <label>Remember me?</label>
-          </div>
-        </div>
-        <button type="submit" className="ui button">
-          Login
-        </button>
-      </form>
-      <p>Not a member? Sign up today.</p>
-      </div>
-    </section>
-  );
-};
+      </section>
+    );
+  }
+}
 
 export default Login;

@@ -5,9 +5,18 @@
   padding: 20px;
 }
 
-.loginContainer input {
+.ui.form {
   margin: 5px;
   padding: 5px;
+  width: 50%;
+  display: inline-block;
+}
+
+@media only screen and (max-width: 600px) {
+  .ui.form {
+  width: 80%;
+  display: inline-block;
+  }
 }
 
 .loginContainer button {
@@ -15,4 +24,11 @@
   color: #efebe8;
   margin-top: 10px;
   padding: 5px;
+}
+
+.passwordIcon {
+   position: absolute;
+   top: 65px;
+   right: 10px;
+   z-index: 1000;
 }
