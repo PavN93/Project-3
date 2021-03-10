@@ -13,5 +13,24 @@ router.post('/save', async ({ body }, res) => {
   }
 });
 
+router.post('/signup', (req, res) => {
+  try {
+    console.log('singup data:', req.body);
+    res.json({ message: 'user registered'});
+  } catch (err) {
+    console.log('error on signup:', err);
+  }
+});
+
+router.post('/login', (req, res) => {
+  try {
+    console.log('login data:', req.body);
+    res.json({ message: 'logged in'});
+  } catch (err) {
+    console.log('error on login:', err);
+    res.json({ message: 'error on login'})
+  }
+})
+
 
 module.exports = router;

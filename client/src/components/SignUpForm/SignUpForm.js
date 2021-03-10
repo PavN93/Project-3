@@ -1,24 +1,47 @@
-import React from "react";
+import { useState } from "react";
 import "./SignUpForm.css";
 
 const SignUp = () => {
+
+  const [ username, setUsername ] = useState('');
+  const [ email, setEmail ] = useState('');
+  const [ password, setPassword ] = useState('');
+  const [ confirmPassword, setConfirmPassword ] = useState('');
+
+  const onType = (event) => {
+    switch (event.target.id) {
+      case 'username':
+        setUsername(event.target.value);
+        break;
+      case 'email':
+        setEmail(event.target.value);
+        break;
+      case 'password':
+        setPassword(event.target.value);
+        break;
+      case 'confirmPassword':
+        setConfirmPassword(event.target.value);
+    }
+    console.log(event.target.id, event.target.value);
+  }
+
   return (
     <section className="container">
       <div className="loginContainer">
         <h1>Create an account</h1>
         <p>It's free and only takes a minute</p>
         <form className="ui form">
-        <div className="field">
-            <input placeholder="Username" />
+          <div className="field">
+            <input placeholder="Username" onChange={(event) => onType(event)} id='username' value={username} />
           </div>
           <div className="field">
-            <input placeholder="Email Address" />
+            <input placeholder="Email Address" onChange={(event) => onType(event)} id='email' value={email} />
           </div>
           <div className="field">
-            <input placeholder="Password" />
+            <input placeholder="Password" onChange={(event) => onType(event)} id='password' value={password} />
           </div>
           <div className="field">
-            <input placeholder="Confirm Password" />
+            <input placeholder="Confirm Password" onChange={(event) => onType(event)} id='confirmPassword' value={confirmPassword} />
           </div>
           <button className="ui animated button">
             <div className="visible content">Sign Up</div>
