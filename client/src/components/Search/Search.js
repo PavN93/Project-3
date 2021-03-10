@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "./Search.css";
-import PlantData from "../Plantdata";
+import plantdata from "../Plantdata"
 
 const Search = () => {
   // I'd like to add some sort of loader(spinner) so the user knows the search is in progress
@@ -23,7 +23,7 @@ const Search = () => {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    PlantData();
+    getSearchResults();
   }
 
   return (
@@ -32,13 +32,12 @@ const Search = () => {
         <input
           value={search}
           onChange={handleInputChange}
+          onKeyDown={(event) => {
+          if (event.key === 'Enter') handleFormSubmit(event);
+          }}
           className="input"
           type="search"
           placeholder="Search plants"
-          onKeyDown={(event) => {
-            /* Allows user to press enter to search  */
-            if (event.key === 'Enter') handleFormSubmit(event);
-          }}
         />
         <button
           className="ui animated button"
