@@ -17,6 +17,7 @@
   
   .image .right-side {
     border-left: .5px solid grey;
+    color: white;
   }
   
   .image .left-side,
@@ -75,4 +76,7 @@
   .image .right-side .displayed-image {
     height: 300px;
     width: 300px;
+    color: white;
   }
+
+  
