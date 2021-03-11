@@ -1,0 +1,22 @@
+.profileContainer {
+  background: linear-gradient(360deg, #efebe8 85%, transparent 50%);
+  padding: 15px;
+  display: inline-block;
+  width: 70%;
+  text-align: -webkit-center;
+}
+
+.avatar {
+  border-radius: 50%;
+  height: 150px;
+  border: solid 10px #efebe8;
+  min-height: auto;
+}
+
+.ui.card {
+  width: 100%;
+}
+
+.data {
+  text-align: left;
+}
