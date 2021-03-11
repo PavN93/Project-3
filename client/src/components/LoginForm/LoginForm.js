@@ -26,18 +26,18 @@ const Login = () => {
       return;
     }
     setInputType('password');
-    setPasswordIcon('eye slash icon')
+    setPasswordIcon('eye slash icon');
   }
 
-  const onType = (event) => {
-    switch (event.target.name) {
+  const onType = ({ target }) => {
+    switch (target.name) {
       case 'loginEmail':
-        setEmail(event.target.value);
+        setEmail(target.value);
         break;
       case 'loginPassword':
-        setPassword(event.target.value);
+        setPassword(target.value);
     }
-    console.log(event.target.name, event.target.value);
+    console.log(target.name, target.value);
   };
 
   const onChangeCheckbox = () => {
@@ -49,7 +49,6 @@ const Login = () => {
     console.log('email:', email, 'password:', password, 'remember?', rememberMe);
   };
 
-  // const { email, password, isChecked, inputType, icon } = this.state;
   return (
     <section className="container">
       <div className="loginContainer">

@@ -8,21 +8,21 @@ const SignUp = () => {
   const [ password, setPassword ] = useState('');
   const [ confirmPassword, setConfirmPassword ] = useState('');
 
-  const onType = (event) => {
-    switch (event.target.name) {
+  const onType = ({ target }) => {
+    switch (target.name) {
       case 'username':
-        setUsername(event.target.value);
+        setUsername(target.value);
         break;
       case 'email':
-        setEmail(event.target.value);
+        setEmail(target.value);
         break;
       case 'password':
-        setPassword(event.target.value);
+        setPassword(target.value);
         break;
       case 'confirmPassword':
-        setConfirmPassword(event.target.value);
+        setConfirmPassword(target.value);
     }
-    console.log(event.target.name, event.target.value);
+    console.log(target.name, target.value);
   }
 
   return (

@@ -1,6 +1,9 @@
 const User = require('../models/user');
+const Image = require('../models/image');
+const Plant = require('../models/plant');
 
 const router = require('express').Router();
+const { validateSingup, validateLogin } = require('../validators/authValidators');
 
 router.post('/save', async ({ body }, res) => {
   try {
@@ -9,14 +12,22 @@ router.post('/save', async ({ body }, res) => {
     res.json({ message: 'User successfully saved in database.' });
   } catch (err) {
     console.log('Error on save:', err);
-    res.json({ error: `could not save: ${err}`});
+    res.json({ error: `could not save: ${err}` });
   }
 });
 
 router.post('/signup', (req, res) => {
   try {
     console.log('singup data:', req.body);
-    res.json({ message: 'user registered'});
+    const { values, error } = validateSingup.validate(req.body);
+    if (error) {
+      return res.json({
+        success: false, payload: {
+          message: error.message
+        }
+      });
+    }
+    res.json({ success: true, payload: values });
   } catch (err) {
     console.log('error on signup:', err);
   }
@@ -25,10 +36,17 @@ router.post('/signup', (req, res) => {
 router.post('/login', (req, res) => {
   try {
     console.log('login data:', req.body);
-    res.json({ message: 'logged in'});
+    const { values, error } = validateLogin.validate(req.body);
+    if (error) {
+      return res.json({
+        success: false, payload: {
+          message: error.message
+        }
+      });
+    }
+    res.json({ success: true, payload: values });
   } catch (err) {
     console.log('error on login:', err);
-    res.json({ message: 'error on login'})
   }
 })
 
