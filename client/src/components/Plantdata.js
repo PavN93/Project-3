@@ -17,6 +17,7 @@ const PlantData = () => {
     };
     fetchPlants();
   }, [])};
+  
 
 
   export default PlantData;
