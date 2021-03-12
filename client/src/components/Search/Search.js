@@ -27,7 +27,7 @@ const Search = () => {
   function handleFormSubmit(event) {
     event.preventDefault();
     setSearch(searchInput)
-    console.log("event.taget.value",searchInput)
+    console.log("click works",searchInput)
     
   }
 
