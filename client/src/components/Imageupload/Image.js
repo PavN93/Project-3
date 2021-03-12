@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import "./Image.css"
 
 
 function Imageupload() {
@@ -26,9 +25,8 @@ function Imageupload() {
   }
 
   return (
-    <div className="cloudinaryUpload">
-      <i className="camera icon large"></i>
-      <br />
+    <div className="App">
+      <h1>Upload Image</h1>
       <input
         type="file"
         name="file"
@@ -38,7 +36,7 @@ function Imageupload() {
       {loading ? (
         <h3>Loading...</h3>
       ) : (
-        <img src={image} style={{ width: '300px' }} />
+        <img src={image} alt="plant" style={{ width: '300px' }} />
       )}
     </div>
   )
