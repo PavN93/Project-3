@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./SignUpForm.css";
+import fetcher from '../../functions/fetcher';
 
 const SignUp = () => {
 
@@ -22,7 +23,17 @@ const SignUp = () => {
       case 'confirmPassword':
         setConfirmPassword(target.value);
     }
-    console.log(target.name, target.value);
+  }
+
+  const signupSubmit = (event) => {
+    event.preventDefault();
+    const signupData = {
+      username, 
+      password,
+      email
+    }
+    const response = fetcher('/api/signup',null , signupData);
+    console.log(response);
   }
 
   return (
@@ -43,7 +54,7 @@ const SignUp = () => {
           <div className="field">
             <input placeholder="Confirm Password" onChange={(event) => onType(event)} name='confirmPassword' value={confirmPassword} />
           </div>
-          <button className="ui animated button">
+          <button className="ui animated button" onClick={signupSubmit}>
             <div className="visible content">Sign Up</div>
             <div className="hidden content">
               <i aria-hidden="true" className="signup icon"></i>

@@ -5,9 +5,10 @@ const UserAuthContext = createContext();
 const UserAuthContextProvider = ({ children }) => {
 
   const [ userLoggedIn, setUserLoggedIn ] = useState(false);
+  const [ token, setToken ] = useState('');
 
   const loginToggle = () => {
-    setUserLoggedIn((userLoggedIn) => !userLoggedIn);
+    setUserLoggedIn(!userLoggedIn);
   }
 
   return (
