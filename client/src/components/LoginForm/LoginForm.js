@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import fetcher from "../../functions/fetcher";
 import "./LoginForm.css";
 import { useHistory } from 'react-router-dom';
+import UserAuthContext from '../../context/UserAuth';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -10,7 +11,7 @@ const Login = () => {
   const [passwordIcon, setPasswordIcon] = useState('eye slash icon');
   const [inputType, setInputType] = useState('password');
   const location = useHistory();
-
+  const { doLogin } = useContext(UserAuthContext);
 
   // componentDidMount() {
   //   if (localStorage.checkbox && localStorage.email !== "") {
@@ -53,10 +54,13 @@ const Login = () => {
       password
     }
     const response = await fetcher('/api/login', null, loginData);
-    console.log(response);
+    if (response.success) {
+      doLogin(response.payload);
+      location.push('/user');
+    }
   };
 
-  const redirectToRegister = (event) => {
+  const toRegister = (event) => {
     event.preventDefault();
     location.push('/signup');
   }
@@ -108,7 +112,7 @@ const Login = () => {
           </button>
           <span> Or </span>
           <button className="ui animated button"
-          onClick={redirectToRegister}>
+          onClick={toRegister}>
             <div className="visible content">Register</div>
             <div className="hidden content">
               <i aria-hidden="true" className="signup icon"></i>

@@ -2,9 +2,9 @@ const Joi = require('joi');
 
 const validateSingup = Joi.object({
   username: Joi.string()
+  .trim()
   .min(5)
   .max(30)
-  .trim()
   .required(),
   password: Joi.string()
   .min(6)

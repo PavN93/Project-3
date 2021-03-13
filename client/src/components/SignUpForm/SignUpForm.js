@@ -1,8 +1,8 @@
 import { useState } from "react";
+import validateSingupObject from '../../functions/validateInput';
 import "./SignUpForm.css";
 import fetcher from '../../functions/fetcher';
 import { useHistory } from 'react-router-dom';
-
 
 const SignUp = () => {
 
@@ -10,6 +10,7 @@ const SignUp = () => {
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ confirmPassword, setConfirmPassword ] = useState('');
+  const [ passwordsMatch, setPasswordsMatch ] = useState(true);
   const location = useHistory();
 
   const onType = ({ target }) => {
@@ -28,22 +29,34 @@ const SignUp = () => {
     }
   }
 
+  /* left to do:
+  * error handling
+  * spinner for busy status
+  * let user know that signup is successful before redirecting
+  */
   const signupSubmit = async (event) => {
+    event.preventDefault();
+    const signupData = {
+      username, 
+      password,
+      email
+    }
+    if (password !== confirmPassword) {
+      setPasswordsMatch(false);
+      return;
+    }
+    validateSingupObject.validate(signupData)
     try {
-      event.preventDefault();
-      const signupData = {
-        username, 
-        password,
-        email
-      }
       const response = await fetcher('/api/signup', null, signupData);
-      console.log(response);
+      if (response.success) {
+        location.push('/login');
+      }
     } catch (err) {
       console.log(err);
     }
   }
 
-  const redirectToLogin = (event) => {
+  const toLogin = (event) => {
     event.preventDefault();
     location.push('/login');
   }
@@ -73,7 +86,7 @@ const SignUp = () => {
             </div>
           </button>
           <span> Or </span>
-          <button className="ui animated button" onClick={redirectToLogin}>
+          <button className="ui animated button" onClick={toLogin}>
             <div className="visible content">Login</div>
             <div className="hidden content">
               <i aria-hidden="true" className="sign-in icon"></i>

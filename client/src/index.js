@@ -6,11 +6,11 @@ import reportWebVitals from './reportWebVitals';
 import { UserAuthContextProvider } from './context/UserAuth';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <UserAuthContextProvider>
-      <App />
-    </UserAuthContextProvider>
-  </React.StrictMode>,
+  // <React.StrictMode>
+  <UserAuthContextProvider>
+    <App />
+  </UserAuthContextProvider>,
+  // </React.StrictMode>,
   document.getElementById('root')
 );
 

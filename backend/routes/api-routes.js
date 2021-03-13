@@ -3,9 +3,10 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { validateSingup, validateLogin } = require('../validators/authValidators');
 
+// Mongoose models
 const User = require('../models/user');
-const Image = require('../models/image');
-const Plant = require('../models/plant');
+// const Image = require('../models/image');
+// const Plant = require('../models/plant');
 
 router.post('/save', async (req, res) => {
   try {
@@ -70,11 +71,13 @@ router.post('/login', async (req, res) => {
   const { value, error } = validateLogin.validate(req.body);
 
   if (error) {
-    return res.json({
-      success: false, payload: {
-        message: error.message
-      }
-    });
+    return res
+      .status
+      .json({
+        success: false, payload: {
+          message: error.message
+        }
+      });
   }
 
   const { email, password } = value;
@@ -91,18 +94,23 @@ router.post('/login', async (req, res) => {
         .status(401)
         .json({ success: false, payload: { message: 'Password is incorrect' } });
     }
-    const token = jwt.sign({ id: user.id }, process.env.SECRET, { expiresIn: '5d' });
+    const token = jwt.sign({ id: user.id }, process.env.SECRET, { expiresIn: '50d' });
     if (!token) {
       return res
         .status(500)
         .json({ payload: { message: 'Error on token sign' } });
     }
-    console.log(user);
     return res
       .status(200)
       .json({
         success: true,
-        payload: { token, user: {} }
+        payload: {
+          token, user: {
+            username: user.username,
+            email: user.email,
+            _id: user._id
+          }
+        }
       })
   } catch (err) {
     console.log('Error on login:', err);

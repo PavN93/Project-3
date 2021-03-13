@@ -6,13 +6,17 @@ const UserAuthContextProvider = ({ children }) => {
 
   const [ userLoggedIn, setUserLoggedIn ] = useState(false);
   const [ token, setToken ] = useState('');
+  
 
-  const loginToggle = () => {
-    setUserLoggedIn(!userLoggedIn);
+  const doLogin = (payload) => {
+    const { token, user } = payload;
+    setToken(token);
+    localStorage.setItem('token', token);
+    setUserLoggedIn(true);
   }
 
   return (
-    <UserAuthContext.Provider value={{ userLoggedIn, loginToggle }}>
+    <UserAuthContext.Provider value={{ userLoggedIn, doLogin }}>
       {children}
     </UserAuthContext.Provider>
   )
