@@ -42,6 +42,10 @@ class SideMenu extends Component {
             <Icon name="sign-in" />
             Login
           </Menu.Item>
+          <Menu.Item as={Link} to="/signup">
+            <Icon name="signup" />
+            Signup
+          </Menu.Item>
         </Sidebar>
       </div>
     );
