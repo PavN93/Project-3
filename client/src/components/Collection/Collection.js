@@ -8,54 +8,54 @@ const PlantCollection = () => {
   return (
     <div className="plantData">
       <h2>Sample plant data</h2>
-      <div class="ui olive cards">
-        <div class="ui card">
-          <div class="content">
+      <div className="ui olive cards">
+        <div className="ui card">
+          <div className="content">
             <img
               src="https://react.semantic-ui.com/images/wireframe/image.png"
-              class="ui image"
+              className="ui image"
             />
-            <div class="header">Plant name</div>
-            <div class="meta">Scientific name</div>
-            <div class="description">Description</div>
+            <div className="header">Plant name</div>
+            <div className="meta">Scientific name</div>
+            <div className="description">Description</div>
           </div>
-          <div class="extra content"><button class="ui olive basic button">View more</button></div>
+          <div className="extra content"><button className="ui olive basic button">View more</button></div>
         </div>
-        <div class="ui card">
-          <div class="content">
+        <div className="ui card">
+          <div className="content">
             <img
               src="https://react.semantic-ui.com/images/wireframe/image.png"
               class="ui image"
             />
-            <div class="header">Plant name</div>
-            <div class="meta">Scientific name</div>
-            <div class="description">Description</div>
+            <div className="header">Plant name</div>
+            <div className="meta">Scientific name</div>
+            <div className="description">Description</div>
           </div>
-          <div class="extra content"><button class="ui olive basic button">View more</button></div>
+          <div className="extra content"><button className="ui olive basic button">View more</button></div>
         </div>
-        <div class="ui card">
-          <div class="content">
+        <div className="ui card">
+          <div className="content">
             <img
               src="https://react.semantic-ui.com/images/wireframe/image.png"
-              class="ui image"
+              className="ui image"
             />
-            <div class="header">Plant name</div>
-            <div class="meta">Scientific name</div>
-            <div class="description">Description</div>
+            <div className="header">Plant name</div>
+            <div className="meta">Scientific name</div>
+            <div className="description">Description</div>
           </div>
-          <div class="extra content"><button class="ui olive basic button">View more</button></div>
+          <div className="extra content"><button className="ui olive basic button">View more</button></div>
         </div>
-        <div class="ui card">
-          <div class="content">
+        <div className="ui card">
+          <div className="content">
             <img
               src="https://react.semantic-ui.com/images/wireframe/image.png"
               class="ui image"
             />
-            <div class="header">Plant name</div>
-            <div class="meta">Scientific name</div>
-            <div class="description">Description</div>
+            <div className="header">Plant name</div>
+            <div className="meta">Scientific name</div>
+            <div className="description">Description</div>
           </div>
-          <div class="extra content"><button class="ui olive basic button">View more</button></div>
+          <div className="extra content"><button className="ui olive basic button">View more</button></div>
         </div>
       </div>
     </div>
