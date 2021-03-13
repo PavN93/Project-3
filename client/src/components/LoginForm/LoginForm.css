@@ -3,6 +3,8 @@
   color: #2a3b19;
   margin: 50px;
   padding: 20px;
+  display: flex;
+  justify-content: center;
 }
 
 .ui.form {

@@ -1,15 +1,15 @@
 import React, { useContext, useState } from "react";
 import fetcher from "../../functions/fetcher";
 import "./LoginForm.css";
-import { useHistory } from 'react-router-dom';
-import UserAuthContext from '../../context/UserAuth';
+import { useHistory } from "react-router-dom";
+import UserAuthContext from "../../context/UserAuth";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [passwordIcon, setPasswordIcon] = useState('eye slash icon');
-  const [inputType, setInputType] = useState('password');
+  const [passwordIcon, setPasswordIcon] = useState("eye slash icon");
+  const [inputType, setInputType] = useState("password");
   const location = useHistory();
   const { doLogin } = useContext(UserAuthContext);
 
@@ -24,21 +24,21 @@ const Login = () => {
   // }
 
   const togglePasswordVisibility = () => {
-    if (inputType === 'password') {
-      setInputType('text');
-      setPasswordIcon('eye icon');
+    if (inputType === "password") {
+      setInputType("text");
+      setPasswordIcon("eye icon");
       return;
     }
-    setInputType('password');
-    setPasswordIcon('eye slash icon');
-  }
+    setInputType("password");
+    setPasswordIcon("eye slash icon");
+  };
 
   const onType = ({ target }) => {
     switch (target.name) {
-      case 'loginEmail':
+      case "loginEmail":
         setEmail(target.value);
         break;
-      case 'loginPassword':
+      case "loginPassword":
         setPassword(target.value);
     }
   };
@@ -51,24 +51,24 @@ const Login = () => {
     event.preventDefault();
     const loginData = {
       email,
-      password
-    }
-    const response = await fetcher('/api/login', null, loginData);
+      password,
+    };
+    const response = await fetcher("/api/login", null, loginData);
     if (response.success) {
       doLogin(response.payload);
-      location.push('/user');
+      location.push("/user");
     }
   };
 
   const toRegister = (event) => {
     event.preventDefault();
-    location.push('/signup');
-  }
+    location.push("/signup");
+  };
 
   return (
     <section className="container">
+      <h1>Login</h1>
       <div className="loginContainer">
-        <h1>Login</h1>
         <form className="ui form">
           <div className="field">
             <input
@@ -89,7 +89,8 @@ const Login = () => {
             <div className="passwordIcon">
               <i
                 className={passwordIcon}
-                onClick={togglePasswordVisibility}></i>
+                onClick={togglePasswordVisibility}
+              ></i>
             </div>
           </div>
           <div className="field">
@@ -102,29 +103,23 @@ const Login = () => {
               <label>Remember me?</label>
             </div>
           </div>
-          <button className="ui animated button"
-          onClick={loginSubmit}
-          >
+          <button className="ui animated button" onClick={loginSubmit}>
             <div className="visible content">Login</div>
             <div className="hidden content">
               <i aria-hidden="true" className="sign-in icon"></i>
             </div>
           </button>
           <span> Or </span>
-          <button className="ui animated button"
-          onClick={toRegister}>
+          <button className="ui animated button" onClick={toRegister}>
             <div className="visible content">Register</div>
             <div className="hidden content">
               <i aria-hidden="true" className="signup icon"></i>
             </div>
           </button>
-
         </form>
       </div>
     </section>
   );
-
-}
-
+};
 
 export default Login;

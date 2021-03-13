@@ -16,7 +16,7 @@ class SideMenu extends Component {
     return (
       <div>
         <img disabled={visible} onClick={this.handleShowClick} className="clover-logo"
-          src={`${process.env.PUBLIC_URL}/logo.png`}
+          src={`${process.env.PUBLIC_URL}/Plantica.png`}
           alt="Plantica Logo" ></img>
  
         <Sidebar

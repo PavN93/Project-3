@@ -3,7 +3,7 @@
   display: block;
   max-width: 80px;
   transition: all .2s ease-in-out;
-  opacity: 50%;
+  opacity: 80%;
 }
 
 .clover-logo:hover {

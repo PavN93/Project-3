@@ -1,0 +1,40 @@
+.homepageBanner {
+  height: 100vh;
+}
+
+.appTitle {
+  text-align: left;
+  font-size: 150px;
+  padding-left: 50px;
+  width: 70%;
+  color: lemonchiffon;
+}
+
+@media only screen and (max-width: 900px) {
+  .appTitle {
+  font-size: 70px;
+  padding-left: 20px;
+  }
+}
+
+h3 {
+  font-size: 22px;
+  text-align: left;
+  padding-top: 200px;
+  padding-left: 60px;
+}
+
+.subHeading {
+  color: white;
+  font-size: 22px;
+  text-align: left;
+  padding-left: 60px;
+  width: 60%
+}
+
+@media only screen and (max-width: 900px) {
+  h3, .subHeading  {
+  font-size: 16px;
+  padding-left: 20px;
+  }
+}
