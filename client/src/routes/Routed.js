@@ -9,7 +9,7 @@ const Routed = () => {
     <Router basename='/'>
       <Route exact path='/' component={Home}/>
       <Route exact path='/login' component={Login}/>
-      <Route exact path='/sign-up' component={SignUp}/>
+      <Route exact path='/signup' component={SignUp}/>
       <Route exact path='/upload' component={Upload}/>
 
     </Router>

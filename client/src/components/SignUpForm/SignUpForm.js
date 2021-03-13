@@ -25,15 +25,19 @@ const SignUp = () => {
     }
   }
 
-  const signupSubmit = (event) => {
-    event.preventDefault();
-    const signupData = {
-      username, 
-      password,
-      email
+  const signupSubmit = async (event) => {
+    try {
+      event.preventDefault();
+      const signupData = {
+        username, 
+        password,
+        email
+      }
+      const response = await fetcher('/api/signup',null , signupData);
+      console.log(response);
+    } catch (err) {
+      console.log(err);
     }
-    const response = fetcher('/api/signup',null , signupData);
-    console.log(response);
   }
 
   return (
