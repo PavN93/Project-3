@@ -27,19 +27,19 @@ const Bio = () => {
             </p>
           </div>
 
-          <div class="content data">
-            <div class="description">
-              <i aria-hidden="true" class="mail icon"></i>email@outlook.com
+          <div className="content data">
+            <div className="description">
+              <i aria-hidden="true" className="mail icon"></i>email@outlook.com
             </div>
           </div>
-          <div class="content data">
-            <div class="description">
-              <i aria-hidden="true" class="birthday icon"></i>23/03/1990
+          <div className="content data">
+            <div className="description">
+              <i aria-hidden="true" className="birthday icon"></i>23/03/1990
             </div>
           </div>
-          <div class="content data">
-            <div class="description">
-              <i aria-hidden="true" class="location arrow icon"></i>London
+          <div className="content data">
+            <div className="description">
+              <i aria-hidden="true" className="location arrow icon"></i>London
             </div>
           </div>
         </div>
