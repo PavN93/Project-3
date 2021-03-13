@@ -35,10 +35,10 @@ const Search = () => {
     <div className="container">
       <form className="ui form">
         <input
-          value={search}
+          value={searchInput}
           onChange={handleInputChange}
           onKeyDown={(event) => {
-          if (event.key === 'Enter') handleFormSubmit(event);
+            if (event.key === 'Enter') handleFormSubmit(event);
           }}
           className="input"
           type="search"
