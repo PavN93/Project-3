@@ -27,10 +27,10 @@
 }
 
 .passwordIcon {
-   position: absolute;
-   top: 65px;
-   right: 10px;
-   z-index: 1000;
+  position: absolute;
+  top: 65px;
+  right: 10px;
+  z-index: 1000;
 }
 
 a {

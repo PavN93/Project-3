@@ -1,6 +1,6 @@
 .plantData {
-    background-color: #efebe8;
-    padding: 50px;
+  background-color: #efebe8;
+  padding: 50px;
 }
 
 .plantData > h2 {
@@ -9,5 +9,5 @@ text-align: left;
 }
 
 div.header {
-    padding: 10px;
-    }
+  padding: 10px;
+  }
