@@ -13,7 +13,7 @@ const PlantCollection = () => {
           <div className="content">
             <img
               src="https://react.semantic-ui.com/images/wireframe/image.png"
-              className="ui image"
+              className="ui image" alt="placeholder"
             />
             <div className="header">Plant name</div>
             <div className="meta">Scientific name</div>
@@ -25,7 +25,7 @@ const PlantCollection = () => {
           <div className="content">
             <img
               src="https://react.semantic-ui.com/images/wireframe/image.png"
-              class="ui image"
+              class="ui image" alt="placeholder"
             />
             <div className="header">Plant name</div>
             <div className="meta">Scientific name</div>
@@ -37,7 +37,7 @@ const PlantCollection = () => {
           <div className="content">
             <img
               src="https://react.semantic-ui.com/images/wireframe/image.png"
-              className="ui image"
+              className="ui image" alt="placeholder"
             />
             <div className="header">Plant name</div>
             <div className="meta">Scientific name</div>
@@ -49,7 +49,7 @@ const PlantCollection = () => {
           <div className="content">
             <img
               src="https://react.semantic-ui.com/images/wireframe/image.png"
-              class="ui image"
+              class="ui image" alt="placeholder"
             />
             <div className="header">Plant name</div>
             <div className="meta">Scientific name</div>

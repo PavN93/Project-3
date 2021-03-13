@@ -1,13 +1,9 @@
-.searchBox {
-  background-color: white;
-  color: #a4b792;
-  padding: 15px 0px 10px 0px;
-  width: 100%;
-  justify-content: center;
-  display: flex;
+.searchContainer {
+  background-color: #efebe8;
+  text-align: center;
+  padding: 50px;
 }
 
-.input {
-  margin: 20px;
-  padding: 5px;
+.ui.animated.button {
+  margin: 10px;
 }

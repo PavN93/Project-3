@@ -1,7 +1,14 @@
 .currentWeather {
+    background-color:rgba(41, 57, 24, 0.7);
     padding: 0px 15px 0px 15px;
     display: flex;
     justify-content: flex-end;
     color: white;
     font-size: small;
+}
+
+.currentWeather p {
+    color: white;
+    padding: 10px 0;
+    font-size: 14px;
 }

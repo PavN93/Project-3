@@ -1,6 +1,5 @@
 html body {
   scroll-behavior: smooth;
-  height: 100%;
   margin: 0;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   display: block;
@@ -29,6 +28,10 @@ h1 {
   color: lemonchiffon;
   font-size: 50px;
   text-align: center;
+}
+
+h2 {
+  color: #2a3b19;
 }
 
 p {
