@@ -20,7 +20,8 @@
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "5.11.15",
-    "react-router-dom": "^5.2.0"
+    "react-router-dom": "^5.2.0",
+    "semantic-ui-react": "^2.0.3"
   },
   "devDependencies": {
     "concurrently": "^6.0.0"
