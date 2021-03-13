@@ -1,0 +1,13 @@
+.plantData {
+    background-color: #efebe8;
+    padding: 50px;
+}
+
+.plantData > h2 {
+color: #2a3b19;
+text-align: left;
+}
+
+div.header {
+    padding: 10px;
+    }
