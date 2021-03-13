@@ -13,8 +13,12 @@ const fetcher = async (url, token, body) => {
     // or indeed passed the token in the request body (but that would mean extra code to merge it with any body fields passed to the function)
     fetchParams.headers['x-access-token'] = token;
   }
-  const response = await fetch(url, fetchParams);
-  return await response.json();
+  try {
+    const response = await fetch(url, fetchParams);
+    return await response.json();
+  } catch (err) {
+    console.log(err);
+  }
 }
 
 export default fetcher;

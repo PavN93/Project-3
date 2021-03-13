@@ -4,7 +4,7 @@ import { useState, useEffect, } from "react";
 const usePlantData = () => {
 
   const [plants, setPlants] = useState([]);
-  const [search, setSearch] = useState(null);
+  const [search, setSearch] = useState('');
 
   // fetch data and render on page load once
   useEffect(() => {

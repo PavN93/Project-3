@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
+const jwt = require('jsonwebtoken');
 const { validateSingup, validateLogin } = require('../validators/authValidators');
 
 const User = require('../models/user');
@@ -17,8 +18,8 @@ router.post('/save', async (req, res) => {
   }
 });
 
+// Register new user
 router.post('/signup', async (req, res) => {
-
   const { value, error } = validateSingup.validate(req.body);
 
   if (error) {
@@ -49,13 +50,13 @@ router.post('/signup', async (req, res) => {
 
     if (!newUser) {
       return res
-      .status(500)
-      .json({ success: false, payload: { message: 'Error on save new user' } });
+        .status(500)
+        .json({ success: false, payload: { message: 'Error on save new user' } });
     }
-    
+
     return res
-    .status(200)
-    .json({ success: true, payload: { username, email } });
+      .status(200)
+      .json({ success: true, payload: { username, email } });
   } catch (err) {
     console.log('error on signup:', err);
     return res
@@ -64,39 +65,52 @@ router.post('/signup', async (req, res) => {
   }
 });
 
-router.post('/login', (req, res) => {
-  try {
-    console.log('login data:', req.body);
-    const { values, error } = validateLogin.validate(req.body);
-    if (error) {
-      return res.json({
-        success: false, payload: {
-          message: error.message
-        }
-      });
-    }
-    res.json({ success: true, payload: values });
-  } catch (err) {
-    console.log('error on login:', err);
-  }
-})
+// Login
+router.post('/login', async (req, res) => {
+  const { value, error } = validateLogin.validate(req.body);
 
-router.post('/status', (req, res) => {
-  try {
-    console.log('login data:', req.body);
-    const { values, error } = validateLogin.validate(req.body);
-    if (error) {
-      return res.json({
-        success: false, payload: {
-          message: error.message
-        }
-      });
-    }
-    res.json({ success: true, payload: values });
-  } catch (err) {
-    console.log('error on login:', err);
+  if (error) {
+    return res.json({
+      success: false, payload: {
+        message: error.message
+      }
+    });
   }
-})
+
+  const { email, password } = value;
+  try {
+    const user = await User.findOne({ 'email': email });
+    if (!user) {
+      return res
+        .status(401)
+        .json({ success: false, payload: { message: "User doesn't exist" } });
+    }
+    const passMatch = await bcrypt.compare(password, user.password);
+    if (!passMatch) {
+      return res
+        .status(401)
+        .json({ success: false, payload: { message: 'Password is incorrect' } });
+    }
+    const token = jwt.sign({ id: user.id }, process.env.SECRET, { expiresIn: '5d' });
+    if (!token) {
+      return res
+        .status(500)
+        .json({ payload: { message: 'Error on token sign' } });
+    }
+    console.log(user);
+    return res
+      .status(200)
+      .json({
+        success: true,
+        payload: { token, user: {} }
+      })
+  } catch (err) {
+    console.log('Error on login:', err);
+    return res
+      .status(500)
+      .json({ success: false, payload: { message: 'Internal server error' } });
+  }
+});
 
 
 module.exports = router;

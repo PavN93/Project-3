@@ -33,7 +33,7 @@ const SignUp = () => {
         password,
         email
       }
-      const response = await fetcher('/api/signup',null , signupData);
+      const response = await fetcher('/api/signup', null, signupData);
       console.log(response);
     } catch (err) {
       console.log(err);

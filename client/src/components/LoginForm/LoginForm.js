@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import fetcher from "../../functions/fetcher";
 import "./LoginForm.css";
 
 const Login = () => {
@@ -37,16 +38,20 @@ const Login = () => {
       case 'loginPassword':
         setPassword(target.value);
     }
-    console.log(target.name, target.value);
   };
 
   const onChangeCheckbox = () => {
     setRememberMe(!rememberMe);
   };
 
-  const loginSubmit = (event) => {
+  const loginSubmit = async (event) => {
     event.preventDefault();
-    console.log('email:', email, 'password:', password, 'remember?', rememberMe);
+    const loginData = {
+      email,
+      password
+    }
+    const response = await fetcher('/api/login', null, loginData);
+    console.log(response);
   };
 
   return (
