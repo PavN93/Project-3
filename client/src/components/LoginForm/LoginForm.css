@@ -32,3 +32,11 @@
   right: 10px;
   z-index: 1000;
 }
+
+a {
+  color: #2a3b19;
+}
+
+a:hover {
+  color: lemonchiffon;
+}

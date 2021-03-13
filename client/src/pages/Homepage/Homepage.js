@@ -3,6 +3,7 @@ import Menu from "../../components/Menu/Menu";
 import Weather from "../../components/Weather/Weather"
 import About from "../../components/About/About";
 import Search from "../../components/Search/Search";
+import Collection from "../../components/Collection/Collection";
 import Footer from "../../components/Footer/Footer";
 
 // components to be added in here are:
@@ -17,6 +18,7 @@ function Home() {
       <Weather/>
       <About/>
       <Search/>
+      <Collection />
       <Footer/>
     </div>
   );
