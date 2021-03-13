@@ -1,22 +1,18 @@
 import React from "react";
-import { useViewportScroll, motion, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
 import "./Banner.css";
 
 const Banner = () => {
-
-  const { scrollYProgress } = useViewportScroll();
-  const leaf = useTransform(scrollYProgress, [0, 1], [0, 200]);
-
   return (
     <section className="container">
-      <motion.div
-        style={{ leaf }}>
-        <img
+      <motion.img
+        initial={{ y: -0 }}
+        animate={{ y: 750 }}
+        transition={{ duration: 4 }}
         className="leafScroller"
         src={`${process.env.PUBLIC_URL}/Leaves/leaf_2.png`}
         alt="Leaf"
-        />
-      </motion.div>
+      ></motion.img>
       <motion.div
         initial={{ x: -1500 }}
         animate={{ x: 20 }}
