@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import fetcher from "../../functions/fetcher";
 import "./LoginForm.css";
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
   const [email, setEmail] = useState('');
@@ -8,6 +9,7 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [passwordIcon, setPasswordIcon] = useState('eye slash icon');
   const [inputType, setInputType] = useState('password');
+  const location = useHistory();
 
 
   // componentDidMount() {
@@ -54,6 +56,11 @@ const Login = () => {
     console.log(response);
   };
 
+  const redirectToRegister = (event) => {
+    event.preventDefault();
+    location.push('/signup');
+  }
+
   return (
     <section className="container">
       <div className="loginContainer">
@@ -99,8 +106,16 @@ const Login = () => {
               <i aria-hidden="true" className="sign-in icon"></i>
             </div>
           </button>
+          <span> Or </span>
+          <button className="ui animated button"
+          onClick={redirectToRegister}>
+            <div className="visible content">Register</div>
+            <div className="hidden content">
+              <i aria-hidden="true" className="signup icon"></i>
+            </div>
+          </button>
+
         </form>
-        <p>Not a member? Sign up today.</p>
       </div>
     </section>
   );

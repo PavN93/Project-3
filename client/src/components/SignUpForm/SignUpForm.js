@@ -1,6 +1,8 @@
 import { useState } from "react";
 import "./SignUpForm.css";
 import fetcher from '../../functions/fetcher';
+import { useHistory } from 'react-router-dom';
+
 
 const SignUp = () => {
 
@@ -8,6 +10,7 @@ const SignUp = () => {
   const [ email, setEmail ] = useState('');
   const [ password, setPassword ] = useState('');
   const [ confirmPassword, setConfirmPassword ] = useState('');
+  const location = useHistory();
 
   const onType = ({ target }) => {
     switch (target.name) {
@@ -40,6 +43,11 @@ const SignUp = () => {
     }
   }
 
+  const redirectToLogin = (event) => {
+    event.preventDefault();
+    location.push('/login');
+  }
+
   return (
     <section className="container">
       <div className="loginContainer">
@@ -62,6 +70,13 @@ const SignUp = () => {
             <div className="visible content">Sign Up</div>
             <div className="hidden content">
               <i aria-hidden="true" className="signup icon"></i>
+            </div>
+          </button>
+          <span> Or </span>
+          <button className="ui animated button" onClick={redirectToLogin}>
+            <div className="visible content">Login</div>
+            <div className="hidden content">
+              <i aria-hidden="true" className="sign-in icon"></i>
             </div>
           </button>
         </form>
