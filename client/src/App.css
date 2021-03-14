@@ -4,13 +4,13 @@ html body {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   display: block;
   justify-content: center;
-  background-color: rgb(16, 19, 12);
+  background-color: rgb(16, 19, 12);;
 }
 
 .backgroundImage {
-  width: 100%;
   background-size: cover;
   background-repeat: no-repeat;
+  min-height: 100vh;
 }
 
 .pageContent {

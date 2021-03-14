@@ -12,7 +12,7 @@ const Banner = () => {
         className="leafScroller"
         src={`${process.env.PUBLIC_URL}/Leaves/leaf_2.png`}
         alt="Leaf"
-      ></motion.img>
+      />
       <motion.div
         initial={{ x: -1500 }}
         animate={{ x: 20 }}
