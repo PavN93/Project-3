@@ -10,7 +10,7 @@
   color: lemonchiffon;
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 850px) {
   .appTitle {
   font-size: 70px;
   padding-left: 20px;
@@ -32,10 +32,25 @@ h3 {
   width: 60%
 }
 
-@media only screen and (max-width: 900px) {
+@media only screen and (max-width: 850px) {
   h3, .subHeading  {
   font-size: 16px;
   padding-left: 20px;
+  }
+}
+
+.ui.button.getStarted {
+  color: black;
+  background-color: lemonchiffon;
+  width: 200px;
+  margin-left: 60px;
+  margin-top: 40px;
+}
+
+@media only screen and (max-width: 850px) {
+  .ui.button.getStarted  {
+  margin-left: 20px;
+  width: 150px;
   }
 }
 

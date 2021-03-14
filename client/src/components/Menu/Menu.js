@@ -4,6 +4,7 @@ import { Icon, Menu, Sidebar } from "semantic-ui-react";
 import "./Menu.css"
 
 class SideMenu extends Component {
+  
   state = { visible: false };
 
   handleHideClick = () => this.setState({ visible: false });

@@ -3,16 +3,12 @@ import { motion } from "framer-motion";
 import "./Banner.css";
 
 const Banner = () => {
+
   return (
     <section className="container">
-      <motion.img
-        initial={{ y: -0 }}
-        animate={{ y: 750 }}
-        transition={{ duration: 4 }}
-        className="leafScroller"
-        src={`${process.env.PUBLIC_URL}/Leaves/leaf_2.png`}
-        alt="Leaf"
-      />
+      <motion.img animate={{ y: [-250, 750], rotate: 70 }} transition={{ duration: 4, delay: 1, }}
+         className="leafScroller" src={`${process.env.PUBLIC_URL}/Leaves/leaf_2.png`}
+        alt="Leaf" />
       <motion.div
         initial={{ x: -1500 }}
         animate={{ x: 20 }}
@@ -27,7 +23,7 @@ const Banner = () => {
           Plantica is a tool to help users identify and record plant species, as
           well as offer information on different flora.
         </p>
-        {/* Add a get started feature here */}
+        <button className="getStarted ui button">Get started</button>
       </motion.div>
     </section>
   );
