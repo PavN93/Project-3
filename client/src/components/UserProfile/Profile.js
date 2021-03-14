@@ -11,7 +11,7 @@ const Bio = () => {
       <div className="profileContainer">
         <img
           className="image avatar"
-          src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
+          src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg" alt="placeholder"
         />
         <div className="ui card">
           <div className="content">
