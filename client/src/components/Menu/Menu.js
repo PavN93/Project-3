@@ -1,10 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { Icon, Menu, Sidebar } from "semantic-ui-react";
-import "./Menu.css"
+import "./Menu.css";
 
 class SideMenu extends Component {
-  
   state = { visible: false };
 
   handleHideClick = () => this.setState({ visible: false });
@@ -16,10 +15,14 @@ class SideMenu extends Component {
 
     return (
       <div>
-        <img disabled={visible} onClick={this.handleShowClick} className="clover-logo"
+        <img
+          disabled={visible}
+          onClick={this.handleShowClick}
+          className="clover-logo"
           src={`${process.env.PUBLIC_URL}/Plantica.png`}
-          alt="Plantica Logo" />
- 
+          alt="Plantica Logo"
+        />
+
         <Sidebar
           as={Menu}
           animation="overlay"
