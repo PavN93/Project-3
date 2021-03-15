@@ -1,18 +1,17 @@
-const express = require('express');
-const axios = require('axios');
+const router = require('express').Router();
+const fetch = require ('node-fetch');
 
-const app = express()
+router.get('/getplants', async(req,res)=>{ 
+    
+        const queryURL = `https://trefle.io/api/v1/plants/search?token=ygxSP6ZBnAfDFaBTRKTtVkg7G56ajDSjvz5LkVnjHfw&q=${search}`;
+        const fetch_response = await fetch(queryURL);
+        const payload = await fetch_response.json();
+        console.log("response data", payload);
+        setPlants(payload.results || []); // if search fails fallbacks or empty array
+        });
+        
 
-const axiosInstance = axios.create({
-    baseURL: `https://trefle.io/api/v1/plants/search?token=ygxSP6ZBnAfDFaBTRKTtVkg7G56ajDSjvz5LkVnjHfw&q=${search}`,
-    headers: { 'X-Auth-Token' : '<some-token>'}
-});
-
-app.get('/data', async(req, res, next) => {
-    try {
-        const response = await axiosInstance.get('/<path>');
-        // process your data and send back to the user
-    } catch (error) {
-        // handle if you got an error
-    }
-})
+      
+        console.log("apicall error", error);
+        
+  

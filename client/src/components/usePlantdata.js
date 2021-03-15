@@ -1,19 +1,20 @@
-import { useState, useEffect, } from "react";
+import { useState, useEffect} from "react";
 
 
-const usePlantData = () => {
+
+const PlantData = () => {
 
   const [plants, setPlants] = useState([]);
   const [search, setSearch] = useState('');
 
-  // fetch data and render on page load once
+  //fetch data and render on page load once
   useEffect(() => {
-    console.log(search)
+   // console.log(search)
     if (search) {
       try {
         
         console.log("intial plant data render");
-        const queryURL = `https://cors-anywhere.herokuapp.com/https://trefle.io/api/v1/plants/search?token=ygxSP6ZBnAfDFaBTRKTtVkg7G56ajDSjvz5LkVnjHfw&q=${search}`;
+        const queryURL = `/api/getplants/${search}`;
         const fetchPlants = async () => {
           const response = await fetch(queryURL);
           const payload = await response.json();
@@ -32,6 +33,4 @@ const usePlantData = () => {
 };
 
 
-
-
-export default usePlantData;
+export default PlantData;
