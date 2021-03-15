@@ -6,9 +6,11 @@ const Search = () => {
   // I'd like to add some sort of loader(spinner) so the user knows the search is in progress
   //const [fetchResults, setFetchResults] = useState([]);
   const [searchInput, setSearchInput] = useState(null);
+
   const {
     plants, setSearch,search
   }=PlantData()
+
 
   /*function getSearchResults() {
     console.log("Searching for:", search);
@@ -26,20 +28,20 @@ const Search = () => {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    setSearch(searchInput)
-    
-    
-    
+    setSearch(searchInput);
+    console.log("click works", searchInput);
+
   }
 
   return (
-    <div className="container">
+    <div className="searchContainer">
+      <h2>Explore thousands of plants from all over the world</h2>
       <form className="ui form">
         <input
           value={searchInput}
           onChange={handleInputChange}
           onKeyDown={(event) => {
-            if (event.key === 'Enter') handleFormSubmit(event);
+            if (event.key === "Enter") handleFormSubmit(event);
           }}
           className="input"
           type="search"

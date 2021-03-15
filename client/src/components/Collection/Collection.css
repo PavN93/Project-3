@@ -1,10 +1,10 @@
 .plantData {
-  background-color: #efebe8;
+  background-color:rgba(41, 57, 24, 0.7);
   padding: 50px;
 }
 
 .plantData > h2 {
-color: #2a3b19;
+color: #efebe8;
 text-align: left;
 }
 

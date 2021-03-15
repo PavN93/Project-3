@@ -1,7 +1,7 @@
 import React from "react";
 import Menu from "../../components/Menu/Menu";
 import Weather from "../../components/Weather/Weather"
-import About from "../../components/About/About";
+import Banner from "../../components/Banner/Banner";
 import Search from "../../components/Search/Search";
 import Collection from "../../components/Collection/Collection";
 import Footer from "../../components/Footer/Footer";
@@ -15,8 +15,8 @@ function Home() {
   return (
     <div>
       <Menu/>
+      <Banner/>
       <Weather/>
-      <About/>
       <Search/>
       <Collection />
       <Footer/>
