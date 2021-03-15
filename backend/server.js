@@ -1,7 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
 require('dotenv').config({ path:'../.env' });
-const cors = require('cors');
 
 
 const PORT = process.env.PORT || 3001;
@@ -9,7 +8,6 @@ const db = process.env.MONGODB_URI || 'mongodb://localhost/plantica';
 
 // Middleware
 const app = express();
-app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/api', require('./routes/api-routes'));

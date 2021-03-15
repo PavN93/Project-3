@@ -20,6 +20,7 @@
     "joi": "^17.4.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "5.11.15",
+    "node-fetch": "^2.6.1",
     "react-router-dom": "^5.2.0",
     "semantic-ui-react": "^2.0.3"
   },
