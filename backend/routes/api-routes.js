@@ -37,7 +37,7 @@ router.post('/signup', async (req, res) => {
     if (user) {
       return res
         .status(401)
-        .json({ success: false, payload: { message: 'User already exists' } });
+        .json({ success: false, payload: { message: 'This email has already been registered' } });
     }
 
     const salt = await bcrypt.genSalt(10);
@@ -52,17 +52,16 @@ router.post('/signup', async (req, res) => {
     if (!newUser) {
       return res
         .status(500)
-        .json({ success: false, payload: { message: 'Error on save new user' } });
+        .json({ success: false, payload: { message: 'Error while saving new user to database' } });
     }
 
     return res
       .status(200)
       .json({ success: true, payload: { username, email } });
   } catch (err) {
-    console.log('error on signup:', err);
     return res
       .status(500)
-      .json({ success: false, payload: { message: 'Internal server error' } });
+      .json({ success: false, payload: { message: 'Internal server error - please try again later' } });
   }
 });
 
@@ -72,7 +71,7 @@ router.post('/login', async (req, res) => {
 
   if (error) {
     return res
-      .status
+      .status(400)
       .json({
         success: false, payload: {
           message: error.message

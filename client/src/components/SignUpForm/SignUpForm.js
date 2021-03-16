@@ -5,11 +5,20 @@ import fetcher from "../../functions/fetcher";
 import { useHistory } from "react-router-dom";
 
 const SignUp = () => {
+
+  // Form fields values
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-  const [passwordsMatch, setPasswordsMatch] = useState(true);
+
+  // waiting for server response 
+  const [busySignUp, setBusySignUp] = useState(false);
+  // error on submitting signup credentials
+  const [validationError, setValidationError] = useState('');
+  // server error response
+  const [serverError, setServerError] = useState('');
+  // for redirecting
   const location = useHistory();
 
   const onType = ({ target }) => {
@@ -29,30 +38,42 @@ const SignUp = () => {
   };
 
   /* left to do:
-   * error handling
-   * spinner for busy status
+   * error handling - done (sort of)
+   * spinner for busy status - done
    * let user know that signup is successful before redirecting
    */
   const signupSubmit = async (event) => {
     event.preventDefault();
+    setValidationError('');
+    setServerError('');
     const signupData = {
       username,
       password,
       email,
     };
-    if (password !== confirmPassword) {
-      setPasswordsMatch(false);
+    const { value, error } = validateSingupObject.validate(signupData);
+    if (error) {
+      setValidationError(error.details[0].message);
+      // console.log(error.details[0].context.key);
       return;
     }
-    validateSingupObject.validate(signupData);
+    if (password !== confirmPassword) {
+      setValidationError('Passwords do not match');
+      return;
+    }
+    setBusySignUp(true);
     try {
       const response = await fetcher("/api/signup", null, signupData);
+      if (!response.success) {
+        setServerError(response.payload.message);
+      }
       if (response.success) {
         location.push("/login");
       }
     } catch (err) {
       console.log(err);
     }
+    setBusySignUp(false);
   };
 
   const toLogin = (event) => {
@@ -65,8 +86,9 @@ const SignUp = () => {
       <h1>Create an account</h1>
       <div className="signupContainer">
         <p>It's free and only takes a minute</p>
-        <form className="ui form">
-          <div className="field">
+        <form className={"ui form " + (busySignUp && "loading")}>
+          <div className={"field " + ((validationError.length > 0) ? "error" : "")}>
+            <label>Username: *</label>
             <input
               placeholder="Username"
               onChange={(event) => onType(event)}
@@ -74,7 +96,8 @@ const SignUp = () => {
               value={username}
             />
           </div>
-          <div className="field">
+          <div className={"field " + ((validationError.length > 0) ? "error" : "")}>
+            <label>Email: *</label>
             <input
               placeholder="Email Address"
               onChange={(event) => onType(event)}
@@ -82,7 +105,8 @@ const SignUp = () => {
               value={email}
             />
           </div>
-          <div className="field">
+          <div className={"field " + ((validationError.length > 0) ? "error" : "")}>
+            <label>Password: *</label>
             <input
               placeholder="Password"
               onChange={(event) => onType(event)}
@@ -90,7 +114,8 @@ const SignUp = () => {
               value={password}
             />
           </div>
-          <div className="field">
+          <div className={"field " + ((validationError.length > 0) ? "error" : "")}>
+            <label>Confirm password: *</label>
             <input
               placeholder="Confirm Password"
               onChange={(event) => onType(event)}
@@ -98,6 +123,14 @@ const SignUp = () => {
               value={confirmPassword}
             />
           </div>
+          <div className="field ">
+            <label>* - required</label>
+          </div>
+          {((validationError.length > 0) ?
+            <p className="signUpError">{validationError}</p> : null)}
+          {(serverError.length > 0 ?
+            <p className="signUpError">{serverError}</p> :
+            null)}
           <button className="ui animated button" onClick={signupSubmit}>
             <div className="visible content">Sign Up</div>
             <div className="hidden content">
