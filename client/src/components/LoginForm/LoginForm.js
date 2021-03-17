@@ -56,6 +56,8 @@ const Login = () => {
 
   const loginSubmit = async (event) => {
     event.preventDefault();
+    setValidationError("");
+    setServerError("");
     const loginData = {
       email,
       password,
