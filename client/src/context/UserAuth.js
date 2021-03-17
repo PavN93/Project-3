@@ -5,15 +5,16 @@ const UserAuthContext = createContext();
 const UserAuthContextProvider = ({ children }) => {
 
   const [ userLoggedIn, setUserLoggedIn ] = useState(false);
-  // const [ user, setUser ] = useState('');
-  // const [ token, setToken ] = useState('');
-  
 
   const doLogin = (payload) => {
     const { token, user } = payload;
-    // setToken(token);
-    // setUser(user);
-    localStorage.setItem('token', token);
+    const toStorage = {
+      token,
+      username: user.username,
+      email: user.email,
+      _id: user._id
+    }
+    localStorage.setItem('user', JSON.stringify(toStorage));
     setUserLoggedIn(true);
   }
 

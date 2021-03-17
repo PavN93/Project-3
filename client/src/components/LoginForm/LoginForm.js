@@ -94,8 +94,8 @@ const Login = () => {
       <h1>Login</h1>
       <div className="loginContainer">
         <form className={"ui form " + (busyLogIn && "loading")}>
-          <div className={"field " + ((validationError.length > 0) ? "error" : "")}>
-            <label>Email *</label>
+          <div className={"field required " + ((validationError.length > 0) ? "error" : "")}>
+            <label>Email:</label>
             <input
               name="loginEmail"
               placeholder="Email Address"
@@ -103,8 +103,8 @@ const Login = () => {
               onChange={(event) => onType(event)}
             />
           </div>
-          <div className={"field " + ((validationError.length > 0) ? "error" : "")}>
-            <label>Password: *</label>
+          <div className={"field required " + ((validationError.length > 0) ? "error" : "")}>
+            <label>Password:</label>
             <input
               name="loginPassword"
               type={inputType}
