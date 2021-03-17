@@ -87,19 +87,19 @@ router.post('/login', async (req, res) => {
     if (!user) {
       return res
         .status(401)
-        .json({ success: false, payload: { message: "User doesn't exist" } });
+        .json({ success: false, payload: { message: "Credentials does't match" } });
     }
     const passMatch = await bcrypt.compare(password, user.password);
     if (!passMatch) {
       return res
         .status(401)
-        .json({ success: false, payload: { message: 'Password is incorrect' } });
+        .json({ success: false, payload: { message: "Credentials doesn't match" } });
     }
     const token = jwt.sign({ id: user.id }, process.env.SECRET, { expiresIn: '50d' });
     if (!token) {
       return res
         .status(500)
-        .json({ payload: { message: 'Error on token sign' } });
+        .json({ payload: { message: 'Internal server error, please try again later' } });
     }
     return res
       .status(200)
@@ -117,7 +117,7 @@ router.post('/login', async (req, res) => {
     console.log('Error on login:', err);
     return res
       .status(500)
-      .json({ success: false, payload: { message: 'Internal server error' } });
+      .json({ success: false, payload: { message: 'Internal server error, please try again later' } });
   }
 
 

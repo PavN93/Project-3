@@ -63,6 +63,7 @@ const SignUp = () => {
         setServerError(response.payload.message);
       }
       if (response.success) {
+        setBusySignUp(false);
         location.push("/login");
       }
     } catch (err) {
@@ -71,7 +72,7 @@ const SignUp = () => {
     setBusySignUp(false);
   };
 
-  const toLogin = (event) => {
+  const redirectToLogin = (event) => {
     event.preventDefault();
     location.push("/login");
   };
@@ -135,7 +136,7 @@ const SignUp = () => {
             </div>
           </button>
           <span> Or </span>
-          <button className="ui animated button" onClick={toLogin}>
+          <button className="ui animated button" onClick={redirectToLogin}>
             <div className="visible content">Login</div>
             <div className="hidden content">
               <i aria-hidden="true" className="sign-in icon"></i>

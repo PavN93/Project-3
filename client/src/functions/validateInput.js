@@ -18,6 +18,7 @@ const validateSingupObject = Joi.object({
     })
     .required(),
 });
+
 const validateLoginObject = Joi.object({
   email: Joi.string()
     .trim()
