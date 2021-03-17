@@ -1,12 +1,13 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Search.css";
-import usePlantData from "../usePlantdata";
+import PlantDataContext from "../../context/PlantData";
 
 const Search = () => {
   // I'd like to add some sort of loader(spinner) so the user knows the search is in progress
   //const [fetchResults, setFetchResults] = useState([]);
   const [searchInput, setSearchInput] = useState(null);
-  const { plants, setSearch, search } = usePlantData();
+
+  const { getPlants } = useContext(PlantDataContext);
 
   /*function getSearchResults() {
     console.log("Searching for:", search);
@@ -24,7 +25,7 @@ const Search = () => {
 
   function handleFormSubmit(event) {
     event.preventDefault();
-    setSearch(searchInput);
+    getPlants(searchInput);
     console.log("click works", searchInput);
   }
 

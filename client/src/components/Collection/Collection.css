@@ -1,13 +1,24 @@
 .plantData {
-  background-color:rgba(41, 57, 24, 0.7);
+  background-color: rgba(41, 57, 24, 0.7);
   padding: 50px;
 }
 
 .plantData > h2 {
-color: #efebe8;
-text-align: left;
+  color: #efebe8;
+  text-align: left;
 }
 
 div.header {
   padding: 10px;
-  }
+}
+
+.slick-list {
+  width: 1168px;
+  height: 500px;
+}
+
+.slick-slide {
+  width: 250px;
+  height: 200px;
+  margin: 10px
+}

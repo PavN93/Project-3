@@ -2,9 +2,11 @@ const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { validateSingup, validateLogin } = require('../validators/authValidators');
+const fetch = require('node-fetch');
 
 // Mongoose models
 const User = require('../models/user');
+const { response, json } = require('express');
 // const Image = require('../models/image');
 // const Plant = require('../models/plant');
 
@@ -117,6 +119,17 @@ router.post('/login', async (req, res) => {
       .status(500)
       .json({ success: false, payload: { message: 'Internal server error' } });
   }
+
+
+});
+
+router.get('/getplants/:search', async (req, res) => {
+  const search = req.params.search
+  console.log("hello world")
+  const queryURL = `https://trefle.io/api/v1/plants/search?token=ygxSP6ZBnAfDFaBTRKTtVkg7G56ajDSjvz5LkVnjHfw&q=${search}`;
+  const fetch_response = await fetch(queryURL);
+  const payload = await fetch_response.json();
+  res.json(payload);
 });
 
 
