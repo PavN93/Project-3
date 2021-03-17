@@ -1,5 +1,5 @@
 import React from "react";
-import "./Collection.css";
+import "./SearchPlantData.css";
 
 const PlantCollection = () => {
   // This will map over the trefle API to pull out sample plant data

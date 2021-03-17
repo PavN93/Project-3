@@ -1,17 +1,17 @@
 import React from "react";
 import Menu from "../../components/Menu/Menu";
-;
+import UserPlantData from "../../components/UserPlantData/UserPlantData";
 import Footer from "../../components/Footer/Footer";
 
-function UserCollection() {
+function UserPlantDatabase() {
   
   return (
     <div>
       <Menu />
-      {/* <Collections /> */}
+      <UserPlantData />
       <Footer />
     </div>
   );
 }
 
-export default UserCollection;
+export default UserPlantDatabase;
