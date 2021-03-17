@@ -1,5 +1,5 @@
 import { useState } from "react";
-import validateSingupObject from "../../functions/validateInput";
+import { validateSingupObject } from "../../functions/validateInput";
 import "./SignUpForm.css";
 import fetcher from "../../functions/fetcher";
 import { useHistory } from "react-router-dom";
@@ -15,11 +15,11 @@ const SignUp = () => {
   // waiting for server response 
   const [busySignUp, setBusySignUp] = useState(false);
   // error on submitting signup credentials
-  const [validationError, setValidationError] = useState('');
+  const [validationError, setValidationError] = useState("");
   // server error response
-  const [serverError, setServerError] = useState('');
+  const [serverError, setServerError] = useState("");
   // for redirecting
-  const location = useHistory();
+  const location = useHistory("");
 
   const onType = ({ target }) => {
     switch (target.name) {
@@ -37,15 +37,10 @@ const SignUp = () => {
     }
   };
 
-  /* left to do:
-   * error handling - done (sort of)
-   * spinner for busy status - done
-   * let user know that signup is successful before redirecting
-   */
   const signupSubmit = async (event) => {
     event.preventDefault();
-    setValidationError('');
-    setServerError('');
+    setValidationError("");
+    setServerError("");
     const signupData = {
       username,
       password,
@@ -58,7 +53,7 @@ const SignUp = () => {
       return;
     }
     if (password !== confirmPassword) {
-      setValidationError('Passwords do not match');
+      setValidationError("Passwords do not match");
       return;
     }
     setBusySignUp(true);
@@ -111,6 +106,7 @@ const SignUp = () => {
               placeholder="Password"
               onChange={(event) => onType(event)}
               name="password"
+              type="password"
               value={password}
             />
           </div>
@@ -120,6 +116,7 @@ const SignUp = () => {
               placeholder="Confirm Password"
               onChange={(event) => onType(event)}
               name="confirmPassword"
+              type="password"
               value={confirmPassword}
             />
           </div>

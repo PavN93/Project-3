@@ -3,6 +3,7 @@ import fetcher from "../../functions/fetcher";
 import "./LoginForm.css";
 import { useHistory } from "react-router-dom";
 import UserAuthContext from "../../context/UserAuth";
+import { validateLoginObject } from "../../functions/validateInput";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -10,18 +11,11 @@ const Login = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [passwordIcon, setPasswordIcon] = useState("eye slash icon");
   const [inputType, setInputType] = useState("password");
-  const location = useHistory();
+  const location = useHistory("");
   const { doLogin } = useContext(UserAuthContext);
-
-  // componentDidMount() {
-  //   if (localStorage.checkbox && localStorage.email !== "") {
-  //     this.setState({
-  //       isChecked: true,
-  //       email: localStorage.email,
-  //       password: localStorage.password,
-  //     });
-  //   }
-  // }
+  const [validationError, setValidationError] = useState('');
+  // const [emailError, setEmailError] = useState('');
+  // const [passwordError, setPasswordError] = useState('');
 
   const togglePasswordVisibility = () => {
     if (inputType === "password") {
@@ -53,10 +47,19 @@ const Login = () => {
       email,
       password,
     };
-    const response = await fetcher("/api/login", null, loginData);
-    if (response.success) {
-      doLogin(response.payload);
-      location.push("/user");
+    const { value, error } = validateLoginObject(loginData);
+    if (error) {
+      setValidationError(error.details[0].message);
+      return;
+    }
+    try {
+      const response = await fetcher("/api/login", null, loginData);
+      if (response.success) {
+        doLogin(response.payload);
+        location.push("/user");
+      }
+    } catch (err) {
+      console.log(err);
     }
   };
 
