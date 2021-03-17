@@ -22,7 +22,7 @@ const PlantCollection = () => {
 
   return (
     <div className="plantData">
-      <h2>Sample plant data</h2>
+      <h2>Search results</h2>
       <div className="ui olive cards">
         <Slider {...settings}>
           {plants.map((result) => (
