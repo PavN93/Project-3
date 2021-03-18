@@ -1,8 +1,12 @@
 import React from "react";
 import { motion } from "framer-motion";
+import * as Scroll from 'react-scroll';
 import "./Banner.css";
 
 const Banner = () => {
+
+  const scroll = Scroll.animateScroll;
+
   return (
     <section className="container">
       <motion.img
@@ -26,7 +30,7 @@ const Banner = () => {
           Plantica is a tool to help users identify and record plant species, as
           well as offer information on different flora.
         </p>
-        <button className="getStarted ui button">Get started</button>
+        <motion.button whileHover={{ scale: 1.1, originX: 0 }} onClick={() => scroll.scrollTo(1000)} className="getStarted ui button">Get started</motion.button>
       </motion.div>
     </section>
   );

@@ -1,62 +1,56 @@
+<<<<<<< HEAD:client/src/components/SearchPlantData/SearchPlantData.js
 import React from "react";
 import "./SearchPlantData.css";
+=======
+import React, { useEffect, useContext } from "react";
+import "./Collection.css";
+import PlantResultsContext from "../../context/PlantData";
+import Slider from "react-slick";
+>>>>>>> master:client/src/components/Collection/Collection.js
 
 const PlantCollection = () => {
-  // This will map over the trefle API to pull out sample plant data
-  // The component can be reused throughout the app
+  const { plants } = useContext(PlantResultsContext);
+
+  useEffect(() => {
+    console.log("Plant array", plants);
+  }, [plants]);
+
+  const settings = {
+    infinite: true,
+    speed: 500,
+    slidesToShow: 4,
+    slidesToScroll: 1,
+    autoplay: true,
+    autoplaySpeed: 3000,
+    pauseOnHover: true,
+  };
 
   return (
     <div className="plantData">
-      <h2>Sample plant data</h2>
+      <h2>Search results</h2>
       <div className="ui olive cards">
-        <div className="ui card">
-          <div className="content">
-            <img
-              src="https://react.semantic-ui.com/images/wireframe/image.png"
-              className="ui image" alt="placeholder"
-            />
-            <div className="header">Plant name</div>
-            <div className="meta">Scientific name</div>
-            <div className="description">Description</div>
-          </div>
-          <div className="extra content"><button className="ui olive basic button">View more</button></div>
-        </div>
-        <div className="ui card">
-          <div className="content">
-            <img
-              src="https://react.semantic-ui.com/images/wireframe/image.png"
-              class="ui image" alt="placeholder"
-            />
-            <div className="header">Plant name</div>
-            <div className="meta">Scientific name</div>
-            <div className="description">Description</div>
-          </div>
-          <div className="extra content"><button className="ui olive basic button">View more</button></div>
-        </div>
-        <div className="ui card">
-          <div className="content">
-            <img
-              src="https://react.semantic-ui.com/images/wireframe/image.png"
-              className="ui image" alt="placeholder"
-            />
-            <div className="header">Plant name</div>
-            <div className="meta">Scientific name</div>
-            <div className="description">Description</div>
-          </div>
-          <div className="extra content"><button className="ui olive basic button">View more</button></div>
-        </div>
-        <div className="ui card">
-          <div className="content">
-            <img
-              src="https://react.semantic-ui.com/images/wireframe/image.png"
-              class="ui image" alt="placeholder"
-            />
-            <div className="header">Plant name</div>
-            <div className="meta">Scientific name</div>
-            <div className="description">Description</div>
-          </div>
-          <div className="extra content"><button className="ui olive basic button">View more</button></div>
-        </div>
+        <Slider {...settings}>
+          {plants.map((result) => (
+            <div className="ui card">
+              <div className="content">
+                <img
+                  src={result.image_url}
+                  className="ui image plantImage"
+                  alt={result.common_name}
+                />
+                <div className="header">{result.common_name}</div>
+                <div className="meta">First founded: {result.year}</div>
+                <div className="description">
+                  Scientific name: {result.scientific_name}
+                </div>
+                <div className="description">{result.observations}</div>
+              </div>
+              <div className="extra content">
+                <button className="ui olive basic button">View more</button>
+              </div>
+            </div>
+          ))}
+        </Slider>
       </div>
     </div>
   );

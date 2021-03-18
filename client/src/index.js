@@ -4,11 +4,14 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserAuthContextProvider } from './context/UserAuth';
+import { PlantDataContextProvider } from './context/PlantData';
 
 ReactDOM.render(
   // <React.StrictMode>
   <UserAuthContextProvider>
+    <PlantDataContextProvider>
     <App />
+  </PlantDataContextProvider>
   </UserAuthContextProvider>,
   // </React.StrictMode>,
   document.getElementById('root')
