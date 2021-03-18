@@ -1,4 +1,6 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
+
+
 
 
 function Imageupload() {
@@ -19,7 +21,7 @@ function Imageupload() {
       }
     )
     const file = await res.json()
-
+    console.log("checking url", file)
     setImage(file.secure_url)
     setLoading(false)
   }
@@ -29,7 +31,7 @@ function Imageupload() {
       <h1>Upload Image</h1>
       <input
         type="file"
-        name="file"
+        name=""
         placeholder="Upload an image"
         onChange={uploadImage}
       />
@@ -42,5 +44,4 @@ function Imageupload() {
   )
 }
 
-export default Imageupload
-  
+export default Imageupload;

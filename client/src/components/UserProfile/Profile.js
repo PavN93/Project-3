@@ -1,4 +1,5 @@
 import React from "react";
+import uploadImage from "../Imageupload/Image";
 import "./Profile.css";
 
 const Bio = () => {
@@ -9,11 +10,13 @@ const Bio = () => {
     <section className="container">
       <h1>My profile</h1>
       <div className="profileContainer">
+      <button>
         <img
           className="image avatar"
           src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
           alt="placeholder"
         />
+        </button>
         <div className="ui card">
           <div className="content">
             <div className="header">Name Surname</div>

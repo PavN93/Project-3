@@ -7,7 +7,7 @@ const fetch = require('node-fetch');
 // Mongoose models
 const User = require('../models/user');
 const { response, json } = require('express');
-// const Image = require('../models/image');
+//const Image = require('../models/image');
 // const Plant = require('../models/plant');
 
 router.post('/save', async (req, res) => {
@@ -131,6 +131,7 @@ router.get('/getplants/:search', async (req, res) => {
   const payload = await fetch_response.json();
   res.json(payload);
 });
+
 
 
 module.exports = router;
