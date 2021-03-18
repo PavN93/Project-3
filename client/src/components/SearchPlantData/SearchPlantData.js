@@ -1,7 +1,12 @@
+<<<<<<< HEAD:client/src/components/SearchPlantData/SearchPlantData.js
+import React from "react";
+import "./SearchPlantData.css";
+=======
 import React, { useEffect, useContext } from "react";
 import "./Collection.css";
 import PlantResultsContext from "../../context/PlantData";
 import Slider from "react-slick";
+>>>>>>> master:client/src/components/Collection/Collection.js
 
 const PlantCollection = () => {
   const { plants } = useContext(PlantResultsContext);
