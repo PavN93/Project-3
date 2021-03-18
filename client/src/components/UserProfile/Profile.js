@@ -7,11 +7,12 @@ const Bio = () => {
 
   return (
     <section className="container">
-      <h1>Your profile</h1>
+      <h1>My profile</h1>
       <div className="profileContainer">
         <img
           className="image avatar"
-          src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg" alt="placeholder"
+          src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
+          alt="placeholder"
         />
         <div className="ui card">
           <div className="content">
@@ -21,10 +22,23 @@ const Bio = () => {
               Option to add a biography for each user.
             </div>
           </div>
-          <div className="extra content">
-            <p>
-              <i aria-hidden="true" className="users icon"></i>10 Friends
-            </p>
+
+          {/* Need to link to relevant pages */}
+          <div class="ui grid">
+          <div className="column">
+            <button className="ui button DataButton">
+              <i className="leaf icon"></i>My plants
+              <p className="dataDigit">112</p>
+            </button>
+            <button className="ui button DataButton">
+              <i className="heart icon"></i>Favourites
+              <p className="dataDigit">36</p>
+            </button>
+            <button className="ui button DataButton">
+              <i className="users icon"></i>Friends
+              <p className="dataDigit">8</p>
+            </button>
+          </div>
           </div>
 
           <div className="content data">

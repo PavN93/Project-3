@@ -1,0 +1,19 @@
+.myPlants {
+  padding-top: 100px;
+  text-align: left;
+}
+
+.paleText {
+    color: #efebe8;
+}
+
+.databaseResults {
+  background-color: rgba(255, 255, 255, 0.15);
+  backdrop-filter: blur(5px);
+  border-radius: 10px;
+  padding: 15px;
+}
+
+.ui.card.plantResult {
+  width: fit-content;
+}

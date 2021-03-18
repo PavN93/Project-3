@@ -14,9 +14,28 @@
 }
 
 .ui.card {
-  width: 100%;
+  width: 80%;
 }
 
 .data {
   text-align: left;
+}
+
+.ui.button.DataButton {
+  color: #2a3b19;
+  background-color: #a4b792;
+  border: solid;
+  height: 50px;
+  width: 30%;
+}
+
+@media only screen and (max-width: 700px) {
+  .ui.button.DataButton {
+    width: 80%;
+  }
+}
+
+.dataDigit {
+  font-size: 15px;
+  color: lemonchiffon;
 }
