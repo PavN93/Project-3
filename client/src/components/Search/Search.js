@@ -1,6 +1,7 @@
 import React, { useState, useContext } from "react";
 import "./Search.css";
 import PlantDataContext from "../../context/PlantData";
+import PlantCollection from "../SearchPlantData/SearchPlantData"
 
 const Search = () => {
   // I'd like to add some sort of loader(spinner) so the user knows the search is in progress
