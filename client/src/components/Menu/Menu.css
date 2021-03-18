@@ -8,7 +8,7 @@
 }
 
 .clover-logo:hover {
-  transform: scale(1.3) rotate(210deg);
+  transform: scale(1.3) rotate(360deg);
   opacity: 80%;
   cursor: pointer;
 }

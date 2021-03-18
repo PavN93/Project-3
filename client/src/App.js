@@ -1,41 +1,25 @@
+// import { set } from "mongoose";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Routed from "./routes/Routed";
-import { useContext } from 'react';
-import UserAuthContext from '../src/context/UserAuth';
-
 
 function App() {
 
-  // declare how many backgrounds there are for randomizing
+  // Amount of bgds for randomize
   const bgAmount = 11;
-  // Random background
-  const bg = Math.floor(Math.random() * bgAmount) + 1;
 
-  const { userLoggedIn, loginToggle } = useContext(UserAuthContext);
+  const [bg, setBg] = useState(Math.floor(Math.random() * bgAmount) + 1);
 
-  // hit endpoint when component is mounted
-  const addUserToDb = () => {
-    (async () => {
-      try {
-        const response = await fetch('/api/save', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({
-            username: 'Example',
-            password: 'Blah',
-            email: 'mail@mail.com',
-            bio: 'about me',
-            avatar: 'https://i.picsum.photos/id/778/200/200.jpg?hmac=fgFK_HI_g_N4MzYuYbssOB8ymhT_m0JK61tNJHfdPYU'
-          })
-        });
-        const payload = await response.json();
-        console.log(payload.message);
-      } catch (error) {
-        console.log(error);
-      }
-    })();
-  }
-
+  
+  useEffect(() => {
+    const bgTimer = setInterval(() => {
+      setBg(Math.floor(Math.random() * bgAmount) + 1)
+    }, 10000);
+    return () => {
+      clearInterval(bgTimer);
+    };
+  }, []);
+  
   return (
     <div
       className="backgroundImage"
@@ -43,22 +27,6 @@ function App() {
     >
       <div className="pageContent">
         <Routed />
-        <button onClick={addUserToDb}>Click to add user</button>
-        {userLoggedIn ?
-          (<>
-            <p
-              style={{ color: 'white' }}>Logged in - click to log out
-            </p>
-            <button onClick={loginToggle}>Log out</button>
-          </>
-          ) :
-          (<>
-            <p
-              style={{ color: 'white' }}>Logged out - click to log in
-            </p>
-            <button onClick={loginToggle}>Log in</button>
-          </>)
-        }
       </div>
     </div>
   );

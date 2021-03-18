@@ -31,8 +31,6 @@ const validateLogin = Joi.object({
   .required(),
 })
 
-// module.exports.validateSingup = validateSingup;
-// module.exports.validateLogin = validateLogin;
 module.exports = {
   validateSingup,
   validateLogin

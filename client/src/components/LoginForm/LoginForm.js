@@ -3,25 +3,32 @@ import fetcher from "../../functions/fetcher";
 import "./LoginForm.css";
 import { useHistory } from "react-router-dom";
 import UserAuthContext from "../../context/UserAuth";
+import { validateLoginObject } from "../../functions/validateInput";
 
 const Login = () => {
+
+  // input values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+
+  // password visibility 
   const [passwordIcon, setPasswordIcon] = useState("eye slash icon");
   const [inputType, setInputType] = useState("password");
-  const location = useHistory();
-  const { doLogin } = useContext(UserAuthContext);
 
-  // componentDidMount() {
-  //   if (localStorage.checkbox && localStorage.email !== "") {
-  //     this.setState({
-  //       isChecked: true,
-  //       email: localStorage.email,
-  //       password: localStorage.password,
-  //     });
-  //   }
-  // }
+  // client input validation error
+  const [validationError, setValidationError] = useState("");
+  // server input validation error
+  const [serverError, setServerError] = useState("");
+
+  // waiting for server response
+  const [busyLogIn, setBusyLogIn] = useState(false);
+
+  // for redirecting
+  const location = useHistory("");
+  const { doLogin } = useContext(UserAuthContext);
+  // const [emailError, setEmailError] = useState('');
+  // const [passwordError, setPasswordError] = useState('');
 
   const togglePasswordVisibility = () => {
     if (inputType === "password") {
@@ -49,18 +56,35 @@ const Login = () => {
 
   const loginSubmit = async (event) => {
     event.preventDefault();
+    setValidationError("");
+    setServerError("");
     const loginData = {
       email,
       password,
     };
-    const response = await fetcher("/api/login", null, loginData);
-    if (response.success) {
-      doLogin(response.payload);
-      location.push("/user");
+    const { value, error } = validateLoginObject.validate(loginData);
+    if (error) {
+      setValidationError(error.details[0].message);
+      return;
     }
+    setBusyLogIn(true);
+    try {
+      const response = await fetcher("/api/login", null, loginData);
+      if (!response.success) {
+        setServerError(response.payload.message);
+      }
+      if (response.success) {
+        doLogin(response.payload);
+        setBusyLogIn(false);
+        location.push("/user");
+      }
+    } catch (err) {
+      console.log(err);
+    }
+    setBusyLogIn(false);
   };
 
-  const toRegister = (event) => {
+  const redirectToRegister = (event) => {
     event.preventDefault();
     location.push("/signup");
   };
@@ -69,8 +93,9 @@ const Login = () => {
     <section className="container">
       <h1>Login</h1>
       <div className="loginContainer">
-        <form className="ui form">
-          <div className="field">
+        <form className={"ui form " + (busyLogIn && "loading")}>
+          <div className={"field required " + ((validationError.length > 0) ? "error" : "")}>
+            <label>Email:</label>
             <input
               name="loginEmail"
               placeholder="Email Address"
@@ -78,7 +103,8 @@ const Login = () => {
               onChange={(event) => onType(event)}
             />
           </div>
-          <div className="field">
+          <div className={"field required " + ((validationError.length > 0) ? "error" : "")}>
+            <label>Password:</label>
             <input
               name="loginPassword"
               type={inputType}
@@ -93,6 +119,9 @@ const Login = () => {
               ></i>
             </div>
           </div>
+          <div className="field ">
+            <label>* - required</label>
+          </div>
           <div className="field">
             <div className="ui checkbox">
               <input
@@ -103,6 +132,11 @@ const Login = () => {
               <label>Remember me?</label>
             </div>
           </div>
+          {((validationError.length > 0) ?
+            <p className="signUpError">{validationError}</p> : null)}
+          {(serverError.length > 0 ?
+            <p className="signUpError">{serverError}</p> :
+            null)}
           <button className="ui animated button" onClick={loginSubmit}>
             <div className="visible content">Login</div>
             <div className="hidden content">
@@ -110,7 +144,7 @@ const Login = () => {
             </div>
           </button>
           <span> Or </span>
-          <button className="ui animated button" onClick={toRegister}>
+          <button className="ui animated button" onClick={redirectToRegister}>
             <div className="visible content">Register</div>
             <div className="hidden content">
               <i aria-hidden="true" className="signup icon"></i>

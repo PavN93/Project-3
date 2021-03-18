@@ -5,3 +5,13 @@
   padding: 20px;
   text-align: center;
 }
+
+.signUpError {
+  padding-left: 15px;
+  color: #9f3a38;
+  font-size: 1em;
+}
+
+form.form {
+  text-align: left;
+}
