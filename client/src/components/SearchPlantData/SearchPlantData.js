@@ -46,7 +46,7 @@ const PlantCollection = () => {
     ]
   };
 
-  return (
+  return ( plants.length >= 1 &&
     <div className="plantData">
       <h2>Search results</h2>
       <div className="ui olive cards">
