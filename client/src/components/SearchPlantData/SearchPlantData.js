@@ -50,7 +50,7 @@ const PlantCollection = () => {
   };
 
   function handleModal() {
-    console.log("function working")
+    console.log("function working");
     return (
       <div>
         <Modal.Header>Text</Modal.Header>
@@ -69,45 +69,47 @@ const PlantCollection = () => {
   }
 
   return (
-    plants.length >= 1 &&
-    <div className="plantData">
-      <h2>Search results</h2>
-      <div className="ui olive cards">
-        <Slider {...settings}>
-          {plants.map((result) => (
-            <div className="ui card">
-              <div className="content">
-                <img
-                  src={result.image_url}
-                  className="ui image plantImage"
-                  alt={result.common_name}
-                />
-                <div className="header">{result.common_name}</div>
-                <div className="meta">First founded: {result.year}</div>
-                <div className="description">
-                  Scientific name: {result.scientific_name}
+    plants.length >= 1 && (
+      <div className="plantData">
+        <h2>Search results</h2>
+        <div className="ui olive cards">
+          <Slider {...settings}>
+            {plants.map((result) => (
+              <div className="ui card">
+                <div className="content">
+                  <img
+                    src={result.image_url}
+                    className="ui image plantImage"
+                    alt={result.common_name}
+                  />
+                  <div className="header">{result.common_name}</div>
+                  <div className="meta">First founded: {result.year}</div>
+                  <div className="description">
+                    Scientific name: {result.scientific_name}
+                  </div>
+                  <div className="description">{result.observations}</div>
                 </div>
-                <div className="description">{result.observations}</div>
+                <div className="extra content">
+                  <Modal
+                    onClose={() => setOpen(false)}
+                    onOpen={() => setOpen(true)}
+                    open={open}
+                    trigger={
+                      <button
+                        onClick={handleModal()}
+                        className="ui olive basic button"
+                      >
+                        View more
+                      </button>
+                    }
+                  ></Modal>
+                </div>
               </div>
-              <div className="extra content">
-                <Modal
-                  onClose={() => setOpen(false)}
-                  onOpen={() => setOpen(true)}
-                  open={open}
-                  trigger={
-                    <button onClick={handleModal()}
-                      className="ui olive basic button"
-                    >
-                      View more
-                    </button>
-                  }
-                ></Modal>
-              </div>
-            </div>
-          ))}
-        </Slider>
+            ))}
+          </Slider>
+        </div>
       </div>
-    </div>
+    )
   );
 };
 
