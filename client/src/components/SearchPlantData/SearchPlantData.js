@@ -50,16 +50,15 @@ const PlantCollection = () => {
   };
 
   function handleModal() {
-    const {common_name, image_url, scientific_name, observations} = plants;
-    console.log(plants)
+    console.log("function working")
     return (
       <div>
-        <Modal.Header>{common_name}</Modal.Header>
+        <Modal.Header>Text</Modal.Header>
         <Modal.Content image>
-          <Image size="medium" src={image_url} wrapped />
+          <Image size="medium" src="#" wrapped />
           <Modal.Description>
-            <p>Scientific name: {scientific_name}</p>
-            <p>{observations}</p>
+            <p>Scientific name:</p>
+            <p>Text</p>
           </Modal.Description>
         </Modal.Content>
         <Modal.Actions>
@@ -74,8 +73,8 @@ const PlantCollection = () => {
       <h2>Search results</h2>
       <div className="ui olive cards">
         <Slider {...settings}>
-          {plants.map((result, index) => (
-            <div key={index} className="ui card">
+          {plants.map((result) => (
+            <div className="ui card">
               <div className="content">
                 <img
                   src={result.image_url}
@@ -95,8 +94,7 @@ const PlantCollection = () => {
                   onOpen={() => setOpen(true)}
                   open={open}
                   trigger={
-                    <button
-                    onClick={handleModal(result)}
+                    <button onClick={handleModal()}
                       className="ui olive basic button"
                     >
                       View more
