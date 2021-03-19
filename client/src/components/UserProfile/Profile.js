@@ -24,7 +24,7 @@ const Bio = () => {
           </div>
 
           {/* Need to link to relevant pages */}
-          <div class="ui grid">
+          <div className="ui grid">
           <div className="column">
             <button className="ui button DataButton">
               <i className="leaf icon"></i>My plants

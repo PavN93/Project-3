@@ -27,8 +27,6 @@ const Login = () => {
   // for redirecting
   const location = useHistory("");
   const { doLogin } = useContext(UserAuthContext);
-  // const [emailError, setEmailError] = useState('');
-  // const [passwordError, setPasswordError] = useState('');
 
   const togglePasswordVisibility = () => {
     if (inputType === "password") {
@@ -69,7 +67,7 @@ const Login = () => {
     }
     setBusyLogIn(true);
     try {
-      const response = await fetcher("/api/login", null, loginData);
+      const response = await fetcher("/api/user/login", null, loginData);
       if (!response.success) {
         setServerError(response.payload.message);
       }
