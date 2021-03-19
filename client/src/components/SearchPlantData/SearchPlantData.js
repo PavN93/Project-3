@@ -49,7 +49,6 @@ const PlantCollection = () => {
     ],
   };
 
-<<<<<<< HEAD
   function handleModal() {
     console.log("function working")
     return (
@@ -70,9 +69,7 @@ const PlantCollection = () => {
   }
 
   return (
-=======
-  return ( plants.length >= 1 &&
->>>>>>> master
+    plants.length >= 1 &&
     <div className="plantData">
       <h2>Search results</h2>
       <div className="ui olive cards">
