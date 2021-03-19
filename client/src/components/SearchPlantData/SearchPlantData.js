@@ -49,13 +49,33 @@ const PlantCollection = () => {
     ],
   };
 
+  function handleModal() {
+    const {common_name, image_url, scientific_name, observations} = plants;
+    console.log(plants)
+    return (
+      <div>
+        <Modal.Header>{common_name}</Modal.Header>
+        <Modal.Content image>
+          <Image size="medium" src={image_url} wrapped />
+          <Modal.Description>
+            <p>Scientific name: {scientific_name}</p>
+            <p>{observations}</p>
+          </Modal.Description>
+        </Modal.Content>
+        <Modal.Actions>
+          <Button onClick={() => setOpen(false)}>Close</Button>
+        </Modal.Actions>
+      </div>
+    );
+  }
+
   return (
     <div className="plantData">
       <h2>Search results</h2>
       <div className="ui olive cards">
         <Slider {...settings}>
-          {plants.map((result) => (
-            <div className="ui card">
+          {plants.map((result, index) => (
+            <div key={index} className="ui card">
               <div className="content">
                 <img
                   src={result.image_url}
@@ -75,21 +95,14 @@ const PlantCollection = () => {
                   onOpen={() => setOpen(true)}
                   open={open}
                   trigger={
-                    <button className="ui olive basic button">View more</button>
+                    <button
+                    onClick={handleModal(result)}
+                      className="ui olive basic button"
+                    >
+                      View more
+                    </button>
                   }
-                >
-                  <Modal.Header>{result.common_name}</Modal.Header>
-                  <Modal.Content image>
-                    <Image size="medium" src={result.image_url} wrapped />
-                    <Modal.Description>
-                      <p>Scientific name: {result.scientific_name}</p>
-                      <p>{result.observations}</p>
-                    </Modal.Description>
-                  </Modal.Content>
-                  <Modal.Actions>
-                    <Button onClick={() => setOpen(false)}>Close</Button>
-                  </Modal.Actions>
-                </Modal>
+                ></Modal>
               </div>
             </div>
           ))}
@@ -98,5 +111,54 @@ const PlantCollection = () => {
     </div>
   );
 };
+
+//     <div className="plantData">
+//       <h2>Search results</h2>
+//       <div className="ui olive cards">
+//         <Slider {...settings}>
+//           {plants.map((result) => (
+//             <div className="ui card">
+//               <div className="content">
+//                 <img
+//                   src={result.image_url}
+//                   className="ui image plantImage"
+//                   alt={result.common_name}
+//                 />
+//                 <div className="header">{result.common_name}</div>
+//                 <div className="meta">First founded: {result.year}</div>
+//                 <div className="description">
+//                   Scientific name: {result.scientific_name}
+//                 </div>
+//                 <div className="description">{result.observations}</div>
+//               </div>
+//               <div className="extra content">
+//                 <button onClick={handleModal()} className="ui olive basic button">
+//                   View more
+//                 </button>
+//               </div>
+//             </div>
+//           ))}
+//         </Slider>
+//       <Modal basic
+//         onClose={() => setOpen(false)}
+//         onOpen={() => setOpen(true)}
+//         open={open}
+//       >
+//         <Modal.Header>Test</Modal.Header>
+//         <Modal.Content image>
+//           <Image size="medium" src="" wrapped />
+//           <Modal.Description>
+//             <p>Scientific name: test</p>
+//             <p>Sample data</p>
+//           </Modal.Description>
+//         </Modal.Content>
+//         <Modal.Actions>
+//           <Button onClick={() => setOpen(false)}>Close</Button>
+//         </Modal.Actions>
+//       </Modal>
+//       </div>
+//     </div>
+//   );
+// };
 
 export default PlantCollection;
