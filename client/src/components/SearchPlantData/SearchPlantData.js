@@ -50,7 +50,15 @@ const PlantCollection = () => {
 
   function handlePlantModal({ result }) {
     console.log("Requested plant:", result);
-    setViewPlant({ show: true, plant: result });
+    const plantURL = `/api/getPlantByID/${result.id}`;
+    const fetchPlants = async () => {
+      const response = await fetch(plantURL);
+      const payload = await response.json();
+      console.log("response data", payload);
+      setViewPlant({ show: true, plant: payload.data });
+      // setViewPlant({ show: true, plant: result });
+    };
+    fetchPlants();
   }
 
   return (
