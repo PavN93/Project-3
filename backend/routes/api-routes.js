@@ -3,7 +3,6 @@ const fetch = require('node-fetch');
 
 // Mongoose models
 const User = require('../models/user');
-const { response, json } = require('express');
 // const Image = require('../models/image');
 // const Plant = require('../models/plant');
 
