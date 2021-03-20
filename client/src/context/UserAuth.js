@@ -24,7 +24,7 @@ const UserAuthContextProvider = ({ children }) => {
     const user2 = JSON.parse(user);
     if (user) {
       await fetcher("/api/user/logout", user2.token);
-      // localStorage.removeItem("user")
+      localStorage.removeItem("user")
     }
   }
 
