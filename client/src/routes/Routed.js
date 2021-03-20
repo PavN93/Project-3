@@ -1,6 +1,7 @@
 import { BrowserRouter as Router, Route } from "react-router-dom";
 import Home from "../pages/Homepage/Homepage";
 import Login from "../pages/LoginPage/LoginPage";
+import Logout from "../pages/Logout/Logout";
 import SignUp from "../pages/SignUpPage/SignUpPage";
 import Upload from "../pages/UploadPage/Upload";
 import UserProfile from "../pages/UserProfile/UserProfile";
@@ -15,6 +16,7 @@ const Routed = () => {
 
       <Route exact path="/login" component={Login} />
       <Route exact path="/signup" component={SignUp} />
+      <Route exact path="/logout" component={Logout} />
     </Router>
   );
   // }

@@ -90,7 +90,7 @@ const Bio = () => {
           <p>
             Need to be displaying individual users plants from the database here
           </p>
-        </div>
+        </div> 
       )}
 
       {/* Favourites section */}
