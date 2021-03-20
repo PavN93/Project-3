@@ -2,6 +2,7 @@ import React, { useState, useEffect, useContext } from "react";
 import PlantResultsContext from "../../context/PlantData";
 import "./SearchPlantData.css";
 import Slider from "react-slick";
+import { motion } from "framer-motion";
 
 import { Button, Image, Modal } from "semantic-ui-react";
 
@@ -98,11 +99,17 @@ const PlantCollection = () => {
                 </Modal.Description>
               </Modal.Content>
               <Modal.Actions>
-                <Button
-                  onClick={() => setViewPlant({ show: false, plant: null })}
-                >
-                  Close
-                </Button>
+                <div className="buttonGroup">
+                  <button className="ui red animated button">
+                    <div className="hidden content"><i aria-hidden="true" className="heart icon"></i></div>
+                    <div className="visible content">Favourite</div>
+                    </button>
+                  <div className="or"></div>
+                  <Button onClick={() => setViewPlant({ show: false, plant: null })} className="ui animated button">
+                  <div className="hidden content"><i aria-hidden="true" className="close icon"></i></div>
+                  <div className="visible content">Close</div>
+                  </Button>
+                  </div>
               </Modal.Actions>
             </Modal>
           )}
@@ -111,52 +118,5 @@ const PlantCollection = () => {
     )
   );
 };
-
-// <div className="plantData">
-//   <h2>Search results</h2>
-//   <div className="ui olive cards">
-//     <Slider {...settings}>
-//       {plants.map((result) => (
-//         <div className="ui card">
-//           <div className="content">
-//             <img
-//               src={result.image_url}
-//               className="ui image plantImage"
-//               alt={result.common_name}
-//             />
-//             <div className="header">{result.common_name}</div>
-//             <div className="meta">First founded: {result.year}</div>
-//             <div className="description">
-//               Scientific name: {result.scientific_name}
-//             </div>
-//             <div className="description">{result.observations}</div>
-//           </div>
-//           <div className="extra content">
-//           <Modal
-//               onClose={() => setOpen(false)}
-//               onOpen={() => setOpen(true)}
-//               open={open}
-//               trigger={
-//                 <button className="ui olive basic button">View more</button>
-//               }
-//             >
-//               <Modal.Header>{result.common_name}</Modal.Header>
-//               <Modal.Content image>
-//                 <Image size="medium" src={result.image_url} wrapped />
-//                 <Modal.Description>
-//                   <p>Scientific name: {result.scientific_name}</p>
-//                   <p>{result.observations}</p>
-//                 </Modal.Description>
-//               </Modal.Content>
-//               <Modal.Actions>
-//                 <Button onClick={() => setOpen(false)}>Close</Button>
-//               </Modal.Actions>
-//             </Modal>
-//           </div>
-//         </div>
-//       ))}
-//     </Slider>
-//   </div>
-// </div>
 
 export default PlantCollection;
