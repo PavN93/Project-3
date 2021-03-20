@@ -13,7 +13,7 @@ const SideMenu = () => {
   const handleShowClick = () => setVisible(true);
   const handleSidebarHide = () => setVisible(false);
 
-  const { doLogout } = useContext(UserAuthContext);
+  const { doLogout, userLoggedIn } = useContext(UserAuthContext);
 
   const handleLogout = async () => {
     await doLogout();
@@ -49,18 +49,27 @@ const SideMenu = () => {
           <Icon name="user" />
             Profile
           </Menu.Item>
-        <Menu.Item as={Link} to="/login">
-          <Icon name="sign-in" />
-            Login
-          </Menu.Item>
         <Menu.Item as={Link} to="/signup">
           <Icon name="signup" />
             Signup
           </Menu.Item>
-        <Menu.Item onClick={handleLogout}>
-          <Icon name="sign out" />
+
+        {/* If user logged in - show buttons below */}
+        {userLoggedIn && (
+          <Menu.Item onClick={handleLogout}>
+            <Icon name="sign out" />
             Logout
           </Menu.Item>
+        )}
+
+        {/* If user not logged in - show these instead */}
+        {!userLoggedIn && (
+          <Menu.Item as={Link} to="/login">
+            <Icon name="sign-in" />
+            Login
+          </Menu.Item>
+        )}
+
       </Sidebar>
     </div>
   );

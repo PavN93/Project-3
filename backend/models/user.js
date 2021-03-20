@@ -19,6 +19,10 @@ const userSchema = new Schema({
     required: 'email is required',
     unique: true
   },
+  location: {
+    type: String,
+    trim: true
+  },
   bio: {
     type: String,
     trim: true

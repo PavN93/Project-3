@@ -100,11 +100,22 @@ const PlantCollection = () => {
               </Modal.Content>
               <Modal.Actions>
                 <div className="buttonGroup">
-                  <button className="ui red animated button">
-                    <div className="hidden content"><i aria-hidden="true" className="heart icon"></i></div>
-                    <div className="visible content">Favourite</div>
+                  
+                  {/* save button */}
+                  <button className="ui green animated button">
+                    <div className="hidden content"><i aria-hidden="true" className="save icon"></i></div>
+                    <div className="visible content">save</div>
                     </button>
+
+                  {/* remove button */}
+                  <button className="ui red animated button">
+                    <div className="hidden content"><i aria-hidden="true" className="delete icon"></i></div>
+                    <div className="visible content">remove</div>
+                    </button>
+
                   <div className="or"></div>
+
+                  {/* close button */}
                   <Button onClick={() => setViewPlant({ show: false, plant: null })} className="ui animated button">
                   <div className="hidden content"><i aria-hidden="true" className="close icon"></i></div>
                   <div className="visible content">Close</div>
