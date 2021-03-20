@@ -83,7 +83,9 @@ const Bio = () => {
 
       {/* Plants section */}
       {view === "plants" && (
-        <div className="ui segment">
+        <div className="ui segment"
+        initial={{ scale: 1 }}
+        animate={{ opacity: 1.5 }}>
           <h2>My plants</h2>
           <p>
             Need to be displaying individual users plants from the database here
