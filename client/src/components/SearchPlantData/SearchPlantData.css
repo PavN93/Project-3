@@ -31,3 +31,7 @@ div.header {
   height: 300px;
   width: 250px;
 }
+
+.buttonGroup {
+  display: flex;
+}
