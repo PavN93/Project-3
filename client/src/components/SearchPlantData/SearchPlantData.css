@@ -35,3 +35,26 @@ div.header {
 .buttonGroup {
   display: flex;
 }
+
+.ui.button.viewMore:hover {
+    background: olive;
+    color: white;
+}
+
+/* Modal styling */
+
+.ui.modal>.header.modalHeader {
+  background-color:rgba(41, 57, 24, 0.7);
+  color: lemonchiffon;
+  font-size: 30px;
+  text-align: center;
+}
+
+div.cardBody.image.content {
+  display: grid;
+  background-color: #efebe8;
+}
+
+div.cardBody.image.content p span {
+  font-weight: bold;
+}
