@@ -5,6 +5,7 @@ const { validateSingup, validateLogin } = require('../validators/authValidators'
 
 // Mongoose models
 const User = require('../models/user');
+const auth = require('../middleware/auth');
 
 // Register new user
 router.post('/signup', async (req, res) => {
@@ -107,9 +108,9 @@ router.post('/login', async (req, res) => {
 });
 
 // Logout
-router.post('/logout', async (req, res) => {
-  const { token, username, email, _id } = req.body
-  console.log('logging out', username);
+router.get('/logout', auth, async (req, res) => {
+  const { _id, username, email} = req.user;
+  console.log("logging out" , username);
   res.json({ success: true });
 });
 

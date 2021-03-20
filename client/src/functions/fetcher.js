@@ -11,7 +11,7 @@ const fetcher = async (url, token, body) => {
   if (token) {
     // we use x-access-token header here, but we could just as easily used the Authorization header
     // or indeed passed the token in the request body (but that would mean extra code to merge it with any body fields passed to the function)
-    fetchParams.headers['x-access-token'] = token;
+    fetchParams.headers['Authorization'] = token;
   }
   try {
     const response = await fetch(url, fetchParams);

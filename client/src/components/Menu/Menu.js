@@ -17,7 +17,7 @@ const SideMenu = () => {
 
   const handleLogout = async () => {
     await doLogout();
-    location.push("/logout");
+    // location.push("/logout");
   }
 
   return (

@@ -16,9 +16,7 @@ module.exports = async (req, res, next) => {
   const decoded = jwt.verify(token, process.env.SECRET);
 
   try {
-    // need support here
-    const user = await User.findById("   gotta ask   ");
-
+    const user = await User.findById(decoded.id);
     if (!user) {
       return res
       .status(404)
@@ -28,7 +26,7 @@ module.exports = async (req, res, next) => {
       });
     }
 
-    req.user = decoded;
+    req.user = user;
 
     next();
   } catch (err) {
