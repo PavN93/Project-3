@@ -56,7 +56,12 @@ h3 {
 }
 
 .leafScroller {
-  height: 200px;
+  height: 150px;
   position: absolute;
-  right: 0px;
+}
+
+@media only screen and (max-width: 600px) {
+  .leafScroller {
+    display: none;
+  }
 }

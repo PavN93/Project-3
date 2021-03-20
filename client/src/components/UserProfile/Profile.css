@@ -1,9 +1,25 @@
 .profileContainer {
   background: linear-gradient(360deg, #efebe8 85%, transparent 50%);
   padding: 15px;
+  border-radius: 10px;
   display: inline-block;
   width: 100%;
   text-align: -webkit-center;
+}
+
+.ui.button.editProfile {
+  background-color: #a4b792;
+  color: #2a3b19;
+}
+
+.ui.button.editProfile button:hover {
+  background-color: #2a3b19;
+  color: lemonchiffon;
+}
+
+.ui.form.friendSearch {
+  display: flex;
+  width: 100%;
 }
 
 .avatar {
@@ -25,8 +41,9 @@
   color: #2a3b19;
   background-color: #a4b792;
   border: solid;
-  height: 50px;
+  height: auto;
   width: 30%;
+  margin: 10px 0px;
 }
 
 @media only screen and (max-width: 700px) {
@@ -36,7 +53,7 @@
 }
 
 .dataDigit {
-  font-size: 15px;
+  font-size: 26px;
   color: lemonchiffon;
 }
 
@@ -44,4 +61,15 @@
   background-color: #efebef;
   color: lemonchiffon;
   padding: 30px;
+}
+
+.friendsList {
+  display: flex;
+  justify-content: center;
+}
+
+@media only screen and (max-width: 800px) {
+  .ui.vertical.divider {
+    display: none;
+  }
 }

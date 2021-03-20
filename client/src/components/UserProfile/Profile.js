@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import "./Profile.css";
+import { motion } from "framer-motion";
 
 const Bio = () => {
   // We can pull the personal data from the database once wired up
@@ -19,7 +20,7 @@ const Bio = () => {
   }
 
   return (
-    <section className="container">
+    <section className="ui container">
       <h1>My profile</h1>
       <div className="profileContainer">
         <img
@@ -39,27 +40,27 @@ const Bio = () => {
           {/* Need to link to relevant pages */}
           <div class="ui grid">
             <div className="column">
-              <button
+            <motion.button whileHover={{ scale: 0.9, originX: 0 }}
                 onClick={() => setView("plants")}
                 className="ui button DataButton"
               >
                 <i className="leaf icon"></i>My plants
                 <p className="dataDigit">112</p>
-              </button>
-              <button
+                </motion.button>
+              <motion.button whileHover={{ scale: 0.9, originX: 0 }}
                 onClick={() => setView("favourites")}
                 className="ui button DataButton"
               >
                 <i className="heart icon"></i>Favourites
                 <p className="dataDigit">36</p>
-              </button>
-              <button
+              </motion.button>
+              <motion.button whileHover={{ scale: 0.9, originX: 0 }}
                 onClick={() => setView("friends")}
                 className="ui button DataButton"
               >
                 <i className="users icon"></i>Friends
                 <p className="dataDigit">8</p>
-              </button>
+                </motion.button>
             </div>
           </div>
 
@@ -79,40 +80,45 @@ const Bio = () => {
             </div>
           </div>
         </div>
+      <button className="ui button editProfile">
+        Edit profile
+      </button>
       </div>
 
       {/* Plants section */}
       {view === "plants" && (
-        <div className="ui segment"
-        initial={{ scale: 1 }}
-        animate={{ opacity: 1.5 }}>
+        <motion.div className="ui segment"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, duration: 5 }}>
           <h2>My plants</h2>
           <p>
             Need to be displaying individual users plants from the database here
           </p>
-        </div> 
+        </motion.div>
       )}
 
       {/* Favourites section */}
       {view === "favourites" && (
-        <div className="ui segment">
-          <h2>Favourites</h2>
-          <p>Need to be display any plants marked as favourites</p>
-        </div>
+        <motion.div className="ui segment"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, duration: 5 }}>
+          <h2>My favourites</h2>
+          <p>Need to be display any plants marked as favourites on the homepage</p>
+        </motion.div>
       )}
 
       {/* Friends section */}
       {view === "friends" && (
         <>
-          <div className="ui segment">
-            <div className="ui very relaxed two column grid">
+          <motion.div className="ui segment"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1, duration: 5 }}>
+            <div className="ui stackable divided relaxed two column grid">
               <div className="column">
-                <div>
-                  <h2>Your friends</h2>
-                </div>
+                  <h2>My friends</h2>
               </div>
               <div className="column">
-                <form className="ui form">
+                <form className="ui form friendSearch">
                   <input
                     value={searchInput}
                     onChange={handleInputChange}
@@ -133,8 +139,8 @@ const Bio = () => {
               </div>
             </div>
             <div class="ui vertical divider">Or</div>
-          </div>
-          <section className="ui cards">
+          </motion.div>
+          <section className="ui cards friendsList">
 
             {/* Will need to map over database users here */}
             <div className="ui card">
@@ -166,7 +172,43 @@ const Bio = () => {
                   Bio taken from the users profile
                 </div>
                 <div className="description">
-                  <i className="leaf icon"></i>32 uploads
+                  <i className="leaf icon"></i>8 uploads
+                </div>
+                <button className="ui olive right floated button">
+                  <i className="add user icon"></i>Add friend
+                </button>
+              </div>
+            </div>
+            <div className="ui card">
+              <div className="content">
+                <img
+                  src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+                  className="ui tiny middle aligned left floated circular image"
+                />
+                <div className="header">Matthew Brown</div>
+                <div className="description">
+                  Bio taken from the users profile
+                </div>
+                <div className="description">
+                  <i className="leaf icon"></i>23 uploads
+                </div>
+                <button className="ui olive right floated button">
+                  <i className="add user icon"></i>Add friend
+                </button>
+              </div>
+            </div>
+            <div className="ui card">
+              <div className="content">
+                <img
+                  src="https://react.semantic-ui.com/images/avatar/large/molly.png"
+                  className="ui tiny middle aligned left floated circular image"
+                />
+                <div className="header">Molly Smith</div>
+                <div className="description">
+                  Bio taken from the users profile
+                </div>
+                <div className="description">
+                  <i className="leaf icon"></i>27 uploads
                 </div>
                 <button className="ui olive right floated button">
                   <i className="add user icon"></i>Add friend

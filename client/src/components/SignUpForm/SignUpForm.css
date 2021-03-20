@@ -1,9 +1,10 @@
 .signupContainer {
-  background-color: lightgray;
+  background-color: #efebe8;
   color: #2a3b19;
   margin: 50px;
   padding: 20px;
   text-align: center;
+  border-radius: 10px;
 }
 
 .signUpError {

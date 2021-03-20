@@ -21,11 +21,11 @@ const SideMenu = () => {
   }
 
   return (
-    <div>
+    <div className="ui container">
       <img
         disabled={visible}
         onClick={handleShowClick}
-        className="clover-logo"
+        className="PlanticaLogo"
         src={`${process.env.PUBLIC_URL}/Plantica.png`}
         alt="Plantica Logo"
       />

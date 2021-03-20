@@ -23,7 +23,7 @@ const Search = () => {
   }
 
   return (
-    <div className="searchContainer">
+    <div className="ui container searchContainer">
       <h2>Explore thousands of plants from all over the world</h2>
       <form className="ui form">
         <input

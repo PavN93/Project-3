@@ -6,13 +6,12 @@ import UserAuthContext from "../../context/UserAuth";
 import { validateLoginObject } from "../../functions/validateInput";
 
 const Login = () => {
-
   // input values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
 
-  // password visibility 
+  // password visibility
   const [passwordIcon, setPasswordIcon] = useState("eye slash icon");
   const [inputType, setInputType] = useState("password");
 
@@ -88,11 +87,15 @@ const Login = () => {
   };
 
   return (
-    <section className="container">
+    <section className="ui container">
       <h1>Login</h1>
       <div className="loginContainer">
         <form className={"ui form " + (busyLogIn && "loading")}>
-          <div className={"field required " + ((validationError.length > 0) ? "error" : "")}>
+          <div
+            className={
+              "field required " + (validationError.length > 0 ? "error" : "")
+            }
+          >
             <label>Email:</label>
             <input
               name="loginEmail"
@@ -101,7 +104,11 @@ const Login = () => {
               onChange={(event) => onType(event)}
             />
           </div>
-          <div className={"field required " + ((validationError.length > 0) ? "error" : "")}>
+          <div
+            className={
+              "field required " + (validationError.length > 0 ? "error" : "")
+            }
+          >
             <label>Password:</label>
             <input
               name="loginPassword"
@@ -130,11 +137,12 @@ const Login = () => {
               <label>Remember me?</label>
             </div>
           </div>
-          {((validationError.length > 0) ?
-            <p className="signUpError">{validationError}</p> : null)}
-          {(serverError.length > 0 ?
-            <p className="signUpError">{serverError}</p> :
-            null)}
+          {validationError.length > 0 ? (
+            <p className="signUpError">{validationError}</p>
+          ) : null}
+          {serverError.length > 0 ? (
+            <p className="signUpError">{serverError}</p>
+          ) : null}
           <button className="ui animated button" onClick={loginSubmit}>
             <div className="visible content">Login</div>
             <div className="hidden content">
@@ -142,12 +150,9 @@ const Login = () => {
             </div>
           </button>
           <span> Or </span>
-          <button className="ui animated button" onClick={redirectToRegister}>
-            <div className="visible content">Register</div>
-            <div className="hidden content">
-              <i aria-hidden="true" className="signup icon"></i>
-            </div>
-          </button>
+          <p>
+          Not a member? <a href="/signup">Sign up</a> today.
+        </p>
         </form>
       </div>
     </section>

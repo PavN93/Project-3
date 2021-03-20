@@ -62,14 +62,14 @@ html body {
 }
 
 .pageContent {
-  padding: 50px;
+  padding: 50px 20px;
 }
 
 .container {
   background-color:rgba(41, 57, 24, 0.7);
   color: #efebe8;
-  padding: 15px;
   justify-content: center;
+  padding: 10px;
 }
 
 h1 {

@@ -78,7 +78,7 @@ const SignUp = () => {
   };
 
   return (
-    <section className="container">
+    <section className="ui container">
       <h1>Create an account</h1>
       <div className="signupContainer">
         <p>It's free and only takes a minute</p>

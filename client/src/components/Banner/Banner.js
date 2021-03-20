@@ -8,7 +8,7 @@ const Banner = () => {
   const scroll = Scroll.animateScroll;
 
   return (
-    <section className="container">
+    <section className="ui container">
       <motion.img
         animate={{ y: [-250, 750], rotate: 70 }}
         transition={{ duration: 4, delay: 1 }}
