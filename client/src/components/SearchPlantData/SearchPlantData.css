@@ -11,3 +11,50 @@
 div.header {
   padding: 10px;
 }
+
+.slick-list {
+  width: 1500px;
+  height: 525px;
+  padding: 10px;
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
+}
+
+.slick-slide {
+  width: 250px;
+  height: 200px;
+  margin: 10px
+}
+
+.ui.image.plantImage {
+  height: 300px;
+  width: 250px;
+}
+
+.buttonGroup {
+  display: flex;
+}
+
+.ui.button.viewMore:hover {
+    background: olive;
+    color: white;
+}
+
+/* Modal styling */
+
+.ui.modal>.header.modalHeader {
+  background-color:rgba(41, 57, 24, 0.7);
+  color: lemonchiffon;
+  font-size: 30px;
+  text-align: center;
+}
+
+div.cardBody.image.content {
+  display: grid;
+  background-color: #efebe8;
+}
+
+div.cardBody.image.content p span {
+  font-weight: bold;
+}

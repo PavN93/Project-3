@@ -14,7 +14,7 @@
 }
 
 .clover-logo:active {
-  transform: scale(1.1) rotate(210deg);
+  transform: scale(1.1) rotate(360deg);
 }
 
 .ui.left.overlay.sidebar {

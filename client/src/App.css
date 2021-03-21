@@ -8,9 +8,57 @@ html body {
 }
 
 .backgroundImage {
-  background-size: cover;
-  background-repeat: no-repeat;
   min-height: 100vh;
+  position: relative;
+}
+
+.bg-crossfade {
+  
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  /* background-color: #2a3b19; */
+}
+
+.bg-crossfade > figure {
+  animation: imageAnimation 80s linear infinite 0s;
+  backface-visibility: hidden;
+  background-size: cover;
+  background-position: center center;
+  color: transparent;
+  height: 100%;
+  left: 0px;
+  opacity: 0;
+  position: absolute;
+  top: 0px;
+  width: 100%;
+  z-index: -999;
+  margin: 0;
+}
+
+.bg-crossfade > figure:nth-child(1) {
+  background-image: url('./bgds-min/bg-1-min.jpg');
+}
+.bg-crossfade > figure:nth-child(2) {
+  background-image: url('./bgds-min/bg-2-min.jpg'); animation-delay: 10s;
+}
+.bg-crossfade > figure:nth-child(3) {
+  background-image: url('./bgds-min/bg-3-min.jpg'); animation-delay: 20s;
+}
+.bg-crossfade > figure:nth-child(4) {
+  background-image: url('./bgds-min/bg-4-min.jpg'); animation-delay: 30s;
+}
+.bg-crossfade > figure:nth-child(5) {
+  background-image: url('./bgds-min/bg-5-min.jpg'); animation-delay: 40s;
+}
+.bg-crossfade > figure:nth-child(6) {
+  background-image: url('./bgds-min/bg-6-min.jpg'); animation-delay: 50s;
+}
+.bg-crossfade > figure:nth-child(7) {
+  background-image: url('./bgds-min/bg-7-min.jpg'); animation-delay: 60s;
+}
+.bg-crossfade > figure:nth-child(8) {
+  background-image: url('./bgds-min/bg-8-min.jpg'); animation-delay: 70s;
 }
 
 .pageContent {
@@ -38,4 +86,13 @@ h2 {
 p {
   color: #2a3b19;
   font-size: 16px;
+}
+
+@keyframes
+imageAnimation {
+  0% { animation-timing-function: ease-in; opacity: 0; }
+  16% { animation-timing-function: ease-out; opacity: 1; }
+  33% { opacity: 1; }
+  49% { opacity: 0; }
+  100% { opacity: 0; }
 }

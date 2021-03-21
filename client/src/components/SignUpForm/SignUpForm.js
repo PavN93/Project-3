@@ -58,7 +58,7 @@ const SignUp = () => {
     }
     setBusySignUp(true);
     try {
-      const response = await fetcher("/api/signup", null, signupData);
+      const response = await fetcher("/api/user/signup", null, signupData);
       if (!response.success) {
         setServerError(response.payload.message);
       }
