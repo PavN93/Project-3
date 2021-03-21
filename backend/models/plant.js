@@ -2,6 +2,11 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const plantSchema = new Schema({
+  trefleId: {
+    type: String,
+    required: "Plant ID is required",
+    unique: true
+  },
   userId: String, // points to specific user
   sciName: {
     type: String,
@@ -20,7 +25,7 @@ const plantSchema = new Schema({
   //   trim: true
   // },
   // any more details that treffle.io provides
-}, { _id: false })
+})
 
 const Plant = mongoose.model("Plant", plantSchema);
 

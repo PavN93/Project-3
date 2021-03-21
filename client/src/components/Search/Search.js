@@ -13,7 +13,6 @@ const Search = () => {
 
   function handleInputChange(event) {
     setSearchInput(event.target.value);
-    console.log(event.target.value);
   }
 
   function handleFormSubmit(event) {
@@ -23,7 +22,7 @@ const Search = () => {
   }
 
   return (
-    <div className="searchContainer">
+    <div className="ui container searchContainer">
       <h2>Explore thousands of plants from all over the world</h2>
       <form className="ui form">
         <input

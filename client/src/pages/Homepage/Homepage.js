@@ -1,9 +1,12 @@
 import React from "react";
 import Menu from "../../components/Menu/Menu";
-import Weather from "../../components/Weather/Weather"
+import Weather from "../../components/Weather/Weather";
 import Banner from "../../components/Banner/Banner";
 import Search from "../../components/Search/Search";
-import PlantCollection from "../../components/SearchPlantData/SearchPlantData"
+import PlantCollection from "../../components/SearchPlantData/SearchPlantData";
+import Quote from "../../components/Quote/Quote";
+import DailyPlant from "../../components/PlantOfTheDay/PlantOfTheDay";
+import SignUp from "../../components/CallToAction/CallToAction";
 import Footer from "../../components/Footer/Footer";
 import fetcher from "../../functions/fetcher";
 
@@ -14,7 +17,7 @@ const handleSaveClick = async (plantData, event) => {
     const parsedStorage = JSON.parse(userInStorage);
     const token = parsedStorage.token;
     const body = {
-      _id: plantData.id,
+      trefleId: plantData.id,
       sciName: plantData.scientific_name,
       familyName: plantData.family_common_name,
       occurence: plantData.observations,
@@ -33,6 +36,9 @@ function Home() {
       <Weather/>
       <Search/>
       <PlantCollection handleSaveClick={handleSaveClick}/>
+      <Quote />
+      <DailyPlant />
+      <SignUp />
       <Footer/>
     </div>
   );

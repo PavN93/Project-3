@@ -9,16 +9,16 @@ const Plant = require("../models/plant");
 
 // save new plant
 router.post("/save", auth, async (req, res) => {
-  const { _id, sciName, familyName, occurence } = req.body
+  const { trefleId, sciName, familyName, occurence } = req.body
   const saveToDb = {
-    _id,
+    trefleId,
     userId: req.user._id,
     sciName,
     familyName,
     occurence
   }
   try {
-    const isAlreadySaved = await Plant.findOne({ "_id": _id });
+    const isAlreadySaved = await Plant.findOne({ "trefleId": trefleId });
     if (isAlreadySaved) {
       return res
         .status(401)
