@@ -65,6 +65,10 @@ html body {
   padding: 50px 20px;
 }
 
+.ui.container {
+  width: 90%;
+}
+
 .container {
   background-color:rgba(41, 57, 24, 0.7);
   color: #efebe8;

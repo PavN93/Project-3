@@ -13,7 +13,6 @@ const Search = () => {
 
   function handleInputChange(event) {
     setSearchInput(event.target.value);
-    console.log(event.target.value);
   }
 
   function handleFormSubmit(event) {

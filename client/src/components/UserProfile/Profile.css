@@ -7,12 +7,12 @@
   text-align: -webkit-center;
 }
 
-.ui.button.editProfile {
+button.ui.button.editProfile {
   background-color: #a4b792;
   color: #2a3b19;
 }
 
-.ui.button.editProfile button:hover {
+button.ui.button.editProfile:hover {
   background-color: #2a3b19;
   color: lemonchiffon;
 }
@@ -37,17 +37,17 @@
   text-align: left;
 }
 
-.ui.button.DataButton {
+.ui.button.dataButton {
   color: #2a3b19;
   background-color: #a4b792;
   border: solid;
   height: auto;
-  width: 30%;
-  margin: 10px 0px;
+  width: 25%;
+  margin: 15px;
 }
 
 @media only screen and (max-width: 700px) {
-  .ui.button.DataButton {
+  .ui.button.dataButton {
     width: 80%;
   }
 }
@@ -64,8 +64,12 @@
 }
 
 .friendsList {
-  display: flex;
-  justify-content: center;
+  background: #efebe8;
+  padding: 10px;
+  border-radius: 10px;
+}
+.ui.items>.item>.image>img {
+  border-radius: 50%;
 }
 
 @media only screen and (max-width: 800px) {

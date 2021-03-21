@@ -17,10 +17,17 @@
   }
 }
 
+@media only screen and (max-width: 400px) {
+  .appTitle {
+    font-size: 50px;
+    padding-left: 15px;
+  }
+}
+
 h3 {
   font-size: 22px;
   text-align: left;
-  padding-top: 200px;
+  padding-top: 150px;
   padding-left: 60px;
 }
 
@@ -40,6 +47,13 @@ h3 {
   }
 }
 
+@media only screen and (max-width: 400px) {
+  .subHeading {
+    font-size: 12px;
+    padding-left: 20px;
+  }
+}
+
 .ui.button.getStarted {
   color: black;
   background-color: lemonchiffon;
@@ -52,6 +66,12 @@ h3 {
   .ui.button.getStarted {
     margin-left: 20px;
     width: 150px;
+  }
+}
+
+@media only screen and (max-width: 400px) {
+  .ui.button.getStarted {
+    margin-top: 0px;
   }
 }
 

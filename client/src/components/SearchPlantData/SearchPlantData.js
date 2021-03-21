@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import PlantResultsContext from "../../context/PlantData";
-import { Button, Image, Modal } from "semantic-ui-react";
 import "./SearchPlantData.css";
+import { Button, Image, Modal } from "semantic-ui-react";
 import Slider from "react-slick";
 
 const PlantCollection = () => {
@@ -58,6 +58,11 @@ const PlantCollection = () => {
     fetchPlants();
   }
 
+  if (plants.length === 0) {
+    return (
+      <div className="ui container searchError">No search results found</div>
+    );
+  }
   return (
     plants.length >= 1 && (
       <div className="ui container">
@@ -107,40 +112,60 @@ const PlantCollection = () => {
                   />
                   <Modal.Description>
                     <p>
-                      Scientific name: 
+                      Scientific name:
                       <span>{viewPlant.plant.scientific_name}</span>
                     </p>
                     <p>
-                      Family name: 
+                      Family name:
                       <span>{viewPlant.plant.family_common_name}</span>
                     </p>
                     <p>
-                      First founded: 
+                      First founded:
                       <span>{viewPlant.plant.year}</span>
                     </p>
                     <p>
-                      Native to:  
+                      Native to:
                       <span>{viewPlant.plant.observations}</span>
                     </p>
                     <p>
-                      Average height: 
-                      <span>{viewPlant.plant.main_species.specifications.average_height.cm}cm</span>
+                      Average height:
+                      <span>
+                        {
+                          viewPlant.plant.main_species.specifications
+                            .average_height.cm
+                        }
+                        cm
+                      </span>
                     </p>
                     <p>
-                      Growth rate: 
-                      <span>{viewPlant.plant.main_species.specifications.growth_rate}</span>
+                      Growth rate:
+                      <span>
+                        {
+                          viewPlant.plant.main_species.specifications
+                            .growth_rate
+                        }
+                      </span>
                     </p>
                     <p>
-                      Foliage: 
-                      <span>{viewPlant.plant.main_species.specifications.ligneous_type}</span>
+                      Foliage:
+                      <span>
+                        {
+                          viewPlant.plant.main_species.specifications
+                            .ligneous_type
+                        }
+                      </span>
                     </p>
                     <p>
-                      Toxicity: 
-                      <span>{viewPlant.plant.main_species.specifications.toxicity}</span>
+                      Toxicity:
+                      <span>
+                        {viewPlant.plant.main_species.specifications.toxicity}
+                      </span>
                     </p>
                     <p>
-                      Edible: 
-                      <span>{viewPlant.plant.main_species.edible ? true`Yes` : `No`}</span>
+                      Edible:
+                      <span>
+                        {viewPlant.plant.main_species.edible ? true`Yes` : `No`}
+                      </span>
                     </p>
                   </Modal.Description>
                 </Modal.Content>

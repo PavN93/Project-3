@@ -30,7 +30,7 @@ const Banner = () => {
           Plantica is a tool to help users identify and record plant species, as
           well as offer information on different flora.
         </p>
-        <motion.button whileHover={{ scale: 1.1, originX: 0 }} onClick={() => scroll.scrollTo(1000)} className="getStarted ui button">Get started</motion.button>
+        <motion.button whileHover={{ scale: 1.1, originX: 0 }} onClick={() => scroll.scrollTo(1000)} className="getStarted ui button"><i className="angle down icon"></i>Get started</motion.button>
       </motion.div>
     </section>
   );

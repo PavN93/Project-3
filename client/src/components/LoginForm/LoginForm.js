@@ -4,6 +4,7 @@ import "./LoginForm.css";
 import { useHistory } from "react-router-dom";
 import UserAuthContext from "../../context/UserAuth";
 import { validateLoginObject } from "../../functions/validateInput";
+import { motion } from "framer-motion";
 
 const Login = () => {
   // input values
@@ -81,15 +82,18 @@ const Login = () => {
     setBusyLogIn(false);
   };
 
-  const redirectToRegister = (event) => {
-    event.preventDefault();
-    location.push("/signup");
-  };
-
   return (
     <section className="ui container">
       <h1>Login</h1>
-      <div className="loginContainer">
+      <motion.div
+        className="loginContainer"
+        initial={{ x: 0, y: 150, opacity: 0 }}
+        animate={{ x: 0, y: 0, opacity: 1 }}
+        transition={{
+          delay: 1,
+          default: { duration: 1 },
+        }}
+      >
         <form className={"ui form " + (busyLogIn && "loading")}>
           <div
             className={
@@ -150,11 +154,11 @@ const Login = () => {
             </div>
           </button>
           <span> Or </span>
-          <p>
-          Not a member? <a href="/signup">Sign up</a> today.
-        </p>
+          <p className="ui container signUp">
+            Not a member? <a href="/signup">Sign up</a> today.
+          </p>
         </form>
-      </div>
+      </motion.div>
     </section>
   );
 };

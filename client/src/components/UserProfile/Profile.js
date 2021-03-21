@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import "./Profile.css";
+import * as Scroll from 'react-scroll';
 import { motion } from "framer-motion";
 
 const Bio = () => {
   // We can pull the personal data from the database once wired up
   // This URL will need to be unique to the individual user
 
+  const scroll = Scroll.animateScroll;
   const [view, setView] = useState("");
   const [searchInput, setSearchInput] = useState(null);
 
@@ -40,27 +42,30 @@ const Bio = () => {
           {/* Need to link to relevant pages */}
           <div class="ui grid">
             <div className="column">
-            <motion.button whileHover={{ scale: 0.9, originX: 0 }}
-                onClick={() => setView("plants")}
-                className="ui button DataButton"
+              <motion.button
+                whileHover={{ scale: 1.1, originX: 0 }}
+                onClick={() => { setView("plants"); scroll.scrollTo(800) }}
+                className="ui button dataButton"
               >
                 <i className="leaf icon"></i>My plants
                 <p className="dataDigit">112</p>
-                </motion.button>
-              <motion.button whileHover={{ scale: 0.9, originX: 0 }}
-                onClick={() => setView("favourites")}
-                className="ui button DataButton"
+              </motion.button>
+              <motion.button
+                whileHover={{ scale: 1.1, originX: 0 }}
+                onClick={() => { setView("favourites"); scroll.scrollTo(800) }}
+                className="ui button dataButton"
               >
                 <i className="heart icon"></i>Favourites
                 <p className="dataDigit">36</p>
               </motion.button>
-              <motion.button whileHover={{ scale: 0.9, originX: 0 }}
-                onClick={() => setView("friends")}
-                className="ui button DataButton"
+              <motion.button
+                whileHover={{ scale: 1.1, originX: 0 }}
+                onClick={() => { setView("friends"); scroll.scrollTo(800) }}
+                className="ui button dataButton"
               >
                 <i className="users icon"></i>Friends
                 <p className="dataDigit">8</p>
-                </motion.button>
+              </motion.button>
             </div>
           </div>
 
@@ -80,16 +85,16 @@ const Bio = () => {
             </div>
           </div>
         </div>
-      <button className="ui button editProfile">
-        Edit profile
-      </button>
+        <button className="ui button editProfile">Edit profile</button>
       </div>
 
       {/* Plants section */}
       {view === "plants" && (
-        <motion.div className="ui segment"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, duration: 5 }}>
+        <motion.div
+          className="ui segment"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, duration: 5 }}
+        >
           <h2>My plants</h2>
           <p>
             Need to be displaying individual users plants from the database here
@@ -99,23 +104,29 @@ const Bio = () => {
 
       {/* Favourites section */}
       {view === "favourites" && (
-        <motion.div className="ui segment"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, duration: 5 }}>
+        <motion.div
+          className="ui segment"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1, duration: 5 }}
+        >
           <h2>My favourites</h2>
-          <p>Need to be display any plants marked as favourites on the homepage</p>
+          <p>
+            Need to be display any plants marked as favourites on the homepage
+          </p>
         </motion.div>
       )}
 
       {/* Friends section */}
       {view === "friends" && (
         <>
-          <motion.div className="ui segment"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1, duration: 5 }}>
+          <motion.div
+            className="ui segment"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, duration: 5 }}
+          >
             <div className="ui stackable divided relaxed two column grid">
               <div className="column">
-                  <h2>My friends</h2>
+                <h2>My friends</h2>
               </div>
               <div className="column">
                 <form className="ui form friendSearch">
@@ -140,15 +151,15 @@ const Bio = () => {
             </div>
             <div class="ui vertical divider">Or</div>
           </motion.div>
-          <section className="ui cards friendsList">
 
-            {/* Will need to map over database users here */}
-            <div className="ui card">
-              <div className="content">
-                <img
-                  src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
-                  className="ui tiny middle aligned left floated circular image"
-                />
+          <div className="friendsList">
+            <div className="ui divided items">
+              {/* Will need to map over database users here */}
+              <div className="item">
+                <div className="image">
+                  <img src="https://react.semantic-ui.com/images/avatar/large/steve.jpg" alt="placeholder"/>
+                </div>
+                <div className="content">
                 <div className="header">Steve Sanders</div>
                 <div className="description">
                   Bio taken from the users profile
@@ -156,17 +167,18 @@ const Bio = () => {
                 <div className="description">
                   <i className="leaf icon"></i>12 uploads
                 </div>
+                <div className="extra content">
                 <button className="ui olive right floated button">
                   <i className="add user icon"></i>Add friend
                 </button>
+                </div>
+                </div>
               </div>
-            </div>
-            <div className="ui card">
-              <div className="content">
-                <img
-                  src="https://react.semantic-ui.com/images/avatar/large/stevie.jpg"
-                  className="ui tiny middle aligned left floated circular image"
-                />
+              <div className="item">
+                <div className="image">
+                  <img src="https://react.semantic-ui.com/images/avatar/large/stevie.jpg" alt="placeholder"/>
+                </div>
+                <div className="content">
                 <div className="header">Stevie Sanders</div>
                 <div className="description">
                   Bio taken from the users profile
@@ -174,35 +186,37 @@ const Bio = () => {
                 <div className="description">
                   <i className="leaf icon"></i>8 uploads
                 </div>
+                <div className="extra content">
                 <button className="ui olive right floated button">
                   <i className="add user icon"></i>Add friend
                 </button>
+                </div>
+                </div>
               </div>
-            </div>
-            <div className="ui card">
-              <div className="content">
-                <img
-                  src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-                  className="ui tiny middle aligned left floated circular image"
-                />
+              <div className="item">
+                <div className="image">
+                  <img src="https://react.semantic-ui.com/images/avatar/large/matthew.png" alt="placeholder"/>
+                </div>
+                <div className="content">
                 <div className="header">Matthew Brown</div>
                 <div className="description">
                   Bio taken from the users profile
                 </div>
                 <div className="description">
-                  <i className="leaf icon"></i>23 uploads
+                  <i className="leaf icon"></i>32 uploads
                 </div>
+                <div className="extra content">
                 <button className="ui olive right floated button">
                   <i className="add user icon"></i>Add friend
                 </button>
+                </div>
+                </div>
               </div>
-            </div>
-            <div className="ui card">
-              <div className="content">
-                <img
-                  src="https://react.semantic-ui.com/images/avatar/large/molly.png"
-                  className="ui tiny middle aligned left floated circular image"
-                />
+              <div className="item">
+                <div className="image">
+                  <img src="https://react.semantic-ui.com/images/avatar/large/molly.png" alt="placeholder"/>
+                </div>
+                <div className="content">
                 <div className="header">Molly Smith</div>
                 <div className="description">
                   Bio taken from the users profile
@@ -210,13 +224,16 @@ const Bio = () => {
                 <div className="description">
                   <i className="leaf icon"></i>27 uploads
                 </div>
+                <div className="extra content">
                 <button className="ui olive right floated button">
                   <i className="add user icon"></i>Add friend
                 </button>
+                </div>
+                </div>
               </div>
             </div>
-          </section>
-          </>
+          </div>
+        </>
       )}
     </section>
   );

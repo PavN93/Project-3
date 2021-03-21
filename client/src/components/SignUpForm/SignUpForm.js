@@ -3,6 +3,7 @@ import { validateSingupObject } from "../../functions/validateInput";
 import "./SignUpForm.css";
 import fetcher from "../../functions/fetcher";
 import { useHistory } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const SignUp = () => {
 
@@ -80,7 +81,13 @@ const SignUp = () => {
   return (
     <section className="ui container">
       <h1>Create an account</h1>
-      <div className="signupContainer">
+      <motion.div initial={{ x: 0, y: 150, opacity: 0 }}
+        animate={{ x: 0, y: 0, opacity: 1 }}
+        transition={{
+          delay: 1,
+          default: { duration: 1 },
+        }}
+          className="signupContainer">
         <p>It's free and only takes a minute</p>
         <form className={"ui form " + (busySignUp && "loading")}>
           <div className={"field " + ((validationError.length > 0) ? "error" : "")}>
@@ -146,7 +153,7 @@ const SignUp = () => {
         <p>
           By clicking the Sign Up button, you agree to our Terms and Conditions.
         </p>
-      </div>
+      </motion.div>
     </section>
   );
 };
