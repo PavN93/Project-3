@@ -11,6 +11,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use('/api/user', require('./routes/user-routes'));
+app.use('/api/plant', require('./routes/plant-routes'));
 app.use('/api', require('./routes/api-routes'));
 app.use('/', require('./routes/html-routes'));
 if (process.env.NODE_ENV === "production") {

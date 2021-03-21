@@ -6,7 +6,6 @@ const userSchema = new Schema({
     type: String,
     trim: true,
     required: 'Username is required',
-    unique: true
   },
   password: {
     type: String,

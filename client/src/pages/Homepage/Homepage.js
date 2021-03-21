@@ -5,10 +5,24 @@ import Banner from "../../components/Banner/Banner";
 import Search from "../../components/Search/Search";
 import PlantCollection from "../../components/SearchPlantData/SearchPlantData"
 import Footer from "../../components/Footer/Footer";
+import fetcher from "../../functions/fetcher";
 
-// components to be added in here are:
-// data from the search function displayed in cards
-// top plants for the season or something as a carousel to fill the empty space?
+const handleSaveClick = async (plantData, event) => {
+  event.preventDefault();
+  const userInStorage = localStorage.getItem("user");
+  if (userInStorage) {
+    const parsedStorage = JSON.parse(userInStorage);
+    const token = parsedStorage.token;
+    const body = {
+      _id: plantData.id,
+      sciName: plantData.scientific_name,
+      familyName: plantData.family_common_name,
+      occurence: plantData.observations,
+    }
+    const response = await fetcher("/api/plant/save", token, body);
+    console.log(response);
+  }
+}
 
 function Home() {
   
@@ -18,7 +32,7 @@ function Home() {
       <Banner/>
       <Weather/>
       <Search/>
-      <PlantCollection/>
+      <PlantCollection handleSaveClick={handleSaveClick}/>
       <Footer/>
     </div>
   );

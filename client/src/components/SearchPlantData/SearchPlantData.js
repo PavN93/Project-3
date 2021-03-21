@@ -4,11 +4,11 @@ import { Button, Image, Modal } from "semantic-ui-react";
 import "./SearchPlantData.css";
 import Slider from "react-slick";
 
-const PlantCollection = () => {
+const PlantCollection = ({ handleSaveClick }) => {
   const { plants } = useContext(PlantResultsContext);
   const [viewPlant, setViewPlant] = useState({ show: false, plant: null });
 
-  useEffect(() => {}, [plants]);
+  useEffect(() => { }, [plants]);
 
   const settings = {
     infinite: true,
@@ -64,7 +64,7 @@ const PlantCollection = () => {
         <div className="ui olive cards">
           <Slider {...settings}>
             {plants.map((result) => (
-              <div className="ui card">
+              <div className="ui card" key={result.id}>
                 <div className="content">
                   <img
                     src={result.image_url}
@@ -89,103 +89,125 @@ const PlantCollection = () => {
               </div>
             ))}
           </Slider>
-            {viewPlant.show && (
-              <Modal
-                onClose={() => setViewPlant({ show: false, plant: null })}
-                open={true}
-              >
-                  <Modal.Header className="modalHeader">
-                    {viewPlant.plant.common_name}
-                  </Modal.Header>
-                  <Modal.Content className="cardBody" image>
-                    <Image
-                      size="medium"
-                      src={viewPlant.plant.image_url}
-                      wrapped
-                    />
-                    <Modal.Description>
-                      <p>
-                        Scientific name:{" "}
-                        <span>{viewPlant.plant.scientific_name}</span>
-                      </p>
-                      <p>
-                        Family name:{" "}
-                        <span>{viewPlant.plant.family_common_name}</span>
-                      </p>
-                      <p>
-                        First founded: <span>{viewPlant.plant.year}</span>
-                      </p>
-                      <p>
-                        Native to: <span>{viewPlant.plant.observations}</span>
-                      </p>
-                      <p>
-                        Average height:{" "}
-                        <span>
-                          {
-                            viewPlant.plant.main_species.specifications
-                              .average_height.cm
-                          }
+          {viewPlant.show && (
+            <Modal
+              onClose={() => setViewPlant({ show: false, plant: null })}
+              open={true}
+            >
+              <Modal.Header className="modalHeader">
+                {viewPlant.plant.common_name}
+              </Modal.Header>
+              <Modal.Content className="cardBody" image>
+                <Image
+                  size="medium"
+                  src={viewPlant.plant.image_url}
+                  wrapped
+                />
+                <Modal.Description>
+                  <p>
+                    Scientific name:{" "}
+                    <span>{viewPlant.plant.scientific_name}</span>
+                  </p>
+                  <p>
+                    Family name:{" "}
+                    <span>{viewPlant.plant.family_common_name}</span>
+                  </p>
+                  <p>
+                    First founded: <span>{viewPlant.plant.year}</span>
+                  </p>
+                  <p>
+                    Native to: <span>{viewPlant.plant.observations}</span>
+                  </p>
+                  <p>
+                    Average height:{" "}
+                    <span>
+                      {
+                        viewPlant.plant.main_species.specifications
+                          .average_height.cm
+                      }
                           cm
                         </span>
-                      </p>
-                      <p>
-                        Growth rate:{" "}
-                        <span>
-                          {
-                            viewPlant.plant.main_species.specifications
-                              .growth_rate
-                          }
-                        </span>
-                      </p>
-                      <p>
-                        Foliage:{" "}
-                        <span>
-                          {
-                            viewPlant.plant.main_species.specifications
-                              .growth_rate
-                          }
-                        </span>
-                      </p>
-                      <p>
-                        Toxicity:{" "}
-                        <span>
-                          {viewPlant.plant.main_species.specifications.toxicity}
-                        </span>
-                      </p>
-                      <p>
-                        Edible:{" "}
-                        <span>
-                          {viewPlant.plant.main_species.edible
-                            ? true`Yes`
-                            : `No`}
-                        </span>
-                      </p>
-                    </Modal.Description>
-                  </Modal.Content>
-                  <Modal.Actions>
-                    <div className="buttonGroup">
-                      <button className="ui red animated button">
-                        <div className="hidden content">
-                          <i aria-hidden="true" className="heart icon"></i>
-                        </div>
-                        <div className="visible content">Favourite</div>
-                      </button>
-                      <div className="or"></div>
-                      <Button
-                        onClick={() =>
-                          setViewPlant({ show: false, plant: null })
-                        }
-                        className="ui animated button"
-                      >
-                        <div className="hidden content">
-                          <i aria-hidden="true" className="close icon"></i>
-                        </div>
-                        <div className="visible content">Close</div>
-                      </Button>
+                  </p>
+                  <p>
+                    Growth rate:{" "}
+                    <span>
+                      {
+                        viewPlant.plant.main_species.specifications
+                          .growth_rate
+                      }
+                    </span>
+                  </p>
+                  <p>
+                    Foliage:{" "}
+                    <span>
+                      {
+                        viewPlant.plant.main_species.specifications
+                          .growth_rate
+                      }
+                    </span>
+                  </p>
+                  <p>
+                    Toxicity:{" "}
+                    <span>
+                      {viewPlant.plant.main_species.specifications.toxicity}
+                    </span>
+                  </p>
+                  <p>
+                    Edible:{" "}
+                    <span>
+                      {viewPlant.plant.main_species.edible
+                        ? true`Yes`
+                        : `No`}
+                    </span>
+                  </p>
+                </Modal.Description>
+              </Modal.Content>
+              <Modal.Actions>
+                <div className="buttonGroup">
+
+                  {/* save button */}
+                  <button className="ui green animated button" onClick={(event) => handleSaveClick(viewPlant.plant, event)}>
+                    <div className="hidden content"><i aria-hidden="true" className="save icon"></i></div>
+                    <div className="visible content">save</div>
+                  </button>
+
+                  {/* remove button */}
+                  <button className="ui red animated button">
+                    <div className="hidden content"><i aria-hidden="true" className="delete icon"></i></div>
+                    <div className="visible content">remove</div>
+                  </button>
+
+                  <div className="or"></div>
+
+                  {/* close button */}
+                  <Button onClick={() => setViewPlant({ show: false, plant: null })} className="ui animated button">
+                    <div className="hidden content"><i aria-hidden="true" className="close icon"></i></div>
+                    <div className="visible content">Close</div>
+                  </Button>
+                </div>
+                {/* <div className="buttonGroup">
+                  <button className="ui red animated button">
+                    <div className="hidden content">
+                      <i aria-hidden="true" className="heart icon"></i>
                     </div>
-                  </Modal.Actions>
-              </Modal>
-            )}
+                    <div className="visible content">Favourite</div>
+                  </button>
+                  <div className="or"></div>
+                  <Button
+                    onClick={() =>
+                      setViewPlant({ show: false, plant: null })
+                    }
+                    className="ui animated button"
+                  >
+                    <div className="hidden content">
+                      <i aria-hidden="true" className="close icon"></i>
+                    </div>
+                    <div className="visible content">Close</div>
+                  </Button>
+                </div> */}
+              </Modal.Actions>
+            </Modal>
+          )}
         </div>
       </div>
     )
