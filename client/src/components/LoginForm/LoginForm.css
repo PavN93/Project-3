@@ -1,10 +1,14 @@
 .loginContainer {
-  background-color: lightgray;
-  color: #2a3b19;
+  background-color: #efebe8;
+  border-radius: 10px;
   margin: 50px;
   padding: 20px;
   display: flex;
   justify-content: center;
+}
+
+label {
+  color: #2a3b19;
 }
 
 .ui.form {
@@ -29,16 +33,23 @@
 }
 
 .passwordIcon {
+  color: #2a3b19;
   position: absolute;
   top: 110px;
   right: 10px;
   z-index: 1000;
 }
 
+.ui.container.signUp {
+  margin: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
 a {
-  color: #2a3b19;
+  color: lemonchiffon;
 }
 
 a:hover {
-  color: lemonchiffon;
+  color: #2a3b19;
 }

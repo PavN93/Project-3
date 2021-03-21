@@ -1,0 +1,19 @@
+.ui.container.callToAction {
+    padding: 20px;
+    background-color: #efebe8;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.leafImage {
+   height: 80px;
+}
+
+.ui.button.createAccountBtn {
+    background-color: #2a3b19;
+}
+
+.ui.button.createAccountBtn:hover {
+    background-color: lemonchiffon;
+    color: #2a3b19;
+}
