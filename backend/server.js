@@ -1,14 +1,8 @@
-
-const express = require('express');
-const mongoose = require('mongoose');
-require('dotenv').config({ path:'../.env' });
-const cors = require('cors');
-
-
 const express = require("express");
 const mongoose = require("mongoose");
 require("dotenv").config({ path:"../.env" });
 const path = require("path")
+const cors = require('cors');
 
 
 const PORT = process.env.PORT || 3001;
@@ -20,6 +14,7 @@ const app = express();
 app.use(express.urlencoded({limit:'50mb', extended: true }));
 app.use(express.json({limit:'50mb'}));
 app.use('/api/user', require('./routes/user-routes'));
+app.use('/api/plant', require('./routes/plant-routes'));
 app.use('/api', require('./routes/api-routes'));
 app.use('/', require('./routes/html-routes'));
 if (process.env.NODE_ENV === "production") {

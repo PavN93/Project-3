@@ -1,19 +1,17 @@
-// import { useState, useEffect } from "react";
 import "./App.css";
 import Routed from "./routes/Routed";
+import UserAuthContext from "./context/UserAuth";
+import { useContext, useEffect } from "react";
 
 function App() {
 
-  // Amount of bgds for randomize
-  // const bgAmount = 8;
+  const { doLogin } = useContext(UserAuthContext);
 
-  // const [bg, setBg] = useState(Math.floor(Math.random() * bgAmount) + 1);
-  
+  useEffect(() => {
+    doLogin();
+  }, [])
+
   return (
-    // <div
-    //   className="backgroundImage"
-    //   style={{ backgroundImage: `url(/bg-${bg}-min.jpg)` }}
-    // >
     <div className="backgroundImage">
       <div className="bg-crossfade">
         <figure />
@@ -25,7 +23,7 @@ function App() {
         <figure />
         <figure />
       </div>
-    <div className="pageContent">
+      <div className="pageContent">
         <Routed />
       </div>
     </div>

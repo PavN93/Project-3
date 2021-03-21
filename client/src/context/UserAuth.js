@@ -1,30 +1,44 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useContext } from "react";
 import fetcher from "../functions/fetcher";
+// import CollectionContext from "./CollectionContext";
 
 const UserAuthContext = createContext();
 
 const UserAuthContextProvider = ({ children }) => {
 
+  // const syncCollectionWithDB = useContext(CollectionContext);
+  
   const [ userLoggedIn, setUserLoggedIn ] = useState(false);
 
   const doLogin = (payload) => {
-    const { token, user } = payload;
-    const toStorage = {
-      token,
-      username: user.username,
-      email: user.email,
-      _id: user._id
+    const userInStorage = localStorage.getItem("user");
+    if (userInStorage) {
+      // const { token } = userInStorage;
+      setUserLoggedIn(true);
+      // syncCollectionWithDB(token);
+      return;
     }
-    localStorage.setItem("user", JSON.stringify(toStorage));
-    setUserLoggedIn(true);
+    if (payload) {
+      const { token, user } = payload;
+      const toStorage = {
+        token,
+        username: user.username,
+        email: user.email,
+        _id: user._id
+      }
+      localStorage.setItem("user", JSON.stringify(toStorage));
+      setUserLoggedIn(true);
+      // syncCollectionWithDB(token);
+    }
   }
 
   const doLogout = async () => {
-    const user = localStorage.getItem("user");
-    const user2 = JSON.parse(user);
-    if (user) {
-      await fetcher("/api/user/logout", user2.token);
-      localStorage.removeItem("user")
+    const userInStorage = localStorage.getItem("user");
+    if (userInStorage) {
+      const parsedStorage = JSON.parse(userInStorage);
+      await fetcher("/api/user/logout", parsedStorage.token);
+      localStorage.removeItem("user");
+      setUserLoggedIn(false);
     }
   }
 
