@@ -1,6 +1,7 @@
 import React from "react";
 import uploadImage from "../Imageupload/Image";
 import "./Profile.css";
+import uploadImage from "../../components/Imageupload/Image";
 
 const Bio = () => {
   // We can pull the personal data from the database once wired up
@@ -10,13 +11,21 @@ const Bio = () => {
     <section className="container">
       <h1>My profile</h1>
       <div className="profileContainer">
+<<<<<<< Updated upstream
       <button>
+=======
+    
+>>>>>>> Stashed changes
         <img
           className="image avatar"
           src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
           alt="placeholder"
         />
+<<<<<<< Updated upstream
         </button>
+=======
+    
+>>>>>>> Stashed changes
         <div className="ui card">
           <div className="content">
             <div className="header">Name Surname</div>
