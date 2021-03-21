@@ -11,29 +11,13 @@ const Bio = () => {
     <section className="container">
       <h1>My profile</h1>
       <div className="profileContainer">
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-      <button>
-=======
     
->>>>>>> Stashed changes
-=======
-    
->>>>>>> Stashed changes
         <img
           className="image avatar"
           src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
           alt="placeholder"
         />
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-        </button>
-=======
     
->>>>>>> Stashed changes
-=======
-    
->>>>>>> Stashed changes
         <div className="ui card">
           <div className="content">
             <div className="header">Name Surname</div>

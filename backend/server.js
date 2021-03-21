@@ -9,14 +9,8 @@ const db = process.env.MONGODB_URI || 'mongodb://localhost/plantica';
 
 // Middleware
 const app = express();
-<<<<<<< Updated upstream
-app.use(cors());
-app.use(express.urlencoded({ extended: true }));
-app.use(express.json());
-=======
 app.use(express.urlencoded({limit:'50mb', extended: true }));
 app.use(express.json({limit:'50mb'}));
->>>>>>> Stashed changes
 app.use('/api', require('./routes/api-routes'));
 app.use('/', require('./routes/html-routes'));
 

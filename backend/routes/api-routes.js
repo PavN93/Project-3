@@ -7,12 +7,7 @@ const {cloudinary} =  require ('../utils/cloudinary.js');
 
 // Mongoose models
 const User = require('../models/user');
-<<<<<<< Updated upstream
-const { response, json } = require('express');
-//const Image = require('../models/image');
-=======
 const Image = require('../models/image');
->>>>>>> Stashed changes
 // const Plant = require('../models/plant');
 
 router.post('/save', async (req, res) => {
