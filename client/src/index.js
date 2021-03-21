@@ -5,13 +5,16 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import { UserAuthContextProvider } from './context/UserAuth';
 import { PlantDataContextProvider } from './context/PlantData';
+import { CollectionContextProvider } from './context/CollectionContext';
 
 ReactDOM.render(
   // <React.StrictMode>
   <UserAuthContextProvider>
     <PlantDataContextProvider>
-    <App />
-  </PlantDataContextProvider>
+      <CollectionContextProvider>
+        <App />
+      </CollectionContextProvider>
+    </PlantDataContextProvider>
   </UserAuthContextProvider>,
   // </React.StrictMode>,
   document.getElementById('root')

@@ -1,16 +1,21 @@
-import { useState, createContext } from "react";
+import { useState, createContext, useContext } from "react";
 import fetcher from "../functions/fetcher";
+import CollectionContext from "./CollectionContext";
 
 const UserAuthContext = createContext();
 
 const UserAuthContextProvider = ({ children }) => {
 
+  const syncCollectionWithDB = useContext(CollectionContext);
+  
   const [ userLoggedIn, setUserLoggedIn ] = useState(false);
 
   const doLogin = (payload) => {
     const userInStorage = localStorage.getItem("user");
     if (userInStorage) {
+      const { token } = userInStorage;
       setUserLoggedIn(true);
+      syncCollectionWithDB(token)
       return;
     }
     if (payload) {
@@ -23,6 +28,7 @@ const UserAuthContextProvider = ({ children }) => {
       }
       localStorage.setItem("user", JSON.stringify(toStorage));
       setUserLoggedIn(true);
+      syncCollectionWithDB(token);
     }
   }
 
@@ -35,8 +41,6 @@ const UserAuthContextProvider = ({ children }) => {
       setUserLoggedIn(false);
     }
   }
-
-
 
   return (
     <UserAuthContext.Provider value={{ userLoggedIn, doLogin, doLogout }}>
