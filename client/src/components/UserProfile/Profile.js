@@ -8,7 +8,7 @@ const Bio = () => {
   // This URL will need to be unique to the individual user
 
   const scroll = Scroll.animateScroll;
-  const [view, setView] = useState("");
+  const [view, setView] = useState(""); // plants, favourites, friends
   const [searchInput, setSearchInput] = useState(null);
 
   function handleInputChange(event) {

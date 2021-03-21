@@ -12,7 +12,7 @@ const Quote = () => {
           })`,
         }}
       >
-        <p className="quote">How lovely the silence of growing things.</p>
+        <p className="quote">How calming the silence of growing things.</p>
       </div>
     </div>
   );
