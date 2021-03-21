@@ -26,11 +26,13 @@ const Bio = () => {
     <section className="ui container">
       <h1>My profile</h1>
       <div className="profileContainer">
+    
         <img
           className="image avatar"
           src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
           alt="placeholder"
         />
+    
         <div className="ui card">
           <div className="content">
             <div className="header">Name Surname</div>
