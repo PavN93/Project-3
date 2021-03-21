@@ -3,11 +3,16 @@ const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const { validateSingup, validateLogin } = require('../validators/authValidators');
 const fetch = require('node-fetch');
+const {cloudinary} =  require ('../utils/cloudinary.js');
 
 // Mongoose models
 const User = require('../models/user');
+<<<<<<< Updated upstream
 const { response, json } = require('express');
 //const Image = require('../models/image');
+=======
+const Image = require('../models/image');
+>>>>>>> Stashed changes
 // const Plant = require('../models/plant');
 
 router.post('/save', async (req, res) => {
@@ -131,7 +136,24 @@ router.get('/getplants/:search', async (req, res) => {
   const payload = await fetch_response.json();
   res.json(payload);
 });
+ 
 
+router.post('/images',async(req,res)=>{
+  try {
+    const fileStr = req.body.data;
+    console.log(fileStr)
+    const uploadResponse = await cloudinary.uploader.upload(fileStr, {
+      upload_preset:"plantica"
+    });
+    console.log(uploadResponse);
+    res.json({ msg: 'yaya' });
+} catch (err) {
+    console.error(err);
+    res.status(500).json({ err: 'Something went wrong' });
+}
+
+});
+ 
 
 
 module.exports = router;

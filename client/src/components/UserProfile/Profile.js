@@ -12,7 +12,11 @@ const Bio = () => {
       <h1>My profile</h1>
       <div className="profileContainer">
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
       <button>
+=======
+    
+>>>>>>> Stashed changes
 =======
     
 >>>>>>> Stashed changes
@@ -22,7 +26,11 @@ const Bio = () => {
           alt="placeholder"
         />
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
         </button>
+=======
+    
+>>>>>>> Stashed changes
 =======
     
 >>>>>>> Stashed changes

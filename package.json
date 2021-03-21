@@ -15,7 +15,11 @@
   "dependencies": {
     "bcrypt": "^5.0.1",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "cloudinary-react": "^1.7.0",
+=======
+    "cloudinary": "^1.25.0",
+>>>>>>> Stashed changes
 =======
     "cloudinary": "^1.25.0",
 >>>>>>> Stashed changes
@@ -34,10 +38,15 @@
     "react-scroll": "^1.8.2",
     "react-slick": "^0.28.1",
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
     "semantic-ui-react": "^2.0.3"
 =======
     "semantic-ui-react": "^2.0.3",
     "uuid": "^8.3.2"
+>>>>>>> Stashed changes
+=======
+    "semantic-ui-react": "^2.0.3",
+    "streamifier": "^0.1.1"
 >>>>>>> Stashed changes
 =======
     "semantic-ui-react": "^2.0.3",
