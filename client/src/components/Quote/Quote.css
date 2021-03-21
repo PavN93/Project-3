@@ -7,6 +7,8 @@
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  display: flex;
+  justify-content: center;
 }
 
 .quote {
@@ -14,4 +16,12 @@
   color: white;
   text-align: center;
   padding-top: 100px;
+  width: 80%;
+}
+
+@media only screen and (max-width: 800px) {
+  .quote {
+    font-size: 30px;
+    width: 100%;
+  }
 }
