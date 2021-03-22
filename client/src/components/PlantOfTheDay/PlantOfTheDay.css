@@ -9,7 +9,20 @@ div.column > .plantReveal {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
   height: 500px;
+  color: lemonchiffon;
+  font-size: 50px;
 }
+
+
+.ui.button.revealBtn {
+  background-color: lemonchiffon;
+}
+
+.ui.button.revealBtn:hover {
+  background-color: #2a3b19;
+  color: white;
+}
+
 
 .plantCard {
   background-color: rgba(255, 255, 255, 0.1);

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import "./PlantOfTheDay.css";
+import { motion } from "framer-motion";
 
 const DailyPlant = () => {
   const [dailyPlant, setDailyPlant] = useState("");
@@ -10,16 +11,19 @@ const DailyPlant = () => {
     const fetchPlants = async () => {
       const response = await fetch(plantURL);
       const payload = await response.json();
-      console.log("payload", payload.data);
-
       const randomPlant =
         payload.data[Math.floor(Math.random() * payload.data.length)];
-      console.log("random", randomPlant);
       setDailyPlant(randomPlant);
-      setView("dailyPlant")
+      setView("dailyPlant");
+      onBtnClick();
     };
     fetchPlants();
   }
+
+  let btnRef = useRef();
+  const onBtnClick = (e) => {
+    btnRef.current.setAttribute("disabled", "disabled");
+  };
 
   return (
     <div className="ui container plantOfTheDay">
@@ -27,20 +31,39 @@ const DailyPlant = () => {
         <div className="row">
           <div className="column">
             <div className="plantReveal">
-              <h2>Plant of the day</h2>
-              <button className="ui button" onClick={revealRandomPlant}>
+              <h1>Plant of the day</h1>
+              <motion.button
+                whileTap={{ scale: 0.9 }}
+                className="ui button revealBtn"
+                ref={btnRef}
+                onClick={revealRandomPlant}
+              >
                 Click to reveal
-              </button>
+              </motion.button>
             </div>
           </div>
+
           {view === "template" && (
-          <div className="column plantCard">
-            <img className="mysteryPlantCard" src={`${process.env.PUBLIC_URL}/Leaves/MysteryPlant.png`} alt="Mystery plant" />
-          </div>
+            <div className="column plantCard">
+              <img
+                className="mysteryPlantCard"
+                src={`${process.env.PUBLIC_URL}/Leaves/MysteryPlant.png`}
+                alt="Mystery plant"
+              />
+            </div>
           )}
 
           {view === "dailyPlant" && (
-            <div className="column plantCard">
+            <motion.div
+              animate={{ rotate: 360 }}
+              transition={{
+                type: "spring",
+                damping: 10,
+                mass: 0.75,
+                stiffness: 100,
+              }}
+              className="column plantCard"
+            >
               <div className="ui card plantOfTheDay">
                 <div className="content">
                   <img
@@ -58,9 +81,8 @@ const DailyPlant = () => {
                   </div>
                 </div>
               </div>
-          </div>
+            </motion.div>
           )}
-
         </div>
       </div>
     </div>
