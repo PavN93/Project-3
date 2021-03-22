@@ -23,7 +23,7 @@ const DailyPlant = () => {
 
   return (
     <div className="ui container plantOfTheDay">
-      <div className="ui two column grid">
+      <div className="ui stackable two column grid">
         <div className="row">
           <div className="column">
             <div className="plantReveal">
@@ -35,24 +35,13 @@ const DailyPlant = () => {
           </div>
           {view === "template" && (
           <div className="column plantCard">
-            <div className="ui olive cards">
-              <div className="ui card">
-                <div className="content">
-                  <img
-                    className="image leafPlaceholder"
-                    src={`${process.env.PUBLIC_URL}/Leaves/leaf_1.png`}
-                    alt="leaf"
-                  />
-                </div>
-              </div>
-            </div>
+            <img className="mysteryPlantCard" src={`${process.env.PUBLIC_URL}/Leaves/MysteryPlant.png`} alt="Mystery plant" />
           </div>
           )}
 
           {view === "dailyPlant" && (
             <div className="column plantCard">
-            <div className="ui olive cards">
-              <div className="ui card">
+              <div className="ui card plantOfTheDay">
                 <div className="content">
                   <img
                     src={dailyPlant.image_url}
@@ -69,7 +58,6 @@ const DailyPlant = () => {
                   </div>
                 </div>
               </div>
-            </div>
           </div>
           )}
 
