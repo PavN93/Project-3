@@ -7,8 +7,14 @@ const CollectionContextProvider = ({ children }) => {
 
   const [collectionFromDB, setCollectionFromDB] = useState([]);
 
-  const syncCollectionWithDB = async (token) => {
-      await fetcher("/api/plant/collection", token)
+  const syncCollectionWithDB = async () => {
+    const userInStorage = localStorage.getItem("user");
+    if (userInStorage) {
+      const parsedStorage = JSON.parse(userInStorage);
+      const { token } = parsedStorage;
+      const collection = await fetcher("/api/plant/collection", token);
+      setCollectionFromDB(collection.payload.collection);
+    }
   }
 
   return (

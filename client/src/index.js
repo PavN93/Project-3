@@ -9,13 +9,13 @@ import { CollectionContextProvider } from './context/CollectionContext';
 
 ReactDOM.render(
   // <React.StrictMode>
-  <UserAuthContextProvider>
-    <PlantDataContextProvider>
-      <CollectionContextProvider>
+  <CollectionContextProvider>
+    <UserAuthContextProvider>
+      <PlantDataContextProvider>
         <App />
-      </CollectionContextProvider>
-    </PlantDataContextProvider>
-  </UserAuthContextProvider>,
+      </PlantDataContextProvider>
+    </UserAuthContextProvider>
+  </CollectionContextProvider>,
   // </React.StrictMode>,
   document.getElementById('root')
 );

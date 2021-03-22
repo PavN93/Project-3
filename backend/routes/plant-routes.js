@@ -40,12 +40,18 @@ router.post("/save", auth, async (req, res) => {
 });
 
 // fetch all plants for user
-router.post("/collection", auth, async (req, res) => {
+router.get("/collection", auth, async (req, res) => {
   try {
-    console.log("fetching plants...");
     const { _id } = req.user;
-    const collection = Plant.find({ "userId": _id})
-    console.log(collection);
+    const collection = await Plant.find({ "userId": _id});
+    res
+    .status(200)
+    .json({
+      success: true,
+      payload: {
+        collection
+      }
+    })
   } catch (err) {
     console.log("Error on save:", err);
     res.json({ success: false, payload: { message: "Internal server error" } });
