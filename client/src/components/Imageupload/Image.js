@@ -5,7 +5,6 @@ import React, { useState } from 'react';
 function Imageupload() {
   const [fileInputState, setFileInputState] = useState("");
   const [previewSource, setPreviewSource] = useState();
-  const [selectedFile, setSelectedFile] = useState("");
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     previewFile(file);

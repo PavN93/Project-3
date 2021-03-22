@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import { UserAuthContextProvider } from './context/UserAuth';
 import { PlantDataContextProvider } from './context/PlantData';
 import { CollectionContextProvider } from './context/CollectionContext';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 ReactDOM.render(
   // <React.StrictMode>

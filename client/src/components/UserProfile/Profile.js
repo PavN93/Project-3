@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import "./Profile.css";
-import uploadImage from "../../components/Imageupload/Image";
 import * as Scroll from 'react-scroll';
 import { motion } from "framer-motion";
 

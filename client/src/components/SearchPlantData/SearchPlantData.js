@@ -3,10 +3,13 @@ import PlantResultsContext from "../../context/PlantData";
 import "./SearchPlantData.css";
 import { Button, Image, Modal } from "semantic-ui-react";
 import Slider from "react-slick";
+import * as ReactBootStrap from "react-bootstrap";
+
 
 const PlantCollection = ({ handleSaveClick }) => {
   const { plants } = useContext(PlantResultsContext);
   const [viewPlant, setViewPlant] = useState({ show: false, plant: null });
+  const [loading,setLoading]= useState (false);
 
   useEffect(() => { }, [plants]);
 
@@ -57,16 +60,18 @@ const PlantCollection = ({ handleSaveClick }) => {
     };
     fetchPlants();
   }
-
+ 
   if (plants.length === 0) {
     return (
       <div className="ui container searchError">No search results found</div>
-    );
+       );
   }
+  
   return (
     plants.length >= 1 && (
       <div className="ui container">
-        <div className="plantData">
+      <div className="plantData">
+      {<ReactBootStrap.Spinner animation="border" variant="success" />}
           <h2>Your search results</h2>
           <div className="ui olive cards">
             <Slider {...settings}>
@@ -198,6 +203,7 @@ const PlantCollection = ({ handleSaveClick }) => {
                 </Modal.Actions>
               </Modal>
             )}
+           
           </div>
         </div>
       </div>
