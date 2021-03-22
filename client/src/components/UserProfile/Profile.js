@@ -1,13 +1,16 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import "./Profile.css";
 import uploadImage from "../../components/Imageupload/Image";
 import * as Scroll from 'react-scroll';
 import { motion } from "framer-motion";
+import CollectionContext from "../../context/CollectionContext";
 
 const Bio = () => {
   // We can pull the personal data from the database once wired up
   // This URL will need to be unique to the individual user
 
+  const { collectionFromDB } = useContext(CollectionContext);
+  console.log("your collection from DB:", collectionFromDB);
   const scroll = Scroll.animateScroll;
   const [view, setView] = useState(""); // plants, favourites, friends
   const [searchInput, setSearchInput] = useState(null);
@@ -51,7 +54,7 @@ const Bio = () => {
                 className="ui button dataButton"
               >
                 <i className="leaf icon"></i>My plants
-                <p className="dataDigit">112</p>
+                <p className="dataDigit">{collectionFromDB.length}</p>
               </motion.button>
               <motion.button
                 whileHover={{ scale: 1.1, originX: 0 }}

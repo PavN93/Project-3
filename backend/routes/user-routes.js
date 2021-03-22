@@ -109,7 +109,7 @@ router.post('/login', async (req, res) => {
 
 // Logout
 router.get('/logout', auth, async (req, res) => {
-  const { _id, username, email} = req.user;
+  const { username } = req.user;
   console.log("logging out" , username);
   res.json({ success: true });
 });

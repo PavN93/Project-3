@@ -13,7 +13,7 @@ html body {
 }
 
 .bg-crossfade {
-  
+  z-index: -999;
   position: absolute;
   width: 100%;
   height: 100%;

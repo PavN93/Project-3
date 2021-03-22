@@ -9,13 +9,13 @@ const UserAuthContextProvider = ({ children }) => {
   // const syncCollectionWithDB = useContext(CollectionContext);
   
   const [ userLoggedIn, setUserLoggedIn ] = useState(false);
-
+  
   const doLogin = (payload) => {
     const userInStorage = localStorage.getItem("user");
     if (userInStorage) {
-      // const { token } = userInStorage;
+      const { token } = userInStorage;
       setUserLoggedIn(true);
-      // syncCollectionWithDB(token);
+      // await syncCollectionWithDB(token);
       return;
     }
     if (payload) {
@@ -28,7 +28,7 @@ const UserAuthContextProvider = ({ children }) => {
       }
       localStorage.setItem("user", JSON.stringify(toStorage));
       setUserLoggedIn(true);
-      // syncCollectionWithDB(token);
+      // await syncCollectionWithDB(token);
     }
   }
 

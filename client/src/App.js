@@ -2,13 +2,18 @@ import "./App.css";
 import Routed from "./routes/Routed";
 import UserAuthContext from "./context/UserAuth";
 import { useContext, useEffect } from "react";
+import CollectionContext from "./context/CollectionContext";
 
 function App() {
 
   const { doLogin } = useContext(UserAuthContext);
+  const { syncCollectionWithDB } = useContext(CollectionContext)
 
   useEffect(() => {
-    doLogin();
+    (async () => {
+      doLogin();
+      await syncCollectionWithDB();
+    })();
   }, [])
 
   return (
