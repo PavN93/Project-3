@@ -4,7 +4,7 @@ import "./SearchPlantData.css";
 import { Button, Image, Modal } from "semantic-ui-react";
 import Slider from "react-slick";
 
-const PlantCollection = ({ handleSaveClick }) => {
+const PlantCollection = ({ handleSaveClick, handleRemoveClick }) => {
   const { plants } = useContext(PlantResultsContext);
   const [viewPlant, setViewPlant] = useState({ show: false, plant: null });
 
@@ -179,7 +179,7 @@ const PlantCollection = ({ handleSaveClick }) => {
                     </button>
 
                     {/* remove button */}
-                    <button className="ui red animated button">
+                    <button className="ui red animated button" onClick={(event) => handleRemoveClick(viewPlant.plant.id, event)}>
                       <div className="hidden content"><i aria-hidden="true" className="delete icon"></i></div>
                       <div className="visible content">remove</div>
                     </button>

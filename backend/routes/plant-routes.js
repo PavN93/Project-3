@@ -39,19 +39,47 @@ router.post("/save", auth, async (req, res) => {
   }
 });
 
+// remove plant from db
+router.post("/remove", auth, async (req, res) => {
+  const { trefleId } = req.body;
+  console.log("authorized & id to remove:", trefleId);
+  try {
+    const plantToRemove = await Plant.findOne({ "trefleId": trefleId });
+    if (!plantToRemove) {
+      return res
+        .status(500)
+        .json({ success: false, payload: { message: "No such plant in database" } })
+    }
+    const { _id } = plantToRemove
+    const removed = await Plant.findByIdAndDelete(_id);
+    console.log("RemovedPlant:", removed);
+    res
+      .status(200)
+      .json({
+        success: true, payload: {
+          message: "plant successfully removed",
+          removed
+        }
+      });
+  } catch (err) {
+    console.log("Error on save:", err);
+    res.json({ success: false, payload: { message: "Internal server error" } });
+  }
+});
+
 // fetch all plants for user
 router.get("/collection", auth, async (req, res) => {
   try {
     const { _id } = req.user;
-    const collection = await Plant.find({ "userId": _id});
+    const collection = await Plant.find({ "userId": _id });
     res
-    .status(200)
-    .json({
-      success: true,
-      payload: {
-        collection
-      }
-    })
+      .status(200)
+      .json({
+        success: true,
+        payload: {
+          collection
+        }
+      })
   } catch (err) {
     console.log("Error on save:", err);
     res.json({ success: false, payload: { message: "Internal server error" } });
