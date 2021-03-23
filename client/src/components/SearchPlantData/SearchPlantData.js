@@ -9,7 +9,7 @@ import * as ReactBootStrap from "react-bootstrap";
 const PlantCollection = ({ handleSaveClick }) => {
   const { plants } = useContext(PlantResultsContext);
   const [viewPlant, setViewPlant] = useState({ show: false, plant: null });
-  const [loading,setLoading]= useState (false);
+  const [loading,setLoading]= useState(false);
 
   useEffect(() => { }, [plants]);
 
@@ -54,6 +54,7 @@ const PlantCollection = ({ handleSaveClick }) => {
     const plantURL = `/api/getPlantByID/${result.id}`;
     const fetchPlants = async () => {
       const response = await fetch(plantURL);
+      setLoading(true);
       const payload = await response.json();
       console.log("response data", payload);
       setViewPlant({ show: true, plant: payload.data });
@@ -71,7 +72,7 @@ const PlantCollection = ({ handleSaveClick }) => {
     plants.length >= 1 && (
       <div className="ui container">
       <div className="plantData">
-      {<ReactBootStrap.Spinner animation="border" variant="success" />}
+      {loading ? plants : <ReactBootStrap.Spinner animation="border" variant="success" />}
           <h2>Your search results</h2>
           <div className="ui olive cards">
             <Slider {...settings}>
