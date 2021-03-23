@@ -1,10 +1,11 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import "./PlantOfTheDay.css";
+import moment from 'moment';
 import { motion } from "framer-motion";
 
 const DailyPlant = () => {
   const [dailyPlant, setDailyPlant] = useState("");
-  const [plantReveal, setPlantReveal] = useState("false");
+  const [plantReveal, setPlantReveal] = useState(false);
 
   function revealRandomPlant() {
     const plantURL = `/api/getRandomPlant/`;
@@ -14,8 +15,7 @@ const DailyPlant = () => {
       const randomPlant =
         payload.data[Math.floor(Math.random() * payload.data.length)];
       setDailyPlant(randomPlant);
-      console.log(randomPlant);
-      setPlantReveal("true");
+      setPlantReveal(true);
       onBtnClick();
 
       localStorage.setItem("Date", new Date().toString());
@@ -30,11 +30,16 @@ const DailyPlant = () => {
     btnRef.current.setAttribute("disabled", "disabled");
   };
 
-  // if (date = date) {
-  //   localStorage.getItem("Plant URL")
-  // }
+  useEffect(() => {
+    if (localStorage.getItem("Date") === null) {
+      setPlantReveal(false)
+    } else if (
+      localStorage.getItem("Date") === moment().format('ddd MMM Do YYYY') && localStorage.getItem("Plant URL" !== null) ) {
+      setPlantReveal(true) }
+  }, [])
+  console.log(plantReveal);
 
-  if (plantReveal === "false") {
+  if (plantReveal === false) {
     return (
       <div className="ui container plantOfTheDay">
         <div className="ui stackable two column grid">
@@ -66,7 +71,7 @@ const DailyPlant = () => {
     );
   }
 
-  else if (plantReveal === "true") {
+  else if (plantReveal === true) {
   return (
     <div className="ui container plantOfTheDay">
       <div className="ui stackable two column grid">
