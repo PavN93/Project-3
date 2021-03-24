@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
 const plantSchema = new Schema({
+  // trefleId is an id provided by trefle, it exists along with mongo _id
   trefleId: {
     type: String,
     required: "Plant ID is required",
