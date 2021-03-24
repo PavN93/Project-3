@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./CallToAction.css";
 
 const SignUp = () => {
@@ -12,7 +13,8 @@ const SignUp = () => {
         </div>
         <div className="column">
           <h2>Sign up today</h2>
-          <button className="ui button createAccountBtn"><a href="/signup">Create an account</a></button>
+          <Link to="/signup">
+          <button className="ui button createAccountBtn">Create an account</button></Link>
         </div>
       </div>
     </div>

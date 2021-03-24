@@ -8,6 +8,13 @@ const plantSchema = new Schema({
     unique: true
   },
   userId: String, // points to specific user
+  imageUrl: {
+    type: String,
+  },
+  commonName: {
+    type: String,
+    trim: true
+  },
   sciName: {
     type: String,
     trim: true
