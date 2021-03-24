@@ -8,13 +8,14 @@ import fetcher from "../../functions/fetcher";
 
 const UserProfile = () => {
 
-  const [fetchedUsers, setFetchedUsers] = useState([]);
+  const [usersFromDB, setFetchedUsers] = useState([]);
   const [searchError, setSearchError] = useState("");
 
   const fetchUsers = async (username, event) => {
     event.preventDefault();
     setSearchError("");
     if (username.length < 1) {
+      setSearchError("Search value cannot be empty")
       return;
     }
     const userInStorage = localStorage.getItem("user");
@@ -25,8 +26,11 @@ const UserProfile = () => {
         username
       }
       const response = await fetcher("/api/user/search", token, body);
-      console.log(response);
-
+      if (!response.success) {
+        setSearchError(response.payload.message);
+        return;
+      }
+      setFetchedUsers(response.payload.searchedUsers);
     }
   }
 
@@ -34,7 +38,7 @@ const UserProfile = () => {
     <div>
       <Menu />
       <Weather />
-      <Profile fetchUsers={fetchUsers} searchError={searchError} fetchedUsers={fetchUsers} />
+      <Profile fetchUsers={fetchUsers} searchError={searchError} usersFromDB={usersFromDB} />
       <Imageupload />
       <Footer />
     </div>
