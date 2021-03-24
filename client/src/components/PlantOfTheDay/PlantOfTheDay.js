@@ -24,15 +24,13 @@ const DailyPlant = () => {
   }
 
   useEffect(() => {
+    console.log("test")
     if (localStorage.getItem("Date") === null) {
       setPlantReveal(false);
-    } else if (
-      localStorage.getItem("Date") === moment().format("ddd MMM Do YYYY") &&
+    } else (
+      localStorage.getItem("Date") &&
       localStorage.getItem("PlantURL") != null)
-     {
-      console.log("test")
       setPlantReveal(true);
-     }
   }, []);
 
   if (plantReveal === false) {
