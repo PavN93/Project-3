@@ -110,9 +110,22 @@ router.post('/login', async (req, res) => {
 // Logout
 router.get('/logout', auth, async (req, res) => {
   const { username } = req.user;
-  console.log("logging out" , username);
+  console.log("logging out", username);
   res.json({ success: true });
 });
+
+router.post('/search', auth, async (req, res) => {
+  try {
+    const { username } = req.body;
+    const searchedUsers = await User.find({ "username": username }, "username email");
+    res
+      .status(200)
+      .json({ success: true, payload: { searchedUsers } });
+  } catch (err) {
+    console.log("Error on save:", err);
+    res.json({ success: false, payload: { message: "Internal server error" } });
+  }
+})
 
 
 module.exports = router;
