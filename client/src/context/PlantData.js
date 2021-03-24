@@ -9,9 +9,9 @@ const PlantDataContextProvider = ({ children }) => {
 
   //fetch data and render on page load once
   const getPlants = (searchInput) => {
-      if (searchInput) {
-          try {
-          console.log("intial plant data render");
+    if (searchInput) {
+      try {
+        console.log("intial plant data render");
         const queryURL = `/api/getplants/${searchInput}`;
         const fetchPlants = async () => {
           const response = await fetch(queryURL);
