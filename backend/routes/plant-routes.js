@@ -21,7 +21,7 @@ router.post("/save", auth, async (req, res) => {
     const isAlreadySaved = await Plant.findOne({ "trefleId": trefleId });
     if (isAlreadySaved) {
       return res
-        .status(401)
+        .status(400)
         .json({ success: false, payload: { message: 'Plant already saved' } });
     }
     const savedPlant = await Plant.create(saveToDb);
