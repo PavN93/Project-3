@@ -7,3 +7,7 @@
 .ui.animated.button {
   margin: 10px;
 }
+
+.visible.content.searchPlantBtn {
+  text-align: center;
+}

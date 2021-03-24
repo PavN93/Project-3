@@ -40,7 +40,7 @@ const Search = () => {
           type="submit"
           onClick={handleFormSubmit}
         >
-          <div className="visible content">Search</div>
+          <div className="visible content searchPlantBtn">Search</div>
           <div className="hidden content">
             <i aria-hidden="true" className="search icon"></i>
           </div>

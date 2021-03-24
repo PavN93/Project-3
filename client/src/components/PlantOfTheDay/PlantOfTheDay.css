@@ -2,22 +2,41 @@
   background-color: #2a3b19;
 }
 
-div.column>.plantReveal {
+div.column > .plantReveal {
   display: block;
   text-align: center;
   padding-top: 200px;
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
   height: 500px;
+  color: lemonchiffon;
+  font-size: 50px;
 }
 
+
+.ui.button.revealBtn {
+  background-color: lemonchiffon;
+}
+
+.ui.button.revealBtn:hover {
+  background-color: #2a3b19;
+  color: white;
+}
+
+
 .plantCard {
-    background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
   text-align: center;
 }
 
-.leafPlaceholder {
-    height: 300px;
-    background-color: lemonchiffon;
+.mysteryPlantCard {
+  border-radius: 10px;
+  margin-top: 15px;
+}
+
+.ui.card.plantOfTheDay {
+  width: fit-content;
+  display: inline-block;
+  margin-top: 15px;
 }
