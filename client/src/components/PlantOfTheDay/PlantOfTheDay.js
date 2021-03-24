@@ -24,13 +24,16 @@ const DailyPlant = () => {
   }
 
   useEffect(() => {
-    console.log("test")
     if (localStorage.getItem("Date") === null) {
       setPlantReveal(false);
-    } else (
-      localStorage.getItem("Date") &&
-      localStorage.getItem("PlantURL") != null)
+    } else {
+      const success =
+        localStorage.getItem("Date") === moment().format("ddd MMM Do YYYY") &&
+        localStorage.getItem("PlantURL") != null;
+      const plantValue = JSON.parse(localStorage.getItem("PlantURL"));
       setPlantReveal(true);
+      setDailyPlant(plantValue);
+    }
   }, []);
 
   if (plantReveal === false) {
@@ -70,9 +73,7 @@ const DailyPlant = () => {
             <div className="column">
               <div className="plantReveal">
                 <h1>Plant of the day</h1>
-                <motion.button
-                  className="ui button disabled"
-                >
+                <motion.button className="ui button disabled">
                   Click to reveal
                 </motion.button>
               </div>
