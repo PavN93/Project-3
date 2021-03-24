@@ -32,6 +32,21 @@ function Home() {
       await syncCollectionWithDB();
     }
   }
+
+  const handleRemoveClick = async (trefleId, event) => {
+    event.preventDefault();
+    const userInStorage = localStorage.getItem("user");
+    if (userInStorage) {
+      const parsedStorage = JSON.parse(userInStorage);
+      const { token } = parsedStorage;
+      const body = {
+        trefleId
+      }
+      const response = await fetcher("/api/plant/remove", token, body);
+      console.log("remove response:", response);
+      await syncCollectionWithDB();
+    }
+  }
   
   return (
     <div>
@@ -39,7 +54,7 @@ function Home() {
       <Banner/>
       <Weather/>
       <Search/>
-      <PlantCollection handleSaveClick={handleSaveClick}/>
+      <PlantCollection handleSaveClick={handleSaveClick} handleRemoveClick={handleRemoveClick}/>
       <Quote />
       <DailyPlant />
       <SignUp />

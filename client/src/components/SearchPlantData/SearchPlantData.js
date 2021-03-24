@@ -3,12 +3,16 @@ import PlantResultsContext from "../../context/PlantData";
 import "./SearchPlantData.css";
 import { Button, Image, Modal } from "semantic-ui-react";
 import Slider from "react-slick";
+import UserAuthContext from "../../context/UserAuth";
+import CollectionContext from "../../context/CollectionContext";
 
-const PlantCollection = ({ handleSaveClick }) => {
+const PlantCollection = ({ handleSaveClick, handleRemoveClick }) => {
+  const { collectionFromDB } = useContext(CollectionContext);
+  const { userLoggedIn } = useContext(UserAuthContext);
   const { plants } = useContext(PlantResultsContext);
   const [viewPlant, setViewPlant] = useState({ show: false, plant: null });
-
   useEffect(() => { }, [plants]);
+  collectionFromDB.map(element => console.log(element.trefleId));
 
   const settings = {
     infinite: true,
@@ -172,17 +176,20 @@ const PlantCollection = ({ handleSaveClick }) => {
                 <Modal.Actions>
                   <div className="buttonGroup">
 
-                    {/* save button */}
-                    <button className="ui green animated button" onClick={(event) => handleSaveClick(viewPlant.plant, event)}>
-                      <div className="hidden content"><i aria-hidden="true" className="save icon"></i></div>
-                      <div className="visible content">save</div>
-                    </button>
+                    {userLoggedIn && (
+                      collectionFromDB.some(element => element.trefleId == viewPlant.plant.id) ?
+                        (/* remove button */
+                        <button className="ui red animated button" onClick={(event) => handleRemoveClick(viewPlant.plant.id, event)}>
+                          <div className="hidden content"><i aria-hidden="true" className="delete icon"></i></div>
+                          <div className="visible content">remove</div>
+                        </button>) :
+                        (/* save button */
+                        < button className="ui green animated button" onClick={(event) => handleSaveClick(viewPlant.plant, event)}>
+                          <div className="hidden content"><i aria-hidden="true" className="save icon"></i></div>
+                          <div className="visible content">save</div>
+                        </button>)
 
-                    {/* remove button */}
-                    <button className="ui red animated button">
-                      <div className="hidden content"><i aria-hidden="true" className="delete icon"></i></div>
-                      <div className="visible content">remove</div>
-                    </button>
+                    )}
 
                     <div className="or"></div>
                     <Button
@@ -200,7 +207,7 @@ const PlantCollection = ({ handleSaveClick }) => {
             )}
           </div>
         </div>
-      </div>
+      </div >
     )
   );
 };

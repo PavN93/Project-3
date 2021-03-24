@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext } from "react";
 import fetcher from "../functions/fetcher";
 // import CollectionContext from "./CollectionContext";
 
@@ -13,7 +13,7 @@ const UserAuthContextProvider = ({ children }) => {
   const doLogin = (payload) => {
     const userInStorage = localStorage.getItem("user");
     if (userInStorage) {
-      const { token } = userInStorage;
+      // const { token } = userInStorage;
       setUserLoggedIn(true);
       // await syncCollectionWithDB(token);
       return;
