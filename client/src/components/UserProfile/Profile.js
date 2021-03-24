@@ -5,19 +5,21 @@ import * as Scroll from 'react-scroll';
 import { motion } from "framer-motion";
 import CollectionContext from "../../context/CollectionContext";
 
-const Bio = ({ fetchUsers }) => {
+const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
+  console.log("userList:", usersFromDB);
+  console.log("error", searchError);
   // We can pull the personal data from the database once wired up
   // This URL will need to be unique to the individual user
 
   const { collectionFromDB } = useContext(CollectionContext);
   console.log("your collection from DB:", collectionFromDB);
+
   const scroll = Scroll.animateScroll;
   const [view, setView] = useState(""); // plants, favourites, friends
-  const [searchInput, setSearchInput] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
 
   function handleInputChange(event) {
     setSearchInput(event.target.value);
-    console.log(event.target.value);
   }
 
   return (
