@@ -1,13 +1,21 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import "./Profile.css";
 import uploadImage from "../../components/Imageupload/Image";
 import * as Scroll from 'react-scroll';
 import { motion } from "framer-motion";
 import CollectionContext from "../../context/CollectionContext";
+import { useWindowEvent } from "../useWindowEvent";
 
 const Bio = () => {
   // We can pull the personal data from the database once wired up
   // This URL will need to be unique to the individual user
+  const [item, setItem] = useState(localStorage.getItem('profilepic'))
+  const checkLocalStorage = () => {
+    const value = localStorage.getItem('profilepic');
+    setItem(value)
+    console.log('USEEFFECT', value)
+}
+useWindowEvent('storage',checkLocalStorage)
 
   const { collectionFromDB } = useContext(CollectionContext);
   console.log("your collection from DB:", collectionFromDB);
@@ -24,7 +32,7 @@ const Bio = () => {
     event.preventDefault();
     console.log("click works", searchInput);
   }
-
+ 
   return (
     <section className="ui container">
       <h1>My profile</h1>
@@ -32,7 +40,7 @@ const Bio = () => {
     
         <img
           className="image avatar"
-          src="https://react.semantic-ui.com/images/avatar/large/daniel.jpg"
+          src={item}
           alt="placeholder"
         />
     
