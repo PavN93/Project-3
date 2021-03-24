@@ -50,7 +50,6 @@ const SignUp = () => {
     const { value, error } = validateSingupObject.validate(signupData);
     if (error) {
       setValidationError(error.details[0].message);
-      // console.log(error.details[0].context.key);
       return;
     }
     if (password !== confirmPassword) {

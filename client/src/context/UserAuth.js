@@ -1,4 +1,4 @@
-import { useState, createContext, useContext } from "react";
+import { useState, createContext } from "react";
 import fetcher from "../functions/fetcher";
 // import CollectionContext from "./CollectionContext";
 
