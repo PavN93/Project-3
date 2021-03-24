@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import "./PlantOfTheDay.css";
 import moment from "moment";
 import { motion } from "framer-motion";
@@ -16,19 +16,12 @@ const DailyPlant = () => {
         payload.data[Math.floor(Math.random() * payload.data.length)];
       setDailyPlant(randomPlant);
       setPlantReveal(true);
-      onBtnClick();
 
       localStorage.setItem("Date", new Date().toString());
       localStorage.setItem("PlantURL", JSON.stringify(randomPlant));
     };
     fetchPlants();
   }
-
-  // disabling the button once clicked
-  let btnRef = useRef();
-  const onBtnClick = (e) => {
-    btnRef.current.setAttribute("disabled", "disabled");
-  };
 
   useEffect(() => {
     if (localStorage.getItem("Date") === null) {
@@ -53,7 +46,6 @@ const DailyPlant = () => {
                 <motion.button
                   whileTap={{ scale: 0.9 }}
                   className="ui button revealBtn"
-                  ref={btnRef}
                   onClick={revealRandomPlant}
                 >
                   Click to reveal
@@ -72,7 +64,7 @@ const DailyPlant = () => {
         </div>
       </div>
     );
-  } else if (plantReveal === true) {
+  } else {
     return (
       <div className="ui container plantOfTheDay">
         <div className="ui stackable two column grid">
@@ -81,10 +73,7 @@ const DailyPlant = () => {
               <div className="plantReveal">
                 <h1>Plant of the day</h1>
                 <motion.button
-                  disable
-                  whileTap={{ scale: 0.9 }}
-                  className="ui button revealBtn"
-                  ref={btnRef}
+                  className="ui button disabled"
                 >
                   Click to reveal
                 </motion.button>
