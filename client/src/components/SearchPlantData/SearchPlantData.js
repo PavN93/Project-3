@@ -20,7 +20,6 @@ const PlantCollection = ({ handleSaveClick, handleRemoveClick, isSearchDone }) =
   const [viewPlant, setViewPlant] = useState({ show: false, plant: null });
 
   useEffect(() => { }, [plants]);
-  collectionFromDB.map(element => console.log(element.trefleId));
 
   const settings = {
     infinite: true,
@@ -64,7 +63,6 @@ const PlantCollection = ({ handleSaveClick, handleRemoveClick, isSearchDone }) =
     const fetchPlants = async () => {
       const response = await fetch(plantURL);
       const payload = await response.json();
-      console.log("response data", payload);
       setViewPlant({ show: true, plant: payload.data });
     };
     fetchPlants();
@@ -82,7 +80,7 @@ const PlantCollection = ({ handleSaveClick, handleRemoveClick, isSearchDone }) =
           <div className="ui olive cards">
             <Slider {...settings}>
               {plants.map((result) => (
-                <div className="ui card">
+                <div className="ui card" key={result.id}>
                   <div className="content">
                     <img
                       src={result.image_url}

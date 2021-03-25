@@ -7,7 +7,7 @@ const Search = ({ setSearchDoneStatus }) => {
   // I'd like to add some sort of loader(spinner) so the user knows the search is in progress
   const scroll = Scroll.animateScroll;
 
-  const [searchInput, setSearchInput] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
   const { getPlants } = useContext(PlantDataContext);
 
 

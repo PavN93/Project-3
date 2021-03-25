@@ -11,11 +11,9 @@ const PlantDataContextProvider = ({ children }) => {
   const getPlants = async (searchInput) => {
     if (searchInput) {
       try {
-        console.log("intial plant data render");
         const queryURL = `/api/getplants/${searchInput}`;
         const response = await fetch(queryURL);
         const payload = await response.json();
-        console.log("response data", payload);
         setPlants(payload.data || []); // if search fails fallbacks or empty array
       } catch (error) {
         console.log("apicall error", error);
