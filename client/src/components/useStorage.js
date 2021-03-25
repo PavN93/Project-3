@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 
 export const useStorage = (selecter) => {
-    
+
     const [item, setItem] = useState(localStorage.getItem(selecter))
     useEffect(() => {
         const checkLocalStorage = () => {

@@ -32,13 +32,9 @@ function Imageupload() {
         const body = {
           _id,
           data: base64EncodedImage,
-          
         }
         const response = await fetcher(`api/images/upload`, token, body)
         console.log(response)
-
-        const userpic = localStorage.setItem("profilepic",response.url)
-
       }
     } catch (error) {
       console.error(error);
