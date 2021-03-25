@@ -16,3 +16,11 @@
 form.form {
   text-align: left;
 }
+
+.passwordIconSignUp {
+  color: #2a3b19;
+  position: absolute;
+  top: 185px;
+  right: 10px;
+  z-index: 1000;
+}

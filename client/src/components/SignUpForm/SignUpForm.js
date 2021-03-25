@@ -14,7 +14,16 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+
+
+  // password visibility
+  const [passwordIcon, setPasswordIcon] = useState("eye slash icon");
+  const [inputType, setInputType] = useState("password");
+
+  // waiting for server response 
+
   // waiting for server response
+
   const [busySignUp, setBusySignUp] = useState(false);
   // error on submitting signup credentials
   const [validationError, setValidationError] = useState("");
@@ -79,6 +88,22 @@ const SignUp = () => {
       console.log(err);
     }
     setBusySignUp(false);
+  };
+
+
+  const redirectToLogin = (event) => {
+    event.preventDefault();
+    location.push("/login");
+  };
+
+  const togglePasswordVisibility = () => {
+    if (inputType === "password") {
+      setInputType("text");
+      setPasswordIcon("eye icon");
+      return;
+    }
+    setInputType("password");
+    setPasswordIcon("eye slash icon");
   };
 
   return (
@@ -150,6 +175,12 @@ const SignUp = () => {
               type="password"
               value={password}
             />
+            <div className="passwordIconSignUp">
+              <i
+                className={passwordIcon}
+                onClick={togglePasswordVisibility}
+              ></i>
+            </div>
           </div>
           <div
             className={"field " + (validationError.length > 0 ? "error" : "")}
