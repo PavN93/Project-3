@@ -5,7 +5,8 @@ import * as Scroll from "react-scroll";
 import { motion } from "framer-motion";
 import CollectionContext from "../../context/CollectionContext";
 import { useWindowEvent } from "../useWindowEvent";
-const mongoose = require("mongoose");
+import mongoose from 'mongoose';
+import moment from "moment";
 
 
 
@@ -32,11 +33,14 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
     setSearchInput(event.target.value);
   }
 
+  // generating account created date
   const accountCreated = require('mongodb').ObjectId(userData._id).getTimestamp();
   const joined = accountCreated.toISOString().slice(0,4);
 
-  // const joinedDate = moment(accountCreated).format('DD/MM/YYYY');
+  // refactoring birthday format
+  const birthday = moment(userData.dateOfBirth).format('DD/MM/YYYY');
   
+
   useEffect(() => {
     const accountData = JSON.parse(localStorage.getItem("user"));
     setUserData(accountData);
@@ -95,7 +99,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
           </div>
           <div className="content data">
             <div className="description">
-              <i aria-hidden="true" className="birthday icon"></i>{userData.dateOfBirth}
+              <i aria-hidden="true" className="birthday icon"></i>{birthday}
             </div>
           </div>
           <div className="content data">
