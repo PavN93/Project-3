@@ -7,7 +7,6 @@ import CollectionContext from "../../context/CollectionContext";
 import { useWindowEvent } from "../useWindowEvent";
 
 
-const Bio = () => {
 const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   console.log("userList:", usersFromDB);
   console.log("error", searchError);
@@ -29,11 +28,9 @@ useWindowEvent('storage',checkLocalStorage)
   const [view, setView] = useState(""); // plants, friends
   const [searchInput, setSearchInput] = useState(null);
   const [userData, setUserData] = useState("");
-  const [view, setView] = useState(""); // plants, favourites, friends
-  const [searchInput, setSearchInput] = useState("");
 
 
-  function handleInputChange(event) {
+  const handleInputChange = (event) => {
     setSearchInput(event.target.value);
   }
 
@@ -43,8 +40,6 @@ useWindowEvent('storage',checkLocalStorage)
     setUserData(accountData);
   }, []);
 
-=======
- 
 
   return (
     <section className="ui container">

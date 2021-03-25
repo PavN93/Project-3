@@ -37,12 +37,6 @@ const SignUp = () => {
       case "username":
         setUsername(target.value);
         break;
-      // case "dateOfBirth":
-      //   setDateOfBirth(target.value);
-      //   break;
-      // case "currentCity":
-      //   setCurrentCity(target.value);
-        break;
       case "email":
         setEmail(target.value);
         break;
@@ -131,28 +125,6 @@ const SignUp = () => {
               value={username}
             />
           </div>
-          {/* <div
-            className={"field " + (validationError.length > 0 ? "error" : "")}
-          >
-            <label>Date of birth:</label>
-            <input
-              placeholder="__/__/____"
-              onChange={(event) => onType(event)}
-              name="dateOfBirth"
-              value={dateOfBirth}
-            />
-          </div>
-          <div
-            className={"field " + (validationError.length > 0 ? "error" : "")}
-          >
-            <label>Location:</label>
-            <input
-              placeholder="Location"
-              onChange={(event) => onType(event)}
-              name="currentCity"
-              value={currentCity}
-            />
-          </div> */}
           <div
             className={"field " + (validationError.length > 0 ? "error" : "")}
           >
@@ -209,6 +181,9 @@ const SignUp = () => {
               <i aria-hidden="true" className="signup icon"></i>
             </div>
           </button>
+          <p className="ui container loginLink">
+            Already a member? <a onClick={(event) => redirectToLogin(event)}>Log in</a> now.
+          </p>
         </form>
         <p>
           By clicking the Sign Up button, you agree to our Terms and Conditions.

@@ -8,18 +8,13 @@ const PlantDataContextProvider = ({ children }) => {
   const [search, setSearch] = useState("");
 
   //fetch data and render on page load once
-  const getPlants = (searchInput) => {
+  const getPlants = async (searchInput) => {
     if (searchInput) {
       try {
-        console.log("intial plant data render");
         const queryURL = `/api/getplants/${searchInput}`;
-        const fetchPlants = async () => {
-          const response = await fetch(queryURL);
-          const payload = await response.json();
-          console.log("response data", payload);
-          setPlants(payload.data || []); // if search fails fallbacks or empty array
-        };
-        fetchPlants();
+        const response = await fetch(queryURL);
+        const payload = await response.json();
+        setPlants(payload.data || []); // if search fails fallbacks or empty array
       } catch (error) {
         console.log("apicall error", error);
       }

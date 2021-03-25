@@ -6,13 +6,20 @@ import Slider from "react-slick";
 import UserAuthContext from "../../context/UserAuth";
 import CollectionContext from "../../context/CollectionContext";
 
-const PlantCollection = ({ handleSaveClick, handleRemoveClick }) => {
-  const { collectionFromDB } = useContext(CollectionContext);
+const PlantCollection = ({ handleSaveClick, handleRemoveClick, isSearchDone }) => {
+
   const { userLoggedIn } = useContext(UserAuthContext);
+
+  // collection of saved plants of logged in user
+  const { collectionFromDB } = useContext(CollectionContext);
+
+  // plants searched on homepage
   const { plants } = useContext(PlantResultsContext);
+
+  // plant details for modal
   const [viewPlant, setViewPlant] = useState({ show: false, plant: null });
+
   useEffect(() => { }, [plants]);
-  collectionFromDB.map(element => console.log(element.trefleId));
 
   const settings = {
     infinite: true,
@@ -56,15 +63,13 @@ const PlantCollection = ({ handleSaveClick, handleRemoveClick }) => {
     const fetchPlants = async () => {
       const response = await fetch(plantURL);
       const payload = await response.json();
-      console.log("response data", payload);
       setViewPlant({ show: true, plant: payload.data });
     };
     fetchPlants();
   }
-
   if (plants.length === 0) {
     return (
-      <div className="ui container searchError">No search results found</div>
+      isSearchDone && (<div className="ui container searchError">No search results found</div>)
     );
   }
   return (
@@ -75,7 +80,7 @@ const PlantCollection = ({ handleSaveClick, handleRemoveClick }) => {
           <div className="ui olive cards">
             <Slider {...settings}>
               {plants.map((result) => (
-                <div className="ui card">
+                <div className="ui card" key={result.id}>
                   <div className="content">
                     <img
                       src={result.image_url}
@@ -179,15 +184,15 @@ const PlantCollection = ({ handleSaveClick, handleRemoveClick }) => {
                     {userLoggedIn && (
                       collectionFromDB.some(element => element.trefleId == viewPlant.plant.id) ?
                         (/* remove button */
-                        <button className="ui red animated button" onClick={(event) => handleRemoveClick(viewPlant.plant.id, event)}>
-                          <div className="hidden content"><i aria-hidden="true" className="delete icon"></i></div>
-                          <div className="visible content">remove</div>
-                        </button>) :
+                          <button className="ui red animated button" onClick={(event) => handleRemoveClick(viewPlant.plant.id, event)}>
+                            <div className="hidden content"><i aria-hidden="true" className="delete icon"></i></div>
+                            <div className="visible content">remove</div>
+                          </button>) :
                         (/* save button */
-                        < button className="ui green animated button" onClick={(event) => handleSaveClick(viewPlant.plant, event)}>
-                          <div className="hidden content"><i aria-hidden="true" className="save icon"></i></div>
-                          <div className="visible content">save</div>
-                        </button>)
+                          < button className="ui green animated button" onClick={(event) => handleSaveClick(viewPlant.plant, event)}>
+                            <div className="hidden content"><i aria-hidden="true" className="save icon"></i></div>
+                            <div className="visible content">save</div>
+                          </button>)
 
                     )}
 
