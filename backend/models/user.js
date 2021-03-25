@@ -18,14 +18,14 @@ const userSchema = new Schema({
     required: 'email is required',
     unique: true
   },
-  // currentCity: {
-  //   type: String,
-  //   trim: true
-  // },
-  // dateOfBirth: {
-  //   type: Date,
-  //   trim: true
-  // },
+  currentCity: {
+    type: String,
+    trim: true
+  },
+  dateOfBirth: {
+    type: Date,
+    trim: true
+  },
   avatar: String, // points to images collection
 })
 
