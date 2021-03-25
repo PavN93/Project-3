@@ -4,38 +4,47 @@ import "./Profile.css";
 import * as Scroll from "react-scroll";
 import { motion } from "framer-motion";
 import CollectionContext from "../../context/CollectionContext";
+import { useWindowEvent } from "../useWindowEvent";
 
-<<<<<<< HEAD
+
 const Bio = () => {
-=======
 const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   console.log("userList:", usersFromDB);
   console.log("error", searchError);
   // We can pull the personal data from the database once wired up
   // This URL will need to be unique to the individual user
->>>>>>> master
+  const [item, setItem] = useState(localStorage.getItem('profilepic'))
+  const checkLocalStorage = () => {
+    const value = localStorage.getItem('profilepic');
+    setItem(value)
+    console.log('USEEFFECT', value)
+}
+useWindowEvent('storage',checkLocalStorage)
+
 
   const { collectionFromDB } = useContext(CollectionContext);
   console.log("your collection from DB:", collectionFromDB);
 
   const scroll = Scroll.animateScroll;
-<<<<<<< HEAD
   const [view, setView] = useState(""); // plants, friends
   const [searchInput, setSearchInput] = useState(null);
   const [userData, setUserData] = useState("");
-=======
   const [view, setView] = useState(""); // plants, favourites, friends
   const [searchInput, setSearchInput] = useState("");
->>>>>>> master
+
 
   function handleInputChange(event) {
     setSearchInput(event.target.value);
   }
 
+
   useEffect(() => {
     const accountData = JSON.parse(localStorage.getItem("user"));
     setUserData(accountData);
   }, []);
+
+=======
+ 
 
   return (
     <section className="ui container">
@@ -43,7 +52,11 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
       <div className="profileContainer">
         <img
           className="image avatar"
+
           src="https://react.semantic-ui.com/images/wireframe/image.png"
+
+          src={item}
+
           alt="placeholder"
         />
         <div className="ui card">
