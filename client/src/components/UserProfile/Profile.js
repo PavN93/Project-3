@@ -5,23 +5,31 @@ import * as Scroll from "react-scroll";
 import { motion } from "framer-motion";
 import CollectionContext from "../../context/CollectionContext";
 
+<<<<<<< HEAD
 const Bio = () => {
+=======
+const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
+  console.log("userList:", usersFromDB);
+  console.log("error", searchError);
+  // We can pull the personal data from the database once wired up
+  // This URL will need to be unique to the individual user
+>>>>>>> master
 
   const { collectionFromDB } = useContext(CollectionContext);
   console.log("your collection from DB:", collectionFromDB);
+
   const scroll = Scroll.animateScroll;
+<<<<<<< HEAD
   const [view, setView] = useState(""); // plants, friends
   const [searchInput, setSearchInput] = useState(null);
   const [userData, setUserData] = useState("");
+=======
+  const [view, setView] = useState(""); // plants, favourites, friends
+  const [searchInput, setSearchInput] = useState("");
+>>>>>>> master
 
   function handleInputChange(event) {
     setSearchInput(event.target.value);
-    console.log(event.target.value);
-  }
-
-  function handleFormSubmit(event) {
-    event.preventDefault();
-    console.log("click works", searchInput);
   }
 
   useEffect(() => {
@@ -143,13 +151,13 @@ const Bio = () => {
                     value={searchInput}
                     onChange={handleInputChange}
                     onKeyDown={(event) => {
-                      if (event.key === "Enter") handleFormSubmit(event);
+                      if (event.key === "Enter") fetchUsers(searchInput, event);
                     }}
                     className="input"
                     type="search"
                     placeholder="Search Plantica users"
                   />
-                  <button className="ui animated button" type="submit">
+                  <button className="ui animated button" type="submit" onClick={(event) => fetchUsers(searchInput, event)}>
                     <div className="visible content">Search</div>
                     <div className="hidden content">
                       <i aria-hidden="true" className="search icon"></i>
