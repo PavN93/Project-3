@@ -47,11 +47,8 @@ useWindowEvent('storage',checkLocalStorage)
       <div className="profileContainer">
         <img
           className="image avatar"
-
           src="https://react.semantic-ui.com/images/wireframe/image.png"
-
           src={item}
-
           alt="placeholder"
         />
         <div className="ui card">

@@ -1,9 +1,11 @@
 import React, { useState, useContext } from "react";
 import "./Search.css";
 import PlantDataContext from "../../context/PlantData";
+import {Loader} from "semantic-ui-react";
 import * as Scroll from 'react-scroll';
 
-const Search = ({ setSearchDoneStatus }) => {
+
+const Search = ({ setSearchDoneStatus,toggleSearchingStatus,isBusy }) => {
   // I'd like to add some sort of loader(spinner) so the user knows the search is in progress
   const scroll = Scroll.animateScroll;
 
@@ -14,11 +16,13 @@ const Search = ({ setSearchDoneStatus }) => {
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);
   }
-
+  
   const handleFormSubmit = async (event) => {
+    toggleSearchingStatus()
     event.preventDefault();
     await getPlants(searchInput);
     setSearchDoneStatus();
+    toggleSearchingStatus()
     scroll.scrollTo(1200)
   }
 
@@ -36,16 +40,21 @@ const Search = ({ setSearchDoneStatus }) => {
           type="search"
           placeholder="Search plants"
         />
-        <button
-          className="ui animated button"
-          type="submit"
-          onClick={handleFormSubmit}
-        >
-          <div className="visible content searchPlantBtn">Search</div>
-          <div className="hidden content">
-            <i aria-hidden="true" className="search icon"></i>
-          </div>
-        </button>
+        {isBusy?
+
+          
+        (<Loader active inline='centered' />):(
+          <button
+            className="ui animated button"
+            type="submit"
+            onClick={handleFormSubmit}
+          >
+            <div className="visible content searchPlantBtn">Search</div>
+            <div className="hidden content">
+              <i aria-hidden="true" className="search icon"></i>
+            </div>
+          </button>
+        )}
       </form>
     </div>
   );
