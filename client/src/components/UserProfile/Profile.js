@@ -1,11 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
+import { Link } from "react-router-dom";
 import "./Profile.css";
-import uploadImage from "../../components/Imageupload/Image";
-import * as Scroll from 'react-scroll';
+import * as Scroll from "react-scroll";
 import { motion } from "framer-motion";
 import CollectionContext from "../../context/CollectionContext";
 import { useWindowEvent } from "../useWindowEvent";
 
+
+const Bio = () => {
 const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   console.log("userList:", usersFromDB);
   console.log("error", searchError);
@@ -19,59 +21,70 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
 }
 useWindowEvent('storage',checkLocalStorage)
 
+
   const { collectionFromDB } = useContext(CollectionContext);
   console.log("your collection from DB:", collectionFromDB);
 
   const scroll = Scroll.animateScroll;
+  const [view, setView] = useState(""); // plants, friends
+  const [searchInput, setSearchInput] = useState(null);
+  const [userData, setUserData] = useState("");
   const [view, setView] = useState(""); // plants, favourites, friends
   const [searchInput, setSearchInput] = useState("");
+
 
   function handleInputChange(event) {
     setSearchInput(event.target.value);
   }
+
+
+  useEffect(() => {
+    const accountData = JSON.parse(localStorage.getItem("user"));
+    setUserData(accountData);
+  }, []);
+
+=======
  
+
   return (
     <section className="ui container">
       <h1>My profile</h1>
       <div className="profileContainer">
-    
         <img
           className="image avatar"
+
+          src="https://react.semantic-ui.com/images/wireframe/image.png"
+
           src={item}
+
           alt="placeholder"
         />
-    
         <div className="ui card">
           <div className="content">
-            <div className="header">Name Surname</div>
+            <div className="header">{userData.username}</div>
             <div className="meta">Joined in 2018</div>
-            <div className="description">
-              Option to add a biography for each user.
-            </div>
           </div>
 
-          {/* Need to link to relevant pages */}
           <div class="ui grid">
             <div className="column">
               <motion.button
                 whileHover={{ scale: 1.1, originX: 0 }}
-                onClick={() => { setView("plants"); scroll.scrollTo(800) }}
+                onClick={() => {
+                  setView("plants");
+                  scroll.scrollTo(800);
+                }}
                 className="ui button dataButton"
               >
                 <i className="leaf icon"></i>My plants
                 <p className="dataDigit">{collectionFromDB.length}</p>
               </motion.button>
+
               <motion.button
                 whileHover={{ scale: 1.1, originX: 0 }}
-                onClick={() => { setView("favourites"); scroll.scrollTo(800) }}
-                className="ui button dataButton"
-              >
-                <i className="heart icon"></i>Favourites
-                <p className="dataDigit">36</p>
-              </motion.button>
-              <motion.button
-                whileHover={{ scale: 1.1, originX: 0 }}
-                onClick={() => { setView("friends"); scroll.scrollTo(800) }}
+                onClick={() => {
+                  setView("friends");
+                  scroll.scrollTo(800);
+                }}
                 className="ui button dataButton"
               >
                 <i className="users icon"></i>Friends
@@ -82,7 +95,7 @@ useWindowEvent('storage',checkLocalStorage)
 
           <div className="content data">
             <div className="description">
-              <i aria-hidden="true" className="mail icon"></i>email@outlook.com
+              <i aria-hidden="true" className="mail icon"></i>{userData.email}
             </div>
           </div>
           <div className="content data">
@@ -96,7 +109,11 @@ useWindowEvent('storage',checkLocalStorage)
             </div>
           </div>
         </div>
-        <button className="ui button editProfile">Edit profile</button>
+        <Link to="/upload">
+          <button className="ui button editProfile">
+            <i className="cloud upload icon"></i>Upload plant
+          </button>
+        </Link>
       </div>
 
       {/* Plants section */}
@@ -107,23 +124,25 @@ useWindowEvent('storage',checkLocalStorage)
           animate={{ opacity: 1, duration: 5 }}
         >
           <h2>My plants</h2>
-          <p>
-            Need to be displaying individual users plants from the database here
-          </p>
-        </motion.div>
-      )}
 
-      {/* Favourites section */}
-      {view === "favourites" && (
-        <motion.div
-          className="ui segment"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1, duration: 5 }}
-        >
-          <h2>My favourites</h2>
-          <p>
-            Need to be display any plants marked as favourites on the homepage
-          </p>
+          <div className="ui container">
+            <div className="ui relaxed divided items">
+              {collectionFromDB.map((collectionFromDB) => (
+                <div className="item">
+                  <div className="ui small image">
+                    <img src="#" />
+                  </div>
+                  <div className="content">
+                    <div className="header">Scientific name: {collectionFromDB.sciName}</div>
+                    <div className="meta">Family: {collectionFromDB.familyName}</div>
+                    <div className="description">Native to:
+                      {collectionFromDB.occurence}
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
         </motion.div>
       )}
 
@@ -168,78 +187,90 @@ useWindowEvent('storage',checkLocalStorage)
               {/* Will need to map over database users here */}
               <div className="item">
                 <div className="image">
-                  <img src="https://react.semantic-ui.com/images/avatar/large/steve.jpg" alt="placeholder"/>
+                  <img
+                    src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
+                    alt="placeholder"
+                  />
                 </div>
                 <div className="content">
-                <div className="header">Steve Sanders</div>
-                <div className="description">
-                  Bio taken from the users profile
-                </div>
-                <div className="description">
-                  <i className="leaf icon"></i>12 uploads
-                </div>
-                <div className="extra content">
-                <button className="ui olive right floated button">
-                  <i className="add user icon"></i>Add friend
-                </button>
-                </div>
+                  <div className="header">Steve Sanders</div>
+                  <div className="description">
+                    Bio taken from the users profile
+                  </div>
+                  <div className="description">
+                    <i className="leaf icon"></i>12 uploads
+                  </div>
+                  <div className="extra content">
+                    <button className="ui olive right floated button">
+                      <i className="add user icon"></i>Add friend
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="item">
                 <div className="image">
-                  <img src="https://react.semantic-ui.com/images/avatar/large/stevie.jpg" alt="placeholder"/>
+                  <img
+                    src="https://react.semantic-ui.com/images/avatar/large/stevie.jpg"
+                    alt="placeholder"
+                  />
                 </div>
                 <div className="content">
-                <div className="header">Stevie Sanders</div>
-                <div className="description">
-                  Bio taken from the users profile
-                </div>
-                <div className="description">
-                  <i className="leaf icon"></i>8 uploads
-                </div>
-                <div className="extra content">
-                <button className="ui olive right floated button">
-                  <i className="add user icon"></i>Add friend
-                </button>
-                </div>
+                  <div className="header">Stevie Sanders</div>
+                  <div className="description">
+                    Bio taken from the users profile
+                  </div>
+                  <div className="description">
+                    <i className="leaf icon"></i>8 uploads
+                  </div>
+                  <div className="extra content">
+                    <button className="ui olive right floated button">
+                      <i className="add user icon"></i>Add friend
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="item">
                 <div className="image">
-                  <img src="https://react.semantic-ui.com/images/avatar/large/matthew.png" alt="placeholder"/>
+                  <img
+                    src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
+                    alt="placeholder"
+                  />
                 </div>
                 <div className="content">
-                <div className="header">Matthew Brown</div>
-                <div className="description">
-                  Bio taken from the users profile
-                </div>
-                <div className="description">
-                  <i className="leaf icon"></i>32 uploads
-                </div>
-                <div className="extra content">
-                <button className="ui olive right floated button">
-                  <i className="add user icon"></i>Add friend
-                </button>
-                </div>
+                  <div className="header">Matthew Brown</div>
+                  <div className="description">
+                    Bio taken from the users profile
+                  </div>
+                  <div className="description">
+                    <i className="leaf icon"></i>32 uploads
+                  </div>
+                  <div className="extra content">
+                    <button className="ui olive right floated button">
+                      <i className="add user icon"></i>Add friend
+                    </button>
+                  </div>
                 </div>
               </div>
               <div className="item">
                 <div className="image">
-                  <img src="https://react.semantic-ui.com/images/avatar/large/molly.png" alt="placeholder"/>
+                  <img
+                    src="https://react.semantic-ui.com/images/avatar/large/molly.png"
+                    alt="placeholder"
+                  />
                 </div>
                 <div className="content">
-                <div className="header">Molly Smith</div>
-                <div className="description">
-                  Bio taken from the users profile
-                </div>
-                <div className="description">
-                  <i className="leaf icon"></i>27 uploads
-                </div>
-                <div className="extra content">
-                <button className="ui olive right floated button">
-                  <i className="add user icon"></i>Add friend
-                </button>
-                </div>
+                  <div className="header">Molly Smith</div>
+                  <div className="description">
+                    Bio taken from the users profile
+                  </div>
+                  <div className="description">
+                    <i className="leaf icon"></i>27 uploads
+                  </div>
+                  <div className="extra content">
+                    <button className="ui olive right floated button">
+                      <i className="add user icon"></i>Add friend
+                    </button>
+                  </div>
                 </div>
               </div>
             </div>

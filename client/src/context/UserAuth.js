@@ -23,6 +23,8 @@ const UserAuthContextProvider = ({ children }) => {
       const toStorage = {
         token,
         username: user.username,
+        dob: user.dob,
+        currentCity: user.location,
         email: user.email,
         _id: user._id
       }

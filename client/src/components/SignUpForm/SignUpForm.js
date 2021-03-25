@@ -6,12 +6,14 @@ import { useHistory } from "react-router-dom";
 import { motion } from "framer-motion";
 
 const SignUp = () => {
-
   // Form fields values
   const [username, setUsername] = useState("");
+  // const [dateOfBirth, setDateOfBirth] = useState("");
+  // const [currentCity, setCurrentCity] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+
 
 
   // password visibility
@@ -19,6 +21,9 @@ const SignUp = () => {
   const [inputType, setInputType] = useState("password");
 
   // waiting for server response 
+
+  // waiting for server response
+
   const [busySignUp, setBusySignUp] = useState(false);
   // error on submitting signup credentials
   const [validationError, setValidationError] = useState("");
@@ -31,6 +36,12 @@ const SignUp = () => {
     switch (target.name) {
       case "username":
         setUsername(target.value);
+        break;
+      // case "dateOfBirth":
+      //   setDateOfBirth(target.value);
+      //   break;
+      // case "currentCity":
+      //   setCurrentCity(target.value);
         break;
       case "email":
         setEmail(target.value);
@@ -49,6 +60,8 @@ const SignUp = () => {
     setServerError("");
     const signupData = {
       username,
+      // dateOfBirth,
+      // currentCity,
       password,
       email,
     };
@@ -77,6 +90,7 @@ const SignUp = () => {
     setBusySignUp(false);
   };
 
+
   const redirectToLogin = (event) => {
     event.preventDefault();
     location.push("/login");
@@ -95,16 +109,20 @@ const SignUp = () => {
   return (
     <section className="ui container">
       <h1>Create an account</h1>
-      <motion.div initial={{ x: 0, y: 150, opacity: 0 }}
+      <motion.div
+        initial={{ x: 0, y: 150, opacity: 0 }}
         animate={{ x: 0, y: 0, opacity: 1 }}
         transition={{
           delay: 1,
           default: { duration: 1 },
         }}
-          className="signupContainer">
+        className="signupContainer"
+      >
         <p>It's free and only takes a minute</p>
         <form className={"ui form " + (busySignUp && "loading")}>
-          <div className={"field " + ((validationError.length > 0) ? "error" : "")}>
+          <div
+            className={"field " + (validationError.length > 0 ? "error" : "")}
+          >
             <label>Username: *</label>
             <input
               placeholder="Username"
@@ -113,7 +131,31 @@ const SignUp = () => {
               value={username}
             />
           </div>
-          <div className={"field " + ((validationError.length > 0) ? "error" : "")}>
+          {/* <div
+            className={"field " + (validationError.length > 0 ? "error" : "")}
+          >
+            <label>Date of birth:</label>
+            <input
+              placeholder="__/__/____"
+              onChange={(event) => onType(event)}
+              name="dateOfBirth"
+              value={dateOfBirth}
+            />
+          </div>
+          <div
+            className={"field " + (validationError.length > 0 ? "error" : "")}
+          >
+            <label>Location:</label>
+            <input
+              placeholder="Location"
+              onChange={(event) => onType(event)}
+              name="currentCity"
+              value={currentCity}
+            />
+          </div> */}
+          <div
+            className={"field " + (validationError.length > 0 ? "error" : "")}
+          >
             <label>Email: *</label>
             <input
               placeholder="Email Address"
@@ -122,7 +164,9 @@ const SignUp = () => {
               value={email}
             />
           </div>
-          <div className={"field " + ((validationError.length > 0) ? "error" : "")}>
+          <div
+            className={"field " + (validationError.length > 0 ? "error" : "")}
+          >
             <label>Password: *</label>
             <input
               placeholder="Password"
@@ -138,7 +182,9 @@ const SignUp = () => {
               ></i>
             </div>
           </div>
-          <div className={"field " + ((validationError.length > 0) ? "error" : "")}>
+          <div
+            className={"field " + (validationError.length > 0 ? "error" : "")}
+          >
             <label>Confirm password: *</label>
             <input
               placeholder="Confirm Password"
@@ -151,22 +197,16 @@ const SignUp = () => {
           <div className="field ">
             <label>* - required</label>
           </div>
-          {((validationError.length > 0) ?
-            <p className="signUpError">{validationError}</p> : null)}
-          {(serverError.length > 0 ?
-            <p className="signUpError">{serverError}</p> :
-            null)}
+          {validationError.length > 0 ? (
+            <p className="signUpError">{validationError}</p>
+          ) : null}
+          {serverError.length > 0 ? (
+            <p className="signUpError">{serverError}</p>
+          ) : null}
           <button className="ui animated button" onClick={signupSubmit}>
             <div className="visible content">Sign Up</div>
             <div className="hidden content">
               <i aria-hidden="true" className="signup icon"></i>
-            </div>
-          </button>
-          <span> Or </span>
-          <button className="ui animated button" onClick={redirectToLogin}>
-            <div className="visible content">Login</div>
-            <div className="hidden content">
-              <i aria-hidden="true" className="sign-in icon"></i>
             </div>
           </button>
         </form>
