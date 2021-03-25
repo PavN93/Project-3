@@ -1,9 +1,9 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import Menu from "../../components/Menu/Menu";
 import Weather from "../../components/Weather/Weather";
 import Banner from "../../components/Banner/Banner";
 import Search from "../../components/Search/Search";
-import PlantCollection from "../../components/SearchPlantData/SearchPlantData";
+import SearchPlantData from "../../components/SearchPlantData/SearchPlantData";
 import Quote from "../../components/Quote/Quote";
 import DailyPlant from "../../components/PlantOfTheDay/PlantOfTheDay";
 import SignUp from "../../components/CallToAction/CallToAction";
@@ -13,6 +13,11 @@ import CollectionContext from "../../context/CollectionContext";
 
 function Home() {
   const { syncCollectionWithDB } = useContext(CollectionContext);
+  const [isSearchDone, setIsSearchDone] = useState(false);
+
+  const setSearchDoneStatus = () => {
+    setIsSearchDone(true);
+  }
   
   const handleSaveClick = async (plantData, event) => {
     event.preventDefault();
@@ -53,8 +58,8 @@ function Home() {
       <Menu/>
       <Banner/>
       <Weather/>
-      <Search/>
-      <PlantCollection handleSaveClick={handleSaveClick} handleRemoveClick={handleRemoveClick}/>
+      <Search setSearchDoneStatus={setSearchDoneStatus}/>
+      <SearchPlantData handleSaveClick={handleSaveClick} handleRemoveClick={handleRemoveClick} isSearchDone={isSearchDone}/>
       <Quote />
       <DailyPlant />
       <SignUp />
