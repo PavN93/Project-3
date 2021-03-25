@@ -7,6 +7,7 @@ import CollectionContext from "../../context/CollectionContext";
 import { useWindowEvent } from "../useWindowEvent";
 
 
+
 const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   console.log("userList:", usersFromDB);
   console.log("error", searchError);
@@ -17,9 +18,8 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
     const value = localStorage.getItem('profilepic');
     setItem(value)
     console.log('USEEFFECT', value)
-}
-useWindowEvent('storage',checkLocalStorage)
-
+  }
+  useWindowEvent('storage', checkLocalStorage)
 
   const { collectionFromDB } = useContext(CollectionContext);
   console.log("your collection from DB:", collectionFromDB);
@@ -47,7 +47,6 @@ useWindowEvent('storage',checkLocalStorage)
       <div className="profileContainer">
         <img
           className="image avatar"
-          src="https://react.semantic-ui.com/images/wireframe/image.png"
           src={item}
           alt="placeholder"
         />
@@ -57,7 +56,7 @@ useWindowEvent('storage',checkLocalStorage)
             <div className="meta">Joined in 2018</div>
           </div>
 
-          <div class="ui grid">
+          <div className="ui grid">
             <div className="column">
               <motion.button
                 whileHover={{ scale: 1.1, originX: 0 }}
@@ -171,7 +170,7 @@ useWindowEvent('storage',checkLocalStorage)
                 </form>
               </div>
             </div>
-            <div class="ui vertical divider">Or</div>
+            <div className="ui vertical divider">Or</div>
           </motion.div>
 
           <div className="friendsList">
@@ -272,5 +271,7 @@ useWindowEvent('storage',checkLocalStorage)
     </section>
   );
 };
+
+
 
 export default Bio;

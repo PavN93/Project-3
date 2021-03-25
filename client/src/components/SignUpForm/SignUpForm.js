@@ -182,7 +182,7 @@ const SignUp = () => {
             </div>
           </button>
           <p className="ui container loginLink">
-            Already a member? <a onClick={(event) => redirectToLogin(event)}>Log in</a> now.
+            Already a member? <a href="false" onClick={(event) => redirectToLogin(event)}>Log in</a> now.
           </p>
         </form>
         <p>
