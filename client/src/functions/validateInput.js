@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-const validateSingupObject = Joi.object({
+const validateSignupObject = Joi.object({
   username: Joi.string()
   .trim()
   .min(5)
@@ -17,11 +17,13 @@ const validateSingupObject = Joi.object({
       tlds: { allow: false },
     })
     .required(),
-  // currentCity: Joi.string()
-  //   .trim()
-  //   .min(3)
-  //   .max(50),
-  // dateOfBirth: Joi.date()
+  currentCity: Joi.string()
+  .trim()
+  .min(3)
+  .max(50),
+  dateOfBirth: Joi.date()
+  .max('1-1-2020')
+  .iso(),
 });
 
 const validateLoginObject = Joi.object({
@@ -31,11 +33,7 @@ const validateLoginObject = Joi.object({
       tlds: { allow: false },
     })
     .required(),
-  password: Joi.string()
-  .trim()
-  .min(6)
-  .max(255)
-  .required(),
+  password: Joi.string().trim().min(6).max(255).required(),
 });
 
 // const validateUsername = Joi.string()
@@ -51,4 +49,4 @@ const validateLoginObject = Joi.object({
 //   })
 //   .required();
 
-export { validateSingupObject, validateLoginObject };
+export { validateSignupObject, validateLoginObject };
