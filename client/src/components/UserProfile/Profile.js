@@ -11,8 +11,7 @@ import { useWindowEvent } from "../useWindowEvent";
 const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   console.log("userList:", usersFromDB);
   console.log("error", searchError);
-  // We can pull the personal data from the database once wired up
-  // This URL will need to be unique to the individual user
+
   const [item, setItem] = useState(localStorage.getItem('profilepic'))
   const checkLocalStorage = () => {
     const value = localStorage.getItem('profilepic');

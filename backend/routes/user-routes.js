@@ -117,7 +117,7 @@ router.get('/logout', auth, async (req, res) => {
 router.post('/search', auth, async (req, res) => {
   try {
     const { username } = req.body;
-    const searchedUsers = await User.find({ "username": username }, "username email");
+    const searchedUsers = await User.find({ "username": username }, "username currentCity, dateOfBirth, imageURL, collections");
     res
       .status(200)
       .json({ success: true, payload: { searchedUsers } });
