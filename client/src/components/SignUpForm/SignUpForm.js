@@ -13,6 +13,11 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+
+  // password visibility
+  const [passwordIcon, setPasswordIcon] = useState("eye slash icon");
+  const [inputType, setInputType] = useState("password");
+
   // waiting for server response 
   const [busySignUp, setBusySignUp] = useState(false);
   // error on submitting signup credentials
@@ -77,6 +82,16 @@ const SignUp = () => {
     location.push("/login");
   };
 
+  const togglePasswordVisibility = () => {
+    if (inputType === "password") {
+      setInputType("text");
+      setPasswordIcon("eye icon");
+      return;
+    }
+    setInputType("password");
+    setPasswordIcon("eye slash icon");
+  };
+
   return (
     <section className="ui container">
       <h1>Create an account</h1>
@@ -116,6 +131,12 @@ const SignUp = () => {
               type="password"
               value={password}
             />
+            <div className="passwordIconSignUp">
+              <i
+                className={passwordIcon}
+                onClick={togglePasswordVisibility}
+              ></i>
+            </div>
           </div>
           <div className={"field " + ((validationError.length > 0) ? "error" : "")}>
             <label>Confirm password: *</label>
