@@ -1,6 +1,6 @@
 const Joi = require('joi');
 
-const validateSingup = Joi.object({
+const validateSignup = Joi.object({
   username: Joi.string()
   .trim()
   .min(5)
@@ -16,6 +16,13 @@ const validateSingup = Joi.object({
     tlds: { allow: false }
   })
   .required(),
+  currentCity: Joi.string()
+  .trim()
+  .min(3)
+  .max(50),
+  dateOfBirth: Joi.date()
+  .max('1-1-2020')
+  .iso(),
 })
 
 const validateLogin = Joi.object({
@@ -32,6 +39,6 @@ const validateLogin = Joi.object({
 })
 
 module.exports = {
-  validateSingup,
+  validateSignup,
   validateLogin
 }
