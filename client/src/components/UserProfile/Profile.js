@@ -112,9 +112,9 @@ const Bio = () => {
                     <img src="#" />
                   </div>
                   <div className="content">
-                    <div className="header">{collectionFromDB.sciName}</div>
-                    <div className="meta">{collectionFromDB.familyName}</div>
-                    <div className="description">
+                    <div className="header">Scientific name: {collectionFromDB.sciName}</div>
+                    <div className="meta">Family: {collectionFromDB.familyName}</div>
+                    <div className="description">Native to:
                       {collectionFromDB.occurence}
                     </div>
                   </div>

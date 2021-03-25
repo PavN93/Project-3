@@ -27,11 +27,6 @@ const plantSchema = new Schema({
     type: String,
     trim: true
   },
-  // description: {
-  //   type: String,
-  //   trim: true
-  // },
-  // any more details that treffle.io provides
 })
 
 const Plant = mongoose.model("Plant", plantSchema);

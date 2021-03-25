@@ -9,10 +9,12 @@ const Plant = require("../models/plant");
 
 // save new plant
 router.post("/save", auth, async (req, res) => {
-  const { trefleId, sciName, familyName, occurence } = req.body
+  const { trefleId, commonName, imageURL, sciName, familyName, occurence } = req.body
   const saveToDb = {
     trefleId,
     userId: req.user._id,
+    commonName,
+    imageURL,
     sciName,
     familyName,
     occurence
@@ -57,8 +59,5 @@ router.get("/collection", auth, async (req, res) => {
     res.json({ success: false, payload: { message: "Internal server error" } });
   }
 });
-
-
-
 
 module.exports = router;
