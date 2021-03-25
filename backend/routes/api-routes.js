@@ -1,26 +1,7 @@
 const router = require('express').Router();
 const fetch = require('node-fetch');
-const {cloudinary} =  require ('../utils/cloudinary.js');
 require('dotenv').config();
 
-// Mongoose models
-const User = require('../models/user');
-const Image = require('../models/image');
-
-// const Image = require('../models/image');
-
-// const Plant = require('../models/plant');
-
-router.post('/save', async (req, res) => {
-  try {
-    // const saved = await User.create(req.body);
-    // console.log('Saved to database:', saved);
-    res.json({ message: 'User successfully saved in database.' });
-  } catch (err) {
-    console.log('Error on save:', err);
-    res.json({ error: `could not save: ${err}` });
-  }
-});
 
 router.get('/getplants/:search', async (req, res) => {
   const apikey = process.env.TREFFLE_API_KEY
@@ -30,31 +11,6 @@ router.get('/getplants/:search', async (req, res) => {
   const payload = await fetch_response.json();
   res.json(payload);
 });
-
-
-router.post('/images',async(req,res)=>{
-  try {
-    const fileStr = req.body.data;
-    console.log(fileStr)
-    const uploadResponse = await cloudinary.uploader.upload(fileStr, {
-      upload_preset:"plantica"
-    });
-    const {url} = req.body.url
-    const savedImage = await Image.create(url);
-    if (!savedImage) {
-      return res
-      .status(500)
-      .json({ success: false, payload: { message: 'Error while saving image' } });
-    }
-    console.log(uploadResponse);
-    res.json({ msg: 'yaya' });
-  } catch (err) {
-    console.error(err);
-    res.status(500).json({ err: 'Something went wrong' });
-  }
-  
-});
-
 
 router.get('/getPlantByID/:id', async (req, res) => {
   const apikeytwo = process.env.TREFFLE_API_KEY_TWO

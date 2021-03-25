@@ -14,6 +14,7 @@ const app = express();
 app.use(express.urlencoded({limit:'50mb', extended: true }));
 app.use(express.json({limit:'50mb'}));
 app.use('/api/user', require('./routes/user-routes'));
+app.use('/api/images', require('./routes/images-routes'));
 app.use('/api/plant', require('./routes/plant-routes'));
 app.use('/api', require('./routes/api-routes'));
 app.use('/', require('./routes/html-routes'));
