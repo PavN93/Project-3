@@ -11,6 +11,7 @@
 
 .ui.button.createAccountBtn {
     background-color: #2a3b19;
+    color: lemonchiffon;
 }
 
 .ui.button.createAccountBtn:hover {
