@@ -14,16 +14,10 @@ label {
 .ui.form {
   margin: 5px;
   padding: 5px;
-  width: 50%;
+  width: 60%;
   display: inline-block;
 }
 
-@media only screen and (max-width: 600px) {
-  .ui.form {
-  width: 80%;
-  display: inline-block;
-  }
-}
 
 .loginContainer button {
   background-color: #2a3b19;
@@ -47,10 +41,20 @@ label {
 }
 
 a {
-  color: lemonchiffon;
+  color: darkkhaki;
 }
 
 a:hover {
   color: #2a3b19;
   cursor: pointer;
+}
+
+@media only screen and (max-width: 767px) {
+  .ui.form {
+  width: 90%;
+  display: inline-block;
+  }
+  .loginContainer {
+    margin: 10px;
+  }
 }
