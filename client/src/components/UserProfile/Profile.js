@@ -7,6 +7,7 @@ import CollectionContext from "../../context/CollectionContext";
 import { useWindowEvent } from "../useWindowEvent";
 import mongoose from 'mongoose';
 import moment from "moment";
+import fetcher from '../../functions/fetcher'
 
 
 
@@ -27,7 +28,13 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   const [view, setView] = useState(""); // plants, friends
   const [searchInput, setSearchInput] = useState(null);
   const [userData, setUserData] = useState("");
+  const [planticaMembers, setPlanticaMembers] = useState("");
 
+  useEffect( async () => {
+  const members = await fetcher("/members");
+  setPlanticaMembers(members.payload.members);
+}, []);
+console.log(planticaMembers)
 
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);
@@ -184,6 +191,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
           <div className="friendsList">
             <div className="ui divided items">
               {/* Will need to map over database users here */}
+              {usersFromDB.map((usersFromDB) => (
               <div className="item">
                 <div className="image">
                   <img
@@ -206,72 +214,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
                   </div>
                 </div>
               </div>
-              <div className="item">
-                <div className="image">
-                  <img
-                    src="https://react.semantic-ui.com/images/avatar/large/stevie.jpg"
-                    alt="placeholder"
-                  />
-                </div>
-                <div className="content">
-                  <div className="header">Stevie Sanders</div>
-                  <div className="description">
-                    Bio taken from the users profile
-                  </div>
-                  <div className="description">
-                    <i className="leaf icon"></i>8 uploads
-                  </div>
-                  <div className="extra content">
-                    <button className="ui olive right floated button">
-                      <i className="add user icon"></i>Add friend
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="item">
-                <div className="image">
-                  <img
-                    src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-                    alt="placeholder"
-                  />
-                </div>
-                <div className="content">
-                  <div className="header">Matthew Brown</div>
-                  <div className="description">
-                    Bio taken from the users profile
-                  </div>
-                  <div className="description">
-                    <i className="leaf icon"></i>32 uploads
-                  </div>
-                  <div className="extra content">
-                    <button className="ui olive right floated button">
-                      <i className="add user icon"></i>Add friend
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="item">
-                <div className="image">
-                  <img
-                    src="https://react.semantic-ui.com/images/avatar/large/molly.png"
-                    alt="placeholder"
-                  />
-                </div>
-                <div className="content">
-                  <div className="header">Molly Smith</div>
-                  <div className="description">
-                    Bio taken from the users profile
-                  </div>
-                  <div className="description">
-                    <i className="leaf icon"></i>27 uploads
-                  </div>
-                  <div className="extra content">
-                    <button className="ui olive right floated button">
-                      <i className="add user icon"></i>Add friend
-                    </button>
-                  </div>
-                </div>
-              </div>
+              ))}
             </div>
           </div>
         </>
