@@ -1,0 +1,14 @@
+.uploadContainer {
+    background-color: #efebe8;
+    border-radius: 10px;
+    margin: 50px;
+    padding: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .uploadMsg {
+    text-align: center;
+    font-size: 22px;
+    color: #efebe8;
+}

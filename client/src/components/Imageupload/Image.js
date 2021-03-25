@@ -47,11 +47,19 @@ function Imageupload() {
   }
   return (
     <div>
-      <h1>Upload Display Picture</h1>
+      <div className="addPhoto">
+      <i className="camera huge icon grey"></i>
+      <p>Add a photo</p>
+      </div>
       <form onSubmit={handleSubmitFile}>
         <input type="file" name="image" onChange={handleFileInputChange}
           value={fileInputState} className="form-input" />
-        <button className="btn" type="submit"> Submit</button>
+        <button className="ui animated button">
+            <div className="visible content">Upload image</div>
+            <div className="hidden content">
+              <i aria-hidden="true" className="cloud upload icon"></i>
+            </div>
+          </button>
       </form>
       {previewSource && (<img src={previewSource}
         alt="chosen"
