@@ -82,6 +82,11 @@ const Login = () => {
     setBusyLogIn(false);
   };
 
+  const redirectToSignUp = (event) => {
+    event.preventDefault();
+    location.push("/signup");
+  }
+
   return (
     <section className="ui container">
       <h1>Login</h1>
@@ -153,9 +158,8 @@ const Login = () => {
               <i aria-hidden="true" className="sign-in icon"></i>
             </div>
           </button>
-          <span> Or </span>
           <p className="ui container signUp">
-            Not a member? <a href="/signup">Sign up</a> today.
+            Not a member? <a onClick={(event) => redirectToSignUp(event)}>Sign up</a> today.
           </p>
         </form>
       </motion.div>

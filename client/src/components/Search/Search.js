@@ -3,21 +3,22 @@ import "./Search.css";
 import PlantDataContext from "../../context/PlantData";
 import * as Scroll from 'react-scroll';
 
-const Search = () => {
+const Search = ({ setSearchDoneStatus }) => {
   // I'd like to add some sort of loader(spinner) so the user knows the search is in progress
   const scroll = Scroll.animateScroll;
 
-  const [searchInput, setSearchInput] = useState(null);
+  const [searchInput, setSearchInput] = useState("");
   const { getPlants } = useContext(PlantDataContext);
 
 
-  function handleInputChange(event) {
+  const handleInputChange = (event) => {
     setSearchInput(event.target.value);
   }
 
-  function handleFormSubmit(event) {
+  const handleFormSubmit = async (event) => {
     event.preventDefault();
-    getPlants(searchInput);
+    await getPlants(searchInput);
+    setSearchDoneStatus();
     scroll.scrollTo(1200)
   }
 

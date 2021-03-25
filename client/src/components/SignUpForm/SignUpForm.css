@@ -24,3 +24,13 @@ form.form {
   right: 10px;
   z-index: 1000;
 }
+
+.ui.container.loginLink {
+  margin: 20px;
+  border-radius: 20px;
+  text-align: center;
+}
+
+.loginLink a:hover {
+  cursor: pointer;
+}

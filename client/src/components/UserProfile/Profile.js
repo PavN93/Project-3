@@ -7,7 +7,7 @@ import CollectionContext from "../../context/CollectionContext";
 import { useWindowEvent } from "../useWindowEvent";
 
 
-const Bio = () => {
+
   const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
     console.log("userList:", usersFromDB);
     console.log("error", searchError);
@@ -24,6 +24,21 @@ const Bio = () => {
 
     const { collectionFromDB } = useContext(CollectionContext);
     console.log("your collection from DB:", collectionFromDB);
+
+
+  const { collectionFromDB } = useContext(CollectionContext);
+  console.log("your collection from DB:", collectionFromDB);
+
+  const scroll = Scroll.animateScroll;
+  const [view, setView] = useState(""); // plants, friends
+  const [searchInput, setSearchInput] = useState(null);
+  const [userData, setUserData] = useState("");
+
+
+  const handleInputChange = (event) => {
+    setSearchInput(event.target.value);
+  }
+
 
     const scroll = Scroll.animateScroll;
     const [view, setView] = useState(""); // plants, friends
