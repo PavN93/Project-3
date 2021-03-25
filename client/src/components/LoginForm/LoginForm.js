@@ -10,7 +10,6 @@ const Login = () => {
   // input values
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [rememberMe, setRememberMe] = useState(false);
 
   // password visibility
   const [passwordIcon, setPasswordIcon] = useState("eye slash icon");
@@ -46,10 +45,6 @@ const Login = () => {
       case "loginPassword":
         setPassword(target.value);
     }
-  };
-
-  const onChangeCheckbox = () => {
-    setRememberMe(!rememberMe);
   };
 
   const loginSubmit = async (event) => {
@@ -137,14 +132,6 @@ const Login = () => {
             <label>* - required</label>
           </div>
           <div className="field">
-            <div className="ui checkbox">
-              <input
-                type="checkbox"
-                value={rememberMe}
-                onChange={onChangeCheckbox}
-              />
-              <label>Remember me?</label>
-            </div>
           </div>
           {validationError.length > 0 ? (
             <p className="signUpError">{validationError}</p>
@@ -159,7 +146,7 @@ const Login = () => {
             </div>
           </button>
           <p className="ui container signUp">
-            Not a member? <a onClick={(event) => redirectToSignUp(event)}>Sign up</a> today.
+            Not a member? <a href="false" onClick={(event) => redirectToSignUp(event)}>Sign up</a> today.
           </p>
         </form>
       </motion.div>
