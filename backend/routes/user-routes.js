@@ -1,7 +1,7 @@
 const router = require('express').Router();
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
-const { validateSingup, validateLogin } = require('../validators/authValidators');
+const { validateSignup, validateLogin } = require('../validators/authValidators');
 
 // Mongoose models
 const User = require('../models/user');
@@ -9,7 +9,7 @@ const auth = require('../middleware/auth');
 
 // Register new user
 router.post('/signup', async (req, res) => {
-  const { value, error } = validateSingup.validate(req.body);
+  const { value, error } = validateSignup.validate(req.body);
 
   if (error) {
     return res
@@ -17,7 +17,7 @@ router.post('/signup', async (req, res) => {
       .json({ success: false, payload: { message: error.message } });
   }
 
-  const { username, password, email } = value;
+  const { username, password, email, currentCity, dateOfBirth } = value;
 
   try {
     const user = await User.findOne({ 'email': email });
@@ -34,6 +34,8 @@ router.post('/signup', async (req, res) => {
     const newUser = await User.create({
       username,
       email,
+      currentCity,
+      dateOfBirth,
       password: hash
     });
 
@@ -45,7 +47,7 @@ router.post('/signup', async (req, res) => {
 
     return res
       .status(200)
-      .json({ success: true, payload: { username, email } });
+      .json({ success: true, payload: { username, email, currentCity, dateOfBirth } });
   } catch (err) {
     return res
       .status(500)
@@ -95,6 +97,8 @@ router.post('/login', async (req, res) => {
           token, user: {
             username: user.username,
             email: user.email,
+            dateOfBirth: user.dateOfBirth,
+            currentCity: user.currentCity,
             _id: user._id
           }
         }

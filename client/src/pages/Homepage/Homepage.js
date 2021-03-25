@@ -14,9 +14,15 @@ import CollectionContext from "../../context/CollectionContext";
 function Home() {
   const { syncCollectionWithDB } = useContext(CollectionContext);
   const [isSearchDone, setIsSearchDone] = useState(false);
+  const [isBusy, setIsBusy] = useState(false);
 
   const setSearchDoneStatus = () => {
     setIsSearchDone(true);
+  }
+
+  const toggleSearchingStatus = () => {
+    setIsBusy(isBusy => !isBusy)
+    
   }
   
   const handleSaveClick = async (plantData, event) => {
@@ -58,8 +64,8 @@ function Home() {
       <Menu/>
       <Banner/>
       <Weather/>
-      <Search setSearchDoneStatus={setSearchDoneStatus}/>
-      <SearchPlantData handleSaveClick={handleSaveClick} handleRemoveClick={handleRemoveClick} isSearchDone={isSearchDone}/>
+      <Search isBusy={isBusy} setSearchDoneStatus={setSearchDoneStatus} toggleSearchingStatus={toggleSearchingStatus}/>
+      <SearchPlantData  handleSaveClick={handleSaveClick} handleRemoveClick={handleRemoveClick} isSearchDone={isSearchDone}/>
       <Quote />
       <DailyPlant />
       <SignUp />

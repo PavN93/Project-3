@@ -5,6 +5,8 @@ import * as Scroll from "react-scroll";
 import { motion } from "framer-motion";
 import CollectionContext from "../../context/CollectionContext";
 import { useWindowEvent } from "../useWindowEvent";
+import mongoose from 'mongoose';
+import moment from "moment";
 
 
 
@@ -16,12 +18,10 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   const checkLocalStorage = () => {
     const value = localStorage.getItem('profilepic');
     setItem(value)
-    console.log('USEEFFECT', value)
   }
   useWindowEvent('storage', checkLocalStorage)
 
   const { collectionFromDB } = useContext(CollectionContext);
-  console.log("your collection from DB:", collectionFromDB);
 
   const scroll = Scroll.animateScroll;
   const [view, setView] = useState(""); // plants, friends
@@ -33,11 +33,20 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
     setSearchInput(event.target.value);
   }
 
+  // generating account created date
+  const accountCreated = require('mongodb').ObjectId(userData._id).getTimestamp();
+  const joined = accountCreated.toISOString().slice(0,4);
+
+  // refactoring birthday format
+  const birthday = moment(userData.dateOfBirth).format('DD/MM/YYYY');
+  
 
   useEffect(() => {
     const accountData = JSON.parse(localStorage.getItem("user"));
     setUserData(accountData);
   }, []);
+
+
 
 
   return (
@@ -52,7 +61,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
         <div className="ui card">
           <div className="content">
             <div className="header">{userData.username}</div>
-            <div className="meta">Joined in 2018</div>
+            <div className="meta">Joined in {joined}</div>
           </div>
 
           <div className="ui grid">
@@ -90,12 +99,12 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
           </div>
           <div className="content data">
             <div className="description">
-              <i aria-hidden="true" className="birthday icon"></i>23/03/1990
+              <i aria-hidden="true" className="birthday icon"></i>{birthday}
             </div>
           </div>
           <div className="content data">
             <div className="description">
-              <i aria-hidden="true" className="location arrow icon"></i>London
+              <i aria-hidden="true" className="location arrow icon"></i>{userData.currentCity}
             </div>
           </div>
         </div>

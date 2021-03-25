@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { validateSingupObject } from "../../functions/validateInput";
+import { validateSignupObject } from "../../functions/validateInput";
 import "./SignUpForm.css";
 import fetcher from "../../functions/fetcher";
 import { useHistory } from "react-router-dom";
@@ -8,19 +8,17 @@ import { motion } from "framer-motion";
 const SignUp = () => {
   // Form fields values
   const [username, setUsername] = useState("");
-  // const [dateOfBirth, setDateOfBirth] = useState("");
-  // const [currentCity, setCurrentCity] = useState("");
+  const [dateOfBirth, setDateOfBirth] = useState("");
+  const [currentCity, setCurrentCity] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
-
-
 
   // password visibility
   const [passwordIcon, setPasswordIcon] = useState("eye slash icon");
   const [inputType, setInputType] = useState("password");
 
-  // waiting for server response 
+  // waiting for server response
 
   // waiting for server response
 
@@ -40,6 +38,12 @@ const SignUp = () => {
       case "email":
         setEmail(target.value);
         break;
+      case "dateOfBirth":
+        setDateOfBirth(target.value);
+        break;
+      case "currentCity":
+        setCurrentCity(target.value);
+        break;
       case "password":
         setPassword(target.value);
         break;
@@ -54,12 +58,12 @@ const SignUp = () => {
     setServerError("");
     const signupData = {
       username,
-      // dateOfBirth,
-      // currentCity,
+      dateOfBirth,
+      currentCity,
       password,
       email,
     };
-    const { value, error } = validateSingupObject.validate(signupData);
+    const { value, error } = validateSignupObject.validate(signupData);
     if (error) {
       setValidationError(error.details[0].message);
       return;
@@ -83,7 +87,6 @@ const SignUp = () => {
     }
     setBusySignUp(false);
   };
-
 
   const redirectToLogin = (event) => {
     event.preventDefault();
@@ -139,12 +142,34 @@ const SignUp = () => {
           <div
             className={"field " + (validationError.length > 0 ? "error" : "")}
           >
+            <label>Date of birth:</label>
+            <input
+              placeholder="YYYY-MM-DD"
+              onChange={(event) => onType(event)}
+              name="dateOfBirth"
+              value={dateOfBirth}
+            />
+          </div>
+          <div
+            className={"field " + (validationError.length > 0 ? "error" : "")}
+          >
+            <label>Location:</label>
+            <input
+              placeholder="Current location"
+              onChange={(event) => onType(event)}
+              name="currentCity"
+              value={currentCity}
+            />
+          </div>
+          <div
+            className={"field " + (validationError.length > 0 ? "error" : "")}
+          >
             <label>Password: *</label>
             <input
               placeholder="Password"
               onChange={(event) => onType(event)}
               name="password"
-              type="password"
+              type={inputType}
               value={password}
             />
             <div className="passwordIconSignUp">
@@ -181,13 +206,17 @@ const SignUp = () => {
               <i aria-hidden="true" className="signup icon"></i>
             </div>
           </button>
-          <p className="ui container loginLink">
-            Already a member? <a href="false" onClick={(event) => redirectToLogin(event)}>Log in</a> now.
-          </p>
-        </form>
         <p>
           By clicking the Sign Up button, you agree to our Terms and Conditions.
         </p>
+          <p className="ui container loginLink">
+            Already a member?{" "}
+            <a href="false" onClick={(event) => redirectToLogin(event)}>
+              Log in
+            </a>{" "}
+            now.
+          </p>
+        </form>
       </motion.div>
     </section>
   );
