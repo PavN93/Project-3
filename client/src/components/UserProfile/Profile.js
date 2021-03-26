@@ -1,6 +1,5 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./Profile.css";
 import CollectionContext from "../../context/CollectionContext";
 import Imageupload from "../../components/Imageupload/Image";
 import { useWindowEvent } from "../useWindowEvent";
@@ -8,6 +7,7 @@ import fetcher from "../../functions/fetcher";
 import * as Scroll from "react-scroll";
 import { motion } from "framer-motion";
 import moment from "moment";
+import "./Profile.css";
 
 const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   console.log("userList:", usersFromDB);
@@ -131,7 +131,12 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
         >
           <h2>My plants</h2>
 
-          <div className="ui container">
+          <motion.div
+            initial={{ y: 2500 }}
+            animate={{ y: 10 }}
+            transition={{ delay: 0.5, duration: 1, type: "spring" }}
+            className="ui container"
+          >
             <div className="ui relaxed divided items">
               {collectionFromDB.map((collectionFromDB) => (
                 <div className="item">
@@ -153,7 +158,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       )}
 
@@ -198,7 +203,12 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
           </motion.div>
 
           <div className="friendsList">
-            <div className="ui divided items">
+            <motion.div
+              initial={{ y: 2500 }}
+              animate={{ y: 10 }}
+              transition={{ delay: 0.5, duration: 1, type: "spring" }}
+              className="ui divided items"
+            >
               {planticaMembers.map((planticaMembers) => (
                 <div className="item">
                   <div className="image">
@@ -221,7 +231,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
                   </div>
                 </div>
               ))}
-            </div>
+            </motion.div>
           </div>
         </>
       )}
