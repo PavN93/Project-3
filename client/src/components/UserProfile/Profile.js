@@ -5,22 +5,20 @@ import * as Scroll from "react-scroll";
 import { motion } from "framer-motion";
 import CollectionContext from "../../context/CollectionContext";
 import { useWindowEvent } from "../useWindowEvent";
-import mongoose from 'mongoose';
+import mongoose from "mongoose";
 import moment from "moment";
-import fetcher from '../../functions/fetcher'
-
-
+import fetcher from "../../functions/fetcher";
 
 const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   console.log("userList:", usersFromDB);
   console.log("error", searchError);
 
-  const [item, setItem] = useState(localStorage.getItem('profilepic'))
+  const [item, setItem] = useState(localStorage.getItem("profilepic"));
   const checkLocalStorage = () => {
-    const value = localStorage.getItem('profilepic');
-    setItem(value)
-  }
-  useWindowEvent('storage', checkLocalStorage)
+    const value = localStorage.getItem("profilepic");
+    setItem(value);
+  };
+  useWindowEvent("storage", checkLocalStorage);
 
   const { collectionFromDB } = useContext(CollectionContext);
 
@@ -30,41 +28,40 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   const [userData, setUserData] = useState("");
   const [planticaMembers, setPlanticaMembers] = useState("");
 
-  useEffect( async () => {
-  const members = await fetcher("/members");
-  setPlanticaMembers(members.payload.members);
-}, []);
-console.log(planticaMembers)
+    const getPlanticaMembers = async () => {
+      const userInStorage = localStorage.getItem("user");
+      if (userInStorage) {
+        const parsedStorage = JSON.parse(userInStorage);
+        const { token } = parsedStorage;
+        const members = await fetcher("/api/user/members", token);
+        setPlanticaMembers(members);
+        console.log("member", members)
+      }
+    };
 
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);
-  }
+  };
 
   // generating account created date
-  const accountCreated = require('mongodb').ObjectId(userData._id).getTimestamp();
-  const joined = accountCreated.toISOString().slice(0,4);
+  const accountCreated = require("mongodb")
+    .ObjectId(userData._id)
+    .getTimestamp();
+  const joined = accountCreated.toISOString().slice(0, 4);
 
   // refactoring birthday format
-  const birthday = moment(userData.dateOfBirth).format('DD/MM/YYYY');
-  
+  const birthday = moment(userData.dateOfBirth).format("DD/MM/YYYY");
 
   useEffect(() => {
     const accountData = JSON.parse(localStorage.getItem("user"));
     setUserData(accountData);
   }, []);
 
-
-
-
   return (
     <section className="ui container">
       <h1>My profile</h1>
       <div className="profileContainer">
-        <img
-          className="image avatar"
-          src={item}
-          alt="placeholder"
-        />
+        <img className="image avatar" src={item} alt="placeholder" />
         <div className="ui card">
           <div className="content">
             <div className="header">{userData.username}</div>
@@ -90,6 +87,7 @@ console.log(planticaMembers)
                 onClick={() => {
                   setView("friends");
                   scroll.scrollTo(800);
+                  getPlanticaMembers();
                 }}
                 className="ui button dataButton"
               >
@@ -101,17 +99,20 @@ console.log(planticaMembers)
 
           <div className="content data">
             <div className="description">
-              <i aria-hidden="true" className="mail icon"></i>{userData.email}
+              <i aria-hidden="true" className="mail icon"></i>
+              {userData.email}
             </div>
           </div>
           <div className="content data">
             <div className="description">
-              <i aria-hidden="true" className="birthday icon"></i>{birthday}
+              <i aria-hidden="true" className="birthday icon"></i>
+              {birthday}
             </div>
           </div>
           <div className="content data">
             <div className="description">
-              <i aria-hidden="true" className="location arrow icon"></i>{userData.currentCity}
+              <i aria-hidden="true" className="location arrow icon"></i>
+              {userData.currentCity}
             </div>
           </div>
         </div>
@@ -139,9 +140,14 @@ console.log(planticaMembers)
                     <img src="#" />
                   </div>
                   <div className="content">
-                    <div className="header">Scientific name: {collectionFromDB.sciName}</div>
-                    <div className="meta">Family: {collectionFromDB.familyName}</div>
-                    <div className="description">Native to:
+                    <div className="header">
+                      Scientific name: {collectionFromDB.sciName}
+                    </div>
+                    <div className="meta">
+                      Family: {collectionFromDB.familyName}
+                    </div>
+                    <div className="description">
+                      Native to:
                       {collectionFromDB.occurence}
                     </div>
                   </div>
@@ -176,7 +182,11 @@ console.log(planticaMembers)
                     type="search"
                     placeholder="Search Plantica users"
                   />
-                  <button className="ui animated button" type="submit" onClick={(event) => fetchUsers(searchInput, event)}>
+                  <button
+                    className="ui animated button"
+                    type="submit"
+                    onClick={(event) => fetchUsers(searchInput, event)}
+                  >
                     <div className="visible content">Search</div>
                     <div className="hidden content">
                       <i aria-hidden="true" className="search icon"></i>
@@ -191,29 +201,29 @@ console.log(planticaMembers)
           <div className="friendsList">
             <div className="ui divided items">
               {/* Will need to map over database users here */}
-              {usersFromDB.map((usersFromDB) => (
-              <div className="item">
-                <div className="image">
-                  <img
-                    src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
-                    alt="placeholder"
-                  />
+              {planticaMembers.map((planticaMembers) => (
+                <div className="item">
+                  <div className="image">
+                    <img
+                      src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
+                      alt="placeholder"
+                    />
+                  </div>
+                  <div className="content">
+                    <div className="header">{planticaMembers.username}</div>
+                    <div className="description">
+                      Location: {planticaMembers.currentCity}
+                    </div>
+                    <div className="description">
+                      <i className="leaf icon"></i>12 uploads
+                    </div>
+                    <div className="extra content">
+                      <button className="ui olive right floated button">
+                        <i className="add user icon"></i>Add friend
+                      </button>
+                    </div>
+                  </div>
                 </div>
-                <div className="content">
-                  <div className="header">Steve Sanders</div>
-                  <div className="description">
-                    Bio taken from the users profile
-                  </div>
-                  <div className="description">
-                    <i className="leaf icon"></i>12 uploads
-                  </div>
-                  <div className="extra content">
-                    <button className="ui olive right floated button">
-                      <i className="add user icon"></i>Add friend
-                    </button>
-                  </div>
-                </div>
-              </div>
               ))}
             </div>
           </div>
@@ -222,7 +232,5 @@ console.log(planticaMembers)
     </section>
   );
 };
-
-
 
 export default Bio;
