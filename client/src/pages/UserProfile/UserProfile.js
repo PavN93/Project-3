@@ -37,7 +37,6 @@ const UserProfile = () => {
   return (
     <div>
       <Menu />
-      <Weather />
       <Profile fetchUsers={fetchUsers} searchError={searchError} usersFromDB={usersFromDB} />
       <Footer />
     </div>

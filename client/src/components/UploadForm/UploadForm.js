@@ -74,7 +74,7 @@ const Upload = () => {
   }
 
   return (
-    <section className="ui container">
+    <section className="ui container uploadWrapper">
       <h1>Upload</h1>
       <p className="uploadMsg">Add a plant to your collection</p>
       <motion.div

@@ -8,6 +8,7 @@ import * as Scroll from "react-scroll";
 import { motion } from "framer-motion";
 import moment from "moment";
 import "./Profile.css";
+import Weather from "../Weather/Weather";
 
 const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
 
@@ -56,7 +57,8 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
 
 
   return (
-    <section className="ui container">
+    <section className="ui container profileWrapper">
+      <Weather/>
       <h1>My profile</h1>
       <div className="profileContainer">
         <img className="image avatar" src={item} alt="placeholder" />

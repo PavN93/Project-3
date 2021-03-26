@@ -61,7 +61,7 @@ class Weather extends Component {
 
   render() {
     return (
-      <div className="ui container currentWeather">
+      <div className="currentWeather">
           <p>Current forecast: {this.state.temp}°C</p>
           <img
           alt={this.state.description}

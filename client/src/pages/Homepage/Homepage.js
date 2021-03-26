@@ -68,7 +68,6 @@ function Home() {
     <div>
       <Menu/>
       <Banner/>
-      <Weather/>
       <Search isBusy={isBusy} setSearchDoneStatus={setSearchDoneStatus} toggleSearchingStatus={toggleSearchingStatus}/>
       <SearchPlantData  handleSaveClick={handleSaveClick} handleRemoveClick={handleRemoveClick} isSearchDone={isSearchDone} queryingDB={queryingDB}/>
       <Quote />

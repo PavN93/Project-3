@@ -25,7 +25,7 @@ const SideMenu = () => {
   }
 
   return (
-    <div className="ui container">
+    <>
       <img
         disabled={visible}
         onClick={handleShowClick}
@@ -83,7 +83,7 @@ const SideMenu = () => {
         )}
 
       </Sidebar>
-    </div>
+    </>
   );
 }
 

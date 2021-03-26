@@ -46,6 +46,9 @@ const SignUp = () => {
         break;
       case "confirmPassword":
         setConfirmPassword(target.value);
+        break;
+      default:
+        break;
     }
   };
 
@@ -101,7 +104,7 @@ const SignUp = () => {
   };
 
   return (
-    <section className="ui container">
+    <section className="ui container signupWrapper">
       <h1>Create an account</h1>
       <motion.div
         initial={{ x: 0, y: 150, opacity: 0 }}
@@ -203,8 +206,8 @@ const SignUp = () => {
               <i aria-hidden="true" className="signup icon"></i>
             </div>
           </button>
-        <p>
-          By clicking the Sign Up button, you agree to our Terms and Conditions.
+          <p>
+            By clicking the Sign Up button, you agree to our Terms and Conditions.
         </p>
           <p className="ui container loginLink">
             Already a member?{" "}
