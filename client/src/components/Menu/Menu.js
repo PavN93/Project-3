@@ -20,6 +20,10 @@ const SideMenu = () => {
     location.push("/logout");
   }
 
+  const redirectToUpload = () => {
+    location.push("/upload");
+  }
+
   return (
     <div className="ui container">
       <img
@@ -56,18 +60,26 @@ const SideMenu = () => {
 
         {/* If user logged in - show buttons below */}
         {userLoggedIn && (
-          <Menu.Item onClick={handleLogout}>
-            <Icon name="sign out" />
+          <>
+            <Menu.Item onClick={redirectToUpload}>
+              <Icon name="upload" />
             Logout
           </Menu.Item>
+            <Menu.Item onClick={handleLogout}>
+              <Icon name="sign out" />
+            Logout
+          </Menu.Item>
+          </>
         )}
 
         {/* If user not logged in - show these instead */}
         {!userLoggedIn && (
-          <Menu.Item as={Link} to="/login">
-            <Icon name="sign-in" />
+          <>
+            <Menu.Item as={Link} to="/login">
+              <Icon name="sign-in" />
             Login
           </Menu.Item>
+          </>
         )}
 
       </Sidebar>
