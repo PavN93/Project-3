@@ -94,7 +94,6 @@ router.post('/login', async (req, res) => {
     if(!profilePic) {
       profilePic = { url: 'http://res.cloudinary.com/pavn93/image/upload/v1616753349/plantica/eegfqvugdvvzndicby9q.png' };
     }
-    console.log(profilePic);
     return res
       .status(200)
       .json({

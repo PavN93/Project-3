@@ -1,14 +1,20 @@
 .uploadContainer {
-    background-color: #efebe8;
-    border-radius: 10px;
-    margin: 50px;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .uploadMsg {
-    text-align: center;
-    font-size: 22px;
-    color: #efebe8;
+  background-color: #efebe8;
+  border-radius: 10px;
+  margin: 50px;
+  padding: 20px;
+  display: flex;
+  justify-content: center;
+}
+
+.uploadMsg {
+  text-align: center;
+  font-size: 22px;
+  color: #efebe8;
+}
+
+.savePlantError {
+  padding-left: 15px;
+  color: #9f3a38;
+  font-size: 1em;
 }
