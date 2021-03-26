@@ -3,3 +3,9 @@ input.form-input {
   color: #2a3b19;
   width: 20%;
 }
+
+.addPhoto {
+  display: flex;
+  justify-content: center;
+  padding-bottom: 15px;
+}

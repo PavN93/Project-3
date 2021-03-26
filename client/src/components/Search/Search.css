@@ -6,6 +6,7 @@
 
 .ui.animated.button {
   margin: 10px;
+  z-index: 0;
 }
 
 .visible.content.searchPlantBtn {

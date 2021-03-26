@@ -28,6 +28,7 @@ div.column > .plantReveal {
   background-color: rgba(255, 255, 255, 0.1);
   backdrop-filter: blur(10px) saturate(100%) contrast(45%) brightness(130%);
   text-align: center;
+  width: 49%;
 }
 
 .mysteryPlantCard {
@@ -39,4 +40,8 @@ div.column > .plantReveal {
   width: fit-content;
   display: inline-block;
   margin-top: 15px;
+}
+
+.ui.grid {
+  margin-right: 0px;
 }
