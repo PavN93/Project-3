@@ -22,6 +22,11 @@ router.post('/upload', auth, async (req, res) => {
     const uploadResponse = await cloudinary.uploader.upload(fileStr, {
       upload_preset: "plantica"
     });
+    const hasAvatar = await Image.find({"userId": req.user._id});
+    if (hasAvatar) {
+      await Image.updateOne({"userId": req.user._id}, { url: uploadResponse.url }, { upsert: true });
+      return res.json({url: uploadResponse.url});
+    }
     const { plantId, userId, name, } = req.body
     const saveToDb = {
       plantId: req.plant_id,
