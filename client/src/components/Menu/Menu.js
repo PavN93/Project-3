@@ -53,17 +53,13 @@ const SideMenu = () => {
           <Icon name="user" />
             Profile
           </Menu.Item>
-        <Menu.Item as={Link} to="/signup">
-          <Icon name="signup" />
-            Signup
-          </Menu.Item>
 
         {/* If user logged in - show buttons below */}
         {userLoggedIn && (
           <>
             <Menu.Item onClick={redirectToUpload}>
               <Icon name="upload" />
-            Logout
+            Upload
           </Menu.Item>
             <Menu.Item onClick={handleLogout}>
               <Icon name="sign out" />
@@ -78,6 +74,10 @@ const SideMenu = () => {
             <Menu.Item as={Link} to="/login">
               <Icon name="sign-in" />
             Login
+          </Menu.Item>
+            <Menu.Item as={Link} to="/signup">
+              <Icon name="signup" />
+            Signup
           </Menu.Item>
           </>
         )}
