@@ -2,12 +2,12 @@ import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Profile.css";
 import CollectionContext from "../../context/CollectionContext";
+import Imageupload from "../../components/Imageupload/Image";
 import { useWindowEvent } from "../useWindowEvent";
 import fetcher from "../../functions/fetcher";
 import * as Scroll from "react-scroll";
 import { motion } from "framer-motion";
 import moment from "moment";
-
 
 const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   console.log("userList:", usersFromDB);
@@ -28,7 +28,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   const [userData, setUserData] = useState("");
   const [planticaMembers, setPlanticaMembers] = useState("");
 
-  useEffect(async() => {
+  useEffect(async () => {
     const userInStorage = localStorage.getItem("user");
     if (userInStorage) {
       const parsedStorage = JSON.parse(userInStorage);
@@ -36,8 +36,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
       const members = await fetcher("/api/user/members", token);
       setPlanticaMembers(members);
     }
-}, []);
-
+  }, []);
 
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);
@@ -62,6 +61,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
       <h1>My profile</h1>
       <div className="profileContainer">
         <img className="image avatar" src={item} alt="placeholder" />
+        <Imageupload />
         <div className="ui card">
           <div className="content">
             <div className="header">{userData.username}</div>
@@ -91,7 +91,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
                 className="ui button dataButton"
               >
                 <i className="users icon"></i>Friends
-                <p className="dataDigit">8</p>
+                <p className="dataDigit">{planticaMembers.length}</p>
               </motion.button>
             </div>
           </div>
@@ -199,7 +199,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
 
           <div className="friendsList">
             <div className="ui divided items">
-            {planticaMembers.map((planticaMembers) => (
+              {planticaMembers.map((planticaMembers) => (
                 <div className="item">
                   <div className="image">
                     <img src={planticaMembers.imageURL} alt="placeholder" />
