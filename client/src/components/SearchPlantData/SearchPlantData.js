@@ -1,13 +1,13 @@
 import React, { useState, useEffect, useContext } from "react";
 import PlantResultsContext from "../../context/PlantData";
 import "./SearchPlantData.css";
-import { Button, Image, Modal} from "semantic-ui-react";
+import { Button, Image, Modal, Loader } from "semantic-ui-react";
 import Slider from "react-slick";
 import UserAuthContext from "../../context/UserAuth";
 import CollectionContext from "../../context/CollectionContext";
 
 
-const PlantCollection = ({ handleSaveClick, handleRemoveClick, isSearchDone}) => {
+const PlantCollection = ({ handleSaveClick, handleRemoveClick, isSearchDone, queryingDB }) => {
 
   const { userLoggedIn } = useContext(UserAuthContext);
 
@@ -77,7 +77,7 @@ const PlantCollection = ({ handleSaveClick, handleRemoveClick, isSearchDone}) =>
     plants.length >= 1 && (
       <div className="ui container">
         <div className="plantData">
-          <h2>Your search results</h2> 
+          <h2>Your search results</h2>
           <div className="ui olive cards">
             <Slider {...settings}>
               {plants.map((result) => (
@@ -183,18 +183,22 @@ const PlantCollection = ({ handleSaveClick, handleRemoveClick, isSearchDone}) =>
                   <div className="buttonGroup">
 
                     {userLoggedIn && (
-                      collectionFromDB.some(element => element.trefleId === viewPlant.plant.id) ?
-                        (/* remove button */
-                          <button className="ui red animated button" onClick={(event) => handleRemoveClick(viewPlant.plant.id, event)}>
+                      // next line must use == instead ===
+                      collectionFromDB.some(element => element.trefleId == viewPlant.plant.id) ?
+                        (
+                          /* remove button */
+                          <button className={"ui red animated button " + (queryingDB ? "disabled" : "")} onClick={(event) => handleRemoveClick(viewPlant.plant.id, event)}>
                             <div className="hidden content"><i aria-hidden="true" className="delete icon"></i></div>
                             <div className="visible content">remove</div>
-                          </button>) :
-                        (/* save button */
-                          < button className="ui green animated button" onClick={(event) => handleSaveClick(viewPlant.plant, event)}>
+                          </button>
+                        ) :
+                        (
+                          /* save button */
+                          < button className={"ui green animated button " + (queryingDB ? "disabled" : "")} onClick={(event) => handleSaveClick(viewPlant.plant, event)}>
                             <div className="hidden content"><i aria-hidden="true" className="save icon"></i></div>
                             <div className="visible content">save</div>
-                          </button>)
-
+                          </button>
+                        )
                     )}
 
                     <div className="or"></div>

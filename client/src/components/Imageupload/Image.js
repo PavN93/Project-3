@@ -72,7 +72,7 @@ function Imageupload() {
       }
       {previewSource && (<img src={previewSource}
         alt="chosen"
-        style={{ height: '300px' }} />
+        style={{ height: '200px' }} />
       )}
     </div>
   )

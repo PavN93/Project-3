@@ -1,25 +1,22 @@
 const auth = require("../middleware/auth");
 const router = require("express").Router();
-// const fetch = require("node-fetch");
 
 // Mongoose models
-// const User = require("../models/user");
-// const Image = require("../models/image");
 const Plant = require("../models/plant");
 
 // save new plant
 router.post("/save", auth, async (req, res) => {
-  const { trefleId, commonName, imageURL, sciName, familyName, occurence } = req.body
-  const saveToDb = {
-    trefleId,
-    userId: req.user._id,
-    commonName,
-    imageURL,
-    sciName,
-    familyName,
-    occurence
-  }
   try {
+    const { trefleId, commonName, imageURL, sciName, familyName, occurence } = req.body
+    const saveToDb = {
+      trefleId,
+      userId: req.user._id,
+      commonName,
+      imageURL,
+      sciName,
+      familyName,
+      occurence
+    }
     const isAlreadySaved = await Plant.findOne({ "trefleId": trefleId });
     if (isAlreadySaved) {
       return res
@@ -44,7 +41,6 @@ router.post("/save", auth, async (req, res) => {
 // remove plant from db
 router.post("/remove", auth, async (req, res) => {
   const { trefleId } = req.body;
-  console.log("authorized & id to remove:", trefleId);
   try {
     const plantToRemove = await Plant.findOne({ "trefleId": trefleId });
     if (!plantToRemove) {
@@ -54,7 +50,6 @@ router.post("/remove", auth, async (req, res) => {
     }
     const { _id } = plantToRemove
     const removed = await Plant.findByIdAndDelete(_id);
-    console.log("RemovedPlant:", removed);
     res
       .status(200)
       .json({
