@@ -31,6 +31,7 @@ const UserProfile = () => {
         return;
       }
       setFetchedUsers(response.payload.searchedUsers);
+      console.log(response.payload.searchedUsers)
     }
   }
 

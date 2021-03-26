@@ -4,7 +4,6 @@ import "./Profile.css";
 import CollectionContext from "../../context/CollectionContext";
 import { useWindowEvent } from "../useWindowEvent";
 import fetcher from "../../functions/fetcher";
-import mongoose from "mongoose";
 import * as Scroll from "react-scroll";
 import { motion } from "framer-motion";
 import moment from "moment";
@@ -29,7 +28,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   const [userData, setUserData] = useState("");
   const [planticaMembers, setPlanticaMembers] = useState("");
 
-  useEffect( async () => {
+  useEffect(async() => {
     const userInStorage = localStorage.getItem("user");
     if (userInStorage) {
       const parsedStorage = JSON.parse(userInStorage);
