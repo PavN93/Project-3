@@ -70,7 +70,8 @@ html body {
 }
 
 .container {
-  background-color:rgba(41, 57, 24, 0.7);
+  /* background-color:rgba(74, 78, 71, 0.507); */
+  background-color:rgba(41, 57, 24, 0.5);
   color: #efebe8;
   justify-content: center;
   padding: 10px;

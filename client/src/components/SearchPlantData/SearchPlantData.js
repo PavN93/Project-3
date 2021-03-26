@@ -1,7 +1,7 @@
 import React, { useState, useEffect, useContext } from "react";
 import PlantResultsContext from "../../context/PlantData";
 import "./SearchPlantData.css";
-import { Button, Image, Modal, Loader } from "semantic-ui-react";
+import { Button, Image, Modal } from "semantic-ui-react";
 import Slider from "react-slick";
 import UserAuthContext from "../../context/UserAuth";
 import CollectionContext from "../../context/CollectionContext";

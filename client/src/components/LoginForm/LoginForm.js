@@ -44,6 +44,9 @@ const Login = () => {
         break;
       case "loginPassword":
         setPassword(target.value);
+        break;
+      default:
+        break;
     }
   };
 
@@ -83,7 +86,7 @@ const Login = () => {
   }
 
   return (
-    <section className="ui container">
+    <section className="ui container loginWrapper">
       <h1>Login</h1>
       <motion.div
         className="loginContainer"

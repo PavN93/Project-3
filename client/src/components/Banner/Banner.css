@@ -27,7 +27,7 @@
 h3 {
   font-size: 22px;
   text-align: left;
-  padding-top: 150px;
+  padding-top: 80px;
   padding-left: 60px;
 }
 
@@ -37,6 +37,12 @@ h3 {
   text-align: left;
   padding-left: 60px;
   width: 60%;
+}
+
+.container.bannerContainer {
+  border: 1px solid rgba(255, 250, 205, 0.116);
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
 }
 
 @media only screen and (max-width: 850px) {

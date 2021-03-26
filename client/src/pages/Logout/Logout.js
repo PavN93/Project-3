@@ -14,7 +14,7 @@ const Logout = () => {
   return (
     <>
       <Menu />
-      <div className="ui container">
+      <div className="ui container logoutWrapper">
         <h1>Logged out</h1>
         <motion.div
           initial={{ x: 0, y: 150, opacity: 0 }}

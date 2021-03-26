@@ -2,13 +2,15 @@ import React from "react";
 import { motion } from "framer-motion";
 import * as Scroll from 'react-scroll';
 import "./Banner.css";
+import Weather from "../Weather/Weather";
 
 const Banner = () => {
 
   const scroll = Scroll.animateScroll;
 
   return (
-    <section className="ui container">
+    <section className="ui container bannerContainer">
+      <Weather/>
       <motion.img
         animate={{ y: [-250, 750], rotate: 70 }}
         transition={{ duration: 4, delay: 1 }}
