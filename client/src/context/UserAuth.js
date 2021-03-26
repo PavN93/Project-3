@@ -29,6 +29,7 @@ const UserAuthContextProvider = ({ children }) => {
         _id: user._id
       }
       localStorage.setItem("user", JSON.stringify(toStorage));
+      localStorage.setItem("profilepic", user.profilePic);
       setUserLoggedIn(true);
       // await syncCollectionWithDB(token);
     }
@@ -40,6 +41,7 @@ const UserAuthContextProvider = ({ children }) => {
       const parsedStorage = JSON.parse(userInStorage);
       await fetcher("/api/user/logout", parsedStorage.token);
       localStorage.removeItem("user");
+      localStorage.removeItem("profilepic");
       setUserLoggedIn(false);
     }
   }
