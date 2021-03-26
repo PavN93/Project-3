@@ -49,14 +49,14 @@ const SideMenu = () => {
           <Icon name="home" />
             Home
           </Menu.Item>
-        <Menu.Item as={Link} to="/user">
-          <Icon name="user" />
-            Profile
-          </Menu.Item>
 
         {/* If user logged in - show buttons below */}
         {userLoggedIn && (
           <>
+            <Menu.Item as={Link} to="/user">
+              <Icon name="user" />
+            Profile
+          </Menu.Item>
             <Menu.Item onClick={redirectToUpload}>
               <Icon name="upload" />
             Upload

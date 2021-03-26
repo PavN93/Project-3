@@ -13,7 +13,7 @@ const Upload = () => {
   const [sciName, setSciName] = useState("");
   const [familyName, setFamilyName] = useState("");
   const [occurence, setOccurence] = useState("");
-  const imageUrl = "https://i.picsum.photos/id/789/200/300.jpg?hmac=nu1PpKsVA8Td2PEYonJWrmrriU-Km5XoKoEZQ-Tq-6E";
+  const imageUrl = "https://res.cloudinary.com/pavn93/image/upload/v1616801394/plantica/zry4xvxnxenheb9vcb41.jpg";
   const [savingPlant, setSavingPlant] = useState(false);
   const [saveError, setSaveError] = useState("");
 

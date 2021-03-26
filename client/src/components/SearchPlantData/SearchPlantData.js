@@ -84,7 +84,7 @@ const PlantCollection = ({ handleSaveClick, handleRemoveClick, isSearchDone, que
                 <div className="ui card" key={result.id}>
                   <div className="content">
                     <img
-                      src={result.image_url}
+                      src={result.image_url ? result.image_url : "https://res.cloudinary.com/pavn93/image/upload/v1616801394/plantica/zry4xvxnxenheb9vcb41.jpg"}
                       className="ui image plantImage"
                       alt={result.common_name}
                     />
@@ -117,7 +117,9 @@ const PlantCollection = ({ handleSaveClick, handleRemoveClick, isSearchDone, que
                 <Modal.Content className="cardBody" image>
                   <Image
                     size="medium"
-                    src={viewPlant.plant.image_url}
+                    src={viewPlant.plant.image_url ? 
+                      viewPlant.plant.image_url : 
+                      "https://res.cloudinary.com/pavn93/image/upload/v1616801394/plantica/zry4xvxnxenheb9vcb41.jpg"}
                     wrapped
                   />
                   <Modal.Description>
