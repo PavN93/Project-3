@@ -1,60 +1,66 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
-import "./Profile.css";
+import CollectionContext from "../../context/CollectionContext";
+import Imageupload from "../../components/Imageupload/Image";
+import { useWindowEvent } from "../useWindowEvent";
+import fetcher from "../../functions/fetcher";
 import * as Scroll from "react-scroll";
 import { motion } from "framer-motion";
-import CollectionContext from "../../context/CollectionContext";
-import { useWindowEvent } from "../useWindowEvent";
 import moment from "moment";
+import "./Profile.css";
 
 const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
-  console.log("userList:", usersFromDB);
-  console.log("error", searchError);
 
-  const [item, setItem] = useState(localStorage.getItem('profilepic'))
+  const [item, setItem] = useState(localStorage.getItem("profilepic"));
   const checkLocalStorage = () => {
-    const value = localStorage.getItem('profilepic');
-    setItem(value)
-  }
-  useWindowEvent('storage', checkLocalStorage)
+    const value = localStorage.getItem("profilepic");
+    setItem(value);
+  };
+  useWindowEvent("storage", checkLocalStorage);
 
   const { collectionFromDB } = useContext(CollectionContext);
 
   const scroll = Scroll.animateScroll;
-  const [view, setView] = useState(""); // plants, friends
+  const [view, setView] = useState(""); // plants, userList, searchResult
   const [searchInput, setSearchInput] = useState(null);
   const [userData, setUserData] = useState("");
+  const [planticaMembers, setPlanticaMembers] = useState("");
 
+  useEffect(async () => {
+    const userInStorage = localStorage.getItem("user");
+    if (userInStorage) {
+      const parsedStorage = JSON.parse(userInStorage);
+      const { token } = parsedStorage;
+      const members = await fetcher("/api/user/members", token);
+      setPlanticaMembers(members);
+    }
+  }, []);
 
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);
-  }
-
-  // generating account created date
-  const accountCreated = require('mongodb').ObjectId(userData._id).getTimestamp();
-  const joined = accountCreated.toISOString().slice(0,4);
-
-  // refactoring birthday format
-  const birthday = moment(userData.dateOfBirth).format('DD/MM/YYYY');
-  
+  };
 
   useEffect(() => {
     const accountData = JSON.parse(localStorage.getItem("user"));
     setUserData(accountData);
   }, []);
 
+  // generating account created date
+  const accountCreated = require("mongodb")
+    .ObjectId(userData._id)
+    .getTimestamp();
+  const joined = accountCreated.toISOString().slice(0, 4);
 
+  // refactoring birthday format
+  const birthday = moment(userData.dateOfBirth).format("DD/MM/YYYY");
 
 
   return (
     <section className="ui container">
       <h1>My profile</h1>
       <div className="profileContainer">
-        <img
-          className="image avatar"
-          src={item}
-          alt="placeholder"
-        />
+        <img className="image avatar" src={item} alt="placeholder" />
+        <Imageupload />
         <div className="ui card">
           <div className="content">
             <div className="header">{userData.username}</div>
@@ -78,30 +84,33 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
               <motion.button
                 whileHover={{ scale: 1.1, originX: 0 }}
                 onClick={() => {
-                  setView("friends");
+                  setView("userList");
                   scroll.scrollTo(800);
                 }}
                 className="ui button dataButton"
               >
                 <i className="users icon"></i>Friends
-                <p className="dataDigit">8</p>
+                <p className="dataDigit">{planticaMembers.length}</p>
               </motion.button>
             </div>
           </div>
 
           <div className="content data">
             <div className="description">
-              <i aria-hidden="true" className="mail icon"></i>{userData.email}
+              <i aria-hidden="true" className="mail icon"></i>
+              {userData.email}
             </div>
           </div>
           <div className="content data">
             <div className="description">
-              <i aria-hidden="true" className="birthday icon"></i>{birthday}
+              <i aria-hidden="true" className="birthday icon"></i>
+              {birthday}
             </div>
           </div>
           <div className="content data">
             <div className="description">
-              <i aria-hidden="true" className="location arrow icon"></i>{userData.currentCity}
+              <i aria-hidden="true" className="location arrow icon"></i>
+              {userData.currentCity}
             </div>
           </div>
         </div>
@@ -121,7 +130,12 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
         >
           <h2>My plants</h2>
 
-          <div className="ui container">
+          <motion.div
+            initial={{ y: 2500 }}
+            animate={{ y: 10 }}
+            transition={{ delay: 0.5, duration: 1, type: "spring" }}
+            className="ui container"
+          >
             <div className="ui relaxed divided items">
               {collectionFromDB.map((collectionFromDB) => (
                 <div className="item">
@@ -129,21 +143,103 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
                     <img src="#" />
                   </div>
                   <div className="content">
-                    <div className="header">Scientific name: {collectionFromDB.sciName}</div>
-                    <div className="meta">Family: {collectionFromDB.familyName}</div>
-                    <div className="description">Native to:
+                    <div className="header">
+                      Scientific name: {collectionFromDB.sciName}
+                    </div>
+                    <div className="meta">
+                      Family: {collectionFromDB.familyName}
+                    </div>
+                    <div className="description">
+                      Native to:
                       {collectionFromDB.occurence}
                     </div>
                   </div>
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
         </motion.div>
       )}
 
       {/* Friends section */}
-      {view === "friends" && (
+      {view === "userList" && (
+        <>
+          <motion.div
+            className="ui segment"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, duration: 5 }}
+          >
+            <div className="ui stackable divided relaxed two column grid">
+              <div className="column">
+                <h2>My friends</h2>
+              </div>
+              <div className="column">
+                <form className="ui form friendSearch">
+                  <input
+                    value={searchInput}
+                    onChange={handleInputChange}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter")
+                        fetchUsers(searchInput, event) &&
+                          setView("searchResult");
+                    }}
+                    className="input"
+                    type="search"
+                    placeholder="Search Plantica users"
+                  />
+                  <button
+                    className="ui animated button"
+                    type="submit"
+                    onClick={(event) =>
+                      fetchUsers(searchInput, event) && setView("searchResult")
+                    }
+                  >
+                    <div className="visible content">Search</div>
+                    <div className="hidden content">
+                      <i aria-hidden="true" className="search icon"></i>
+                    </div>
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div className="ui vertical divider">Or</div>
+          </motion.div>
+
+          <div className="friendsList">
+            <motion.div
+              initial={{ y: 2500 }}
+              animate={{ y: 10 }}
+              transition={{ delay: 0.5, duration: 1, type: "spring" }}
+              className="ui divided items"
+            >
+              {planticaMembers.map((planticaMembers) => (
+                <div className="item">
+                  <div className="image">
+                    <img src={planticaMembers.imageURL} alt="placeholder" />
+                  </div>
+                  <div className="content">
+                    <div className="header">{planticaMembers.username}</div>
+                    <div className="description">
+                      Location: {planticaMembers.currentCity}
+                    </div>
+                    <div className="description">
+                      <i className="leaf olive icon"></i>
+                      {planticaMembers.collections} uploaded plants
+                    </div>
+                    <div className="extra content">
+                      <button className="ui olive right floated button">
+                        <i className="add user icon"></i>Add friend
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </>
+      )}
+
+      {view === "searchResult" && (
         <>
           <motion.div
             className="ui segment"
@@ -166,7 +262,11 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
                     type="search"
                     placeholder="Search Plantica users"
                   />
-                  <button className="ui animated button" type="submit" onClick={(event) => fetchUsers(searchInput, event)}>
+                  <button
+                    className="ui animated button"
+                    type="submit"
+                    onClick={(event) => fetchUsers(searchInput, event)}
+                  >
                     <div className="visible content">Search</div>
                     <div className="hidden content">
                       <i aria-hidden="true" className="search icon"></i>
@@ -179,104 +279,40 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
           </motion.div>
 
           <div className="friendsList">
-            <div className="ui divided items">
-              {/* Will need to map over database users here */}
-              <div className="item">
-                <div className="image">
-                  <img
-                    src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
-                    alt="placeholder"
-                  />
-                </div>
-                <div className="content">
-                  <div className="header">Steve Sanders</div>
-                  <div className="description">
-                    Bio taken from the users profile
+            <motion.div
+              initial={{ y: 2500 }}
+              animate={{ y: 10 }}
+              transition={{ delay: 0.5, duration: 1, type: "spring" }}
+              className="ui divided items"
+            >
+              {usersFromDB.map((usersFromDB) => (
+                <div className="item">
+                  <div className="image">
+                    <img src={usersFromDB.imageURL} alt="placeholder" />
                   </div>
-                  <div className="description">
-                    <i className="leaf icon"></i>12 uploads
-                  </div>
-                  <div className="extra content">
-                    <button className="ui olive right floated button">
-                      <i className="add user icon"></i>Add friend
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="item">
-                <div className="image">
-                  <img
-                    src="https://react.semantic-ui.com/images/avatar/large/stevie.jpg"
-                    alt="placeholder"
-                  />
-                </div>
-                <div className="content">
-                  <div className="header">Stevie Sanders</div>
-                  <div className="description">
-                    Bio taken from the users profile
-                  </div>
-                  <div className="description">
-                    <i className="leaf icon"></i>8 uploads
-                  </div>
-                  <div className="extra content">
-                    <button className="ui olive right floated button">
-                      <i className="add user icon"></i>Add friend
-                    </button>
+                  <div className="content">
+                    <div className="header">{usersFromDB.username}</div>
+                    <div className="description">
+                      Location: {usersFromDB.currentCity}
+                    </div>
+                    <div className="description">
+                      <i className="leaf olive icon"></i>
+                      {usersFromDB.collections} uploaded plants
+                    </div>
+                    <div className="extra content">
+                      <button className="ui olive right floated button">
+                        <i className="add user icon"></i>Add friend
+                      </button>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div className="item">
-                <div className="image">
-                  <img
-                    src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-                    alt="placeholder"
-                  />
-                </div>
-                <div className="content">
-                  <div className="header">Matthew Brown</div>
-                  <div className="description">
-                    Bio taken from the users profile
-                  </div>
-                  <div className="description">
-                    <i className="leaf icon"></i>32 uploads
-                  </div>
-                  <div className="extra content">
-                    <button className="ui olive right floated button">
-                      <i className="add user icon"></i>Add friend
-                    </button>
-                  </div>
-                </div>
-              </div>
-              <div className="item">
-                <div className="image">
-                  <img
-                    src="https://react.semantic-ui.com/images/avatar/large/molly.png"
-                    alt="placeholder"
-                  />
-                </div>
-                <div className="content">
-                  <div className="header">Molly Smith</div>
-                  <div className="description">
-                    Bio taken from the users profile
-                  </div>
-                  <div className="description">
-                    <i className="leaf icon"></i>27 uploads
-                  </div>
-                  <div className="extra content">
-                    <button className="ui olive right floated button">
-                      <i className="add user icon"></i>Add friend
-                    </button>
-                  </div>
-                </div>
-              </div>
-            </div>
+              ))}
+            </motion.div>
           </div>
         </>
       )}
     </section>
   );
 };
-
-
 
 export default Bio;

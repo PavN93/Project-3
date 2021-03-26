@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import Menu from "../../components/Menu/Menu";
 import Weather from "../../components/Weather/Weather";
 import Profile from "../../components/UserProfile/Profile";
-import Imageupload from "../../components/Imageupload/Image";
 import Footer from "../../components/Footer/Footer";
 import fetcher from "../../functions/fetcher";
 
@@ -23,7 +22,7 @@ const UserProfile = () => {
       const parsedStorage = JSON.parse(userInStorage);
       const { token } = parsedStorage;
       const body = {
-        username
+        username,
       }
       const response = await fetcher("/api/user/search", token, body);
       if (!response.success) {
@@ -31,6 +30,7 @@ const UserProfile = () => {
         return;
       }
       setFetchedUsers(response.payload.searchedUsers);
+      console.log(response.payload.searchedUsers)
     }
   }
 
@@ -39,7 +39,6 @@ const UserProfile = () => {
       <Menu />
       <Weather />
       <Profile fetchUsers={fetchUsers} searchError={searchError} usersFromDB={usersFromDB} />
-      <Imageupload />
       <Footer />
     </div>
   );

@@ -1,15 +1,22 @@
 import React, { useState } from 'react';
+import './Image.css'
 import fetcher from '../../functions/fetcher'
 
 
 function Imageupload() {
   const [fileInputState, setFileInputState] = useState("");
   const [previewSource, setPreviewSource] = useState();
+  const [revealUpload, setRevealUpload] = useState(false)
   const handleFileInputChange = (e) => {
     const file = e.target.files[0];
     previewFile(file);
-
   };
+
+  const showUploadButton = () => {
+    setRevealUpload(true);
+  }
+
+
   const previewFile = (file) => {
     const reader = new FileReader();
     reader.readAsDataURL(file);
@@ -46,11 +53,12 @@ function Imageupload() {
     }
   }
   return (
-    <div>
+    <div className="uploadImage">
       <div className="addPhoto">
-      <i className="camera huge icon grey"></i>
-      <p>Add a photo</p>
+      <i className="camera large icon grey"></i>
+      <p><a onClick={showUploadButton}>Add a photo</a></p>
       </div>
+      {revealUpload &&
       <form onSubmit={handleSubmitFile}>
         <input type="file" name="image" onChange={handleFileInputChange}
           value={fileInputState} className="form-input" />
@@ -61,6 +69,7 @@ function Imageupload() {
             </div>
           </button>
       </form>
+      }
       {previewSource && (<img src={previewSource}
         alt="chosen"
         style={{ height: '200px' }} />

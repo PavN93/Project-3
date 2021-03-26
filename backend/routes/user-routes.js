@@ -122,10 +122,21 @@ router.get('/logout', auth, async (req, res) => {
   res.json({ success: true });
 });
 
+// fetch all users with a Plantica account
+router.get("/members", auth, async (req, res) => {
+  try {
+    const members = await User.find();
+    res.json(members)
+  } catch (err) {
+    console.log("Error on save:", err);
+    res.json({ success: false, payload: { message: "Internal server error" } });
+  }
+});
+
 router.post('/search', auth, async (req, res) => {
   try {
     const { username } = req.body;
-    const searchedUsers = await User.find({ "username": username }, "username email");
+    const searchedUsers = await User.find({ "username": username });
     res
       .status(200)
       .json({ success: true, payload: { searchedUsers } });
