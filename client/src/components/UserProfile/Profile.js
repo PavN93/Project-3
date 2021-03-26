@@ -5,10 +5,7 @@ import * as Scroll from "react-scroll";
 import { motion } from "framer-motion";
 import CollectionContext from "../../context/CollectionContext";
 import { useWindowEvent } from "../useWindowEvent";
-import mongoose from 'mongoose';
 import moment from "moment";
-
-
 
 const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   console.log("userList:", usersFromDB);

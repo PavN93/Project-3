@@ -14,7 +14,10 @@ import CollectionContext from "../../context/CollectionContext";
 function Home() {
   const { syncCollectionWithDB } = useContext(CollectionContext);
   const [isSearchDone, setIsSearchDone] = useState(false);
+  // searching for plants status
   const [isBusy, setIsBusy] = useState(false);
+  // saving/removing from db status
+  const [queryingDB, setQueryingDB] = useState(false);
 
   const setSearchDoneStatus = () => {
     setIsSearchDone(true);
@@ -38,10 +41,11 @@ function Home() {
         familyName: plantData.family_common_name,
         occurence: plantData.observations,
       }
-      const response = await fetcher("/api/plant/save", token, body);
-      console.log(response);
+      setQueryingDB(queryingDB => !queryingDB);
+      await fetcher("/api/plant/save", token, body);
       await syncCollectionWithDB();
     }
+    setQueryingDB(queryingDB => !queryingDB);
   }
 
   const handleRemoveClick = async (trefleId, event) => {
@@ -53,10 +57,11 @@ function Home() {
       const body = {
         trefleId
       }
-      const response = await fetcher("/api/plant/remove", token, body);
-      console.log("remove response:", response);
+      setQueryingDB(queryingDB => !queryingDB);
+      await fetcher("/api/plant/remove", token, body);
       await syncCollectionWithDB();
     }
+    setQueryingDB(queryingDB => !queryingDB);
   }
   
   return (
@@ -65,7 +70,7 @@ function Home() {
       <Banner/>
       <Weather/>
       <Search isBusy={isBusy} setSearchDoneStatus={setSearchDoneStatus} toggleSearchingStatus={toggleSearchingStatus}/>
-      <SearchPlantData  handleSaveClick={handleSaveClick} handleRemoveClick={handleRemoveClick} isSearchDone={isSearchDone}/>
+      <SearchPlantData  handleSaveClick={handleSaveClick} handleRemoveClick={handleRemoveClick} isSearchDone={isSearchDone} queryingDB={queryingDB}/>
       <Quote />
       <DailyPlant />
       <SignUp />
