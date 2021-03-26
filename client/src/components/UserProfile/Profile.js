@@ -10,8 +10,6 @@ import moment from "moment";
 import "./Profile.css";
 
 const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
-  console.log("userList:", usersFromDB);
-  console.log("error", searchError);
 
   const [item, setItem] = useState(localStorage.getItem("profilepic"));
   const checkLocalStorage = () => {
@@ -23,7 +21,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   const { collectionFromDB } = useContext(CollectionContext);
 
   const scroll = Scroll.animateScroll;
-  const [view, setView] = useState(""); // plants, friends
+  const [view, setView] = useState(""); // plants, userList, searchResult
   const [searchInput, setSearchInput] = useState(null);
   const [userData, setUserData] = useState("");
   const [planticaMembers, setPlanticaMembers] = useState("");
@@ -42,6 +40,11 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
     setSearchInput(event.target.value);
   };
 
+  useEffect(() => {
+    const accountData = JSON.parse(localStorage.getItem("user"));
+    setUserData(accountData);
+  }, []);
+
   // generating account created date
   const accountCreated = require("mongodb")
     .ObjectId(userData._id)
@@ -51,10 +54,6 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   // refactoring birthday format
   const birthday = moment(userData.dateOfBirth).format("DD/MM/YYYY");
 
-  useEffect(() => {
-    const accountData = JSON.parse(localStorage.getItem("user"));
-    setUserData(accountData);
-  }, []);
 
   return (
     <section className="ui container">
@@ -85,7 +84,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
               <motion.button
                 whileHover={{ scale: 1.1, originX: 0 }}
                 onClick={() => {
-                  setView("friends");
+                  setView("userList");
                   scroll.scrollTo(800);
                 }}
                 className="ui button dataButton"
@@ -163,7 +162,84 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
       )}
 
       {/* Friends section */}
-      {view === "friends" && (
+      {view === "userList" && (
+        <>
+          <motion.div
+            className="ui segment"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1, duration: 5 }}
+          >
+            <div className="ui stackable divided relaxed two column grid">
+              <div className="column">
+                <h2>My friends</h2>
+              </div>
+              <div className="column">
+                <form className="ui form friendSearch">
+                  <input
+                    value={searchInput}
+                    onChange={handleInputChange}
+                    onKeyDown={(event) => {
+                      if (event.key === "Enter")
+                        fetchUsers(searchInput, event) &&
+                          setView("searchResult");
+                    }}
+                    className="input"
+                    type="search"
+                    placeholder="Search Plantica users"
+                  />
+                  <button
+                    className="ui animated button"
+                    type="submit"
+                    onClick={(event) =>
+                      fetchUsers(searchInput, event) && setView("searchResult")
+                    }
+                  >
+                    <div className="visible content">Search</div>
+                    <div className="hidden content">
+                      <i aria-hidden="true" className="search icon"></i>
+                    </div>
+                  </button>
+                </form>
+              </div>
+            </div>
+            <div className="ui vertical divider">Or</div>
+          </motion.div>
+
+          <div className="friendsList">
+            <motion.div
+              initial={{ y: 2500 }}
+              animate={{ y: 10 }}
+              transition={{ delay: 0.5, duration: 1, type: "spring" }}
+              className="ui divided items"
+            >
+              {planticaMembers.map((planticaMembers) => (
+                <div className="item">
+                  <div className="image">
+                    <img src={planticaMembers.imageURL} alt="placeholder" />
+                  </div>
+                  <div className="content">
+                    <div className="header">{planticaMembers.username}</div>
+                    <div className="description">
+                      Location: {planticaMembers.currentCity}
+                    </div>
+                    <div className="description">
+                      <i className="leaf olive icon"></i>
+                      {planticaMembers.collections} uploaded plants
+                    </div>
+                    <div className="extra content">
+                      <button className="ui olive right floated button">
+                        <i className="add user icon"></i>Add friend
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </motion.div>
+          </div>
+        </>
+      )}
+
+      {view === "searchResult" && (
         <>
           <motion.div
             className="ui segment"
@@ -209,19 +285,19 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
               transition={{ delay: 0.5, duration: 1, type: "spring" }}
               className="ui divided items"
             >
-              {planticaMembers.map((planticaMembers) => (
+              {usersFromDB.map((usersFromDB) => (
                 <div className="item">
                   <div className="image">
-                    <img src={planticaMembers.imageURL} alt="placeholder" />
+                    <img src={usersFromDB.imageURL} alt="placeholder" />
                   </div>
                   <div className="content">
-                    <div className="header">{planticaMembers.username}</div>
+                    <div className="header">{usersFromDB.username}</div>
                     <div className="description">
-                      Location: {planticaMembers.currentCity}
+                      Location: {usersFromDB.currentCity}
                     </div>
                     <div className="description">
-                      <i className="leaf icon"></i>
-                      {planticaMembers.collections} uploads
+                      <i className="leaf olive icon"></i>
+                      {usersFromDB.collections} uploaded plants
                     </div>
                     <div className="extra content">
                       <button className="ui olive right floated button">

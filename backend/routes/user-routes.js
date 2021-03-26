@@ -136,7 +136,7 @@ router.get("/members", auth, async (req, res) => {
 router.post('/search', auth, async (req, res) => {
   try {
     const { username } = req.body;
-    const searchedUsers = await User.find({ "username": username }, "username");
+    const searchedUsers = await User.find({ "username": username });
     res
       .status(200)
       .json({ success: true, payload: { searchedUsers } });
