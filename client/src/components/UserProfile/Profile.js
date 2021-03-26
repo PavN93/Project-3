@@ -1,13 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "./Profile.css";
-import * as Scroll from "react-scroll";
-import { motion } from "framer-motion";
 import CollectionContext from "../../context/CollectionContext";
 import { useWindowEvent } from "../useWindowEvent";
-import mongoose from "mongoose";
-import moment from "moment";
 import fetcher from "../../functions/fetcher";
+import mongoose from "mongoose";
+import * as Scroll from "react-scroll";
+import { motion } from "framer-motion";
+import moment from "moment";
+
 
 const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   console.log("userList:", usersFromDB);
@@ -28,16 +29,16 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   const [userData, setUserData] = useState("");
   const [planticaMembers, setPlanticaMembers] = useState("");
 
-    const getPlanticaMembers = async () => {
-      const userInStorage = localStorage.getItem("user");
-      if (userInStorage) {
-        const parsedStorage = JSON.parse(userInStorage);
-        const { token } = parsedStorage;
-        const members = await fetcher("/api/user/members", token);
-        setPlanticaMembers(members);
-        console.log("member", members)
-      }
-    };
+  useEffect( async () => {
+    const userInStorage = localStorage.getItem("user");
+    if (userInStorage) {
+      const parsedStorage = JSON.parse(userInStorage);
+      const { token } = parsedStorage;
+      const members = await fetcher("/api/user/members", token);
+      setPlanticaMembers(members);
+    }
+}, []);
+
 
   const handleInputChange = (event) => {
     setSearchInput(event.target.value);
@@ -87,7 +88,6 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
                 onClick={() => {
                   setView("friends");
                   scroll.scrollTo(800);
-                  getPlanticaMembers();
                 }}
                 className="ui button dataButton"
               >
@@ -200,14 +200,10 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
 
           <div className="friendsList">
             <div className="ui divided items">
-              {/* Will need to map over database users here */}
-              {planticaMembers.map((planticaMembers) => (
+            {planticaMembers.map((planticaMembers) => (
                 <div className="item">
                   <div className="image">
-                    <img
-                      src="https://react.semantic-ui.com/images/avatar/large/steve.jpg"
-                      alt="placeholder"
-                    />
+                    <img src={planticaMembers.imageURL} alt="placeholder" />
                   </div>
                   <div className="content">
                     <div className="header">{planticaMembers.username}</div>
@@ -215,7 +211,8 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
                       Location: {planticaMembers.currentCity}
                     </div>
                     <div className="description">
-                      <i className="leaf icon"></i>12 uploads
+                      <i className="leaf icon"></i>
+                      {planticaMembers.collections} uploads
                     </div>
                     <div className="extra content">
                       <button className="ui olive right floated button">
