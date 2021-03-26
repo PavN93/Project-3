@@ -14,16 +14,14 @@ From botanists to ecologists, hikers to hunters, the world is filled with likemi
 - [Functionality](#functionality)
 - [Installation](#installation)
 - [Further Development](#further-development)
-- [Updates](#updates)
-- [Learning](#learning)
 - [License](#license)
 
 ---
 
 ## About
 
-There are few apps available at the moment that fulfil this requirement. There are some dummies guide for caring for house plants or identifying different plants by a photo targeted towards gardening enthusiasts. But nothing for those wanting a high level of detail.
-Plantica will cater for botanists and nature enthusiasts who are interested in a variety of species and want to share their love of botany with others.
+There are few apps available at the moment designed for this demographic. There are dummies guide for caring for house plants or identifying different plants by a photo targeted towards gardening enthusiasts, but nothing catering for those wanting a high level of detail.
+Plantica aims to provide this by streamlining the process of finding a species of plant and saving it to your collection as well as uploading your own collections to a database, bringing together likeminded individuals with a shared passion for botany.
 
 #### User story
 
@@ -36,7 +34,7 @@ Plantica will cater for botanists and nature enthusiasts who are interested in a
 - **React**
 - **Node.js**
 - **Express** for the server
-- **MongoDB** for the database with **Mongoose** as the ORM
+- **MongoDB** for the database with a **Mongoose** ORM
 - **Semantic UI** as the CSS framework
 - **JWT** for encryption
 - **JOI** for data validation
@@ -51,7 +49,7 @@ Plantica will cater for botanists and nature enthusiasts who are interested in a
 
 ## Link to deployed application
 
-View the live application on [Heroku]().
+View the live application on [Heroku](https://plantica.herokuapp.com/).
 
 ---
 
@@ -65,13 +63,9 @@ View the live application on [Heroku]().
 
 ## Initial Idea
 
-Below is the initial wireframes for the design of the app. This developed over time as we added features and functionality and adapted styling to suit both desktop and mobile devices.
+Once we had the idea of what we wanted to develop, we worked on creating the initial wireframes to decide the design of the app and what pages were required. This developed over time as we added features and functionality and adapted styling to suit both desktop and mobile devices.
 
-[ADD SCREENSHOTS OF APP SCREENS]()
-
-
-We also developed a simple schema structure to create the database.
-[ADD SCREENSHOTS OF SCHEMA]()
+![Plantica wireframes](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaWireframes.png)
 
 ---
 
@@ -81,21 +75,39 @@ The functionality differs depending on if a user is logged in or not. To incenti
 
 1. Plantica homepage:
 
-!Plantica Page](#)
+![Plantica Page](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaHomepage.png)
+From the homepage all users are able to explore a range of plants using the search functionality which fetches data from the Trefle Api. Each plant can be viewed individually to find out more information and if you are logged in, you have the option to save these plants to your personal collection.
+There is also a 'Plant of the Day' feature which gives a random plant each day to users when revealed.
 
-    From the homepage all users are able to explore a range of plants using the search functionality with fetches data from the Trefle Api.
-    There is also a 'Plant of the Day' feature which gives a random plant each day to users when clicked.
+![Search feature](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaSearch.png)
 
-    If you are logged in you can then access a profile page, search for friends on the app, save your own plants to a personal database as well as favourite those from the Trefle API.
+![Plant of the Day feature](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaPlantoftheDay.png)
 
-2.  User profile.
-    !Profile Page](#)
+If you have an account and are logged in, then you can then access a profile page from the sidebar menu as well as an upload page to add your own plants to your database.
 
-        Here a user can update their personal information as well as add an image avatar.
-        This is also where users can view and search for friends on the app and view their own collections.
+2.  Login page:
 
-3.  Create an account, log in and log out/
-    !Create account page](#)
+![Profile Page](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaLoginValidation.png)
+    
+When logging into your account, the form uses validation to ensure credentials are valid and match.
+
+
+3.  User profile:
+  
+![Profile Page](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaProfile.png)
+    
+When a user creates an account the data provided will be automatically populated in the profile page, including username, date of birth, joined date and location.
+There is the option to add your own profile image also.
+
+The profile page houses other users within the app which you can search through and also is where you will find your own plant collections.
+![Friends List](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaFriendsList.png)
+
+
+4.  Upload page:
+![Upload page](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaUpload.png)
+
+This page allows users to add their own plants to their collections which will then be viewable via the profile page.
+
 
 ---
 
@@ -103,9 +115,10 @@ The functionality differs depending on if a user is logged in or not. To incenti
 
 - Clone the Git repository onto your local machine
 - Navigate to the folder where the repository exists
-- Run the command `$ npm i` in both the root folder and the client folder
+- Run the command `$ npm i` in BOTH the root folder and the client folder
 - Then run the command `npm run dev`
 - Your browser will automatically load and navigate to `localhost:3000`
+- The app uses nodemon so any changes will implement automatically
 
 ---
 
@@ -113,14 +126,14 @@ The functionality differs depending on if a user is logged in or not. To incenti
 
 Moving forward with this application, these are the key areas we'd like to develop.
 
-- **Messaging functionality**
-  While you can currently search for and view friends, we'd like to add the ability to exchange messages using socket.io.
+- **Messaging functionality**    
+While you can currently search for and view friends, we'd like to add the ability to exchange messages using socket.io.
 
-- **Another one**
-  One more example.
+- **Multiple collections**    
+At present, users only have one database. It would be nice to be able to select which database you'd like to upload or save a plant to and have the option to group plants by collection instead of having just one collection.
 
-- **Another one**
-  One more example.
+- **Searching for users**   
+Currently, users can only search for others in the database by username. We would like to add the ability to filter users by location, number of uploads etc.
 
 ---
 
