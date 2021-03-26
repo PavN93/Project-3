@@ -4,6 +4,7 @@ const jwt = require('jsonwebtoken');
 const { validateSignup, validateLogin } = require('../validators/authValidators');
 
 // Mongoose models
+const Image = require('../models/image');
 const User = require('../models/user');
 const auth = require('../middleware/auth');
 
@@ -89,6 +90,11 @@ router.post('/login', async (req, res) => {
         .status(500)
         .json({ payload: { message: 'Internal server error, please try again later' } });
     }
+    let profilePic = await Image.findOne({ "userId": user._id });
+    if(!profilePic) {
+      profilePic = 'http://res.cloudinary.com/pavn93/image/upload/v1616753349/plantica/eegfqvugdvvzndicby9q.png';
+    }
+    console.log(profilePic);
     return res
       .status(200)
       .json({
@@ -99,7 +105,8 @@ router.post('/login', async (req, res) => {
             email: user.email,
             dateOfBirth: user.dateOfBirth,
             currentCity: user.currentCity,
-            _id: user._id
+            _id: user._id,
+            profilePic: profilePic.url
           }
         }
       })
