@@ -92,9 +92,8 @@ router.post('/login', async (req, res) => {
     }
     let profilePic = await Image.findOne({ "userId": user._id });
     if(!profilePic) {
-      profilePic = 'http://res.cloudinary.com/pavn93/image/upload/v1616753349/plantica/eegfqvugdvvzndicby9q.png';
+      profilePic = { url: 'http://res.cloudinary.com/pavn93/image/upload/v1616753349/plantica/eegfqvugdvvzndicby9q.png' };
     }
-    console.log(profilePic);
     return res
       .status(200)
       .json({
@@ -120,8 +119,6 @@ router.post('/login', async (req, res) => {
 
 // Logout
 router.get('/logout', auth, async (req, res) => {
-  const { username } = req.user;
-  console.log("logging out", username);
   res.json({ success: true });
 });
 

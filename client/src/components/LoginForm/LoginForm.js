@@ -69,7 +69,7 @@ const Login = () => {
       if (response.success) {
         doLogin(response.payload);
         setBusyLogIn(false);
-        location.push("/user");
+        window.location.replace("/user");
       }
     } catch (err) {
       console.log(err);

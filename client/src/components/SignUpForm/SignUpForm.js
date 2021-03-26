@@ -19,9 +19,6 @@ const SignUp = () => {
   const [inputType, setInputType] = useState("password");
 
   // waiting for server response
-
-  // waiting for server response
-
   const [busySignUp, setBusySignUp] = useState(false);
   // error on submitting signup credentials
   const [validationError, setValidationError] = useState("");
