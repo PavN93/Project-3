@@ -12,7 +12,8 @@ function Imageupload() {
     previewFile(file);
   };
 
-  const showUploadButton = () => {
+  const showUploadButton = (event) => {
+    event.preventDefault();
     setRevealUpload(true);
   }
 
@@ -56,7 +57,7 @@ function Imageupload() {
     <div className="uploadImage">
       <div className="addPhoto">
       <i className="camera large icon grey"></i>
-      <p><a onClick={showUploadButton}>Add a photo</a></p>
+      <p><a href="false" onClick={(event) => showUploadButton(event)}>Add a photo</a></p>
       </div>
       {revealUpload &&
       <form onSubmit={handleSubmitFile}>

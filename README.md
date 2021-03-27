@@ -65,7 +65,7 @@ View the live application on [Heroku](https://plantica.herokuapp.com/).
 
 Once we had the idea of what we wanted to develop, we worked on creating the initial wireframes to decide the design of the app and what pages were required. This developed over time as we added features and functionality and adapted styling to suit both desktop and mobile devices.
 
-![Plantica wireframes](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaWireframes.png)
+![Plantica wireframes](./client/public/assets/PlanticaWireframes.png)
 
 ---
 
@@ -75,36 +75,36 @@ The functionality differs depending on if a user is logged in or not. To incenti
 
 1. Plantica homepage:
 
-![Plantica Page](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaHomepage.png)
+![Plantica Page](./client/public/assets/PlanticaHomepage.png)
 From the homepage all users are able to explore a range of plants using the search functionality which fetches data from the Trefle Api. Each plant can be viewed individually to find out more information and if you are logged in, you have the option to save these plants to your personal collection.
 There is also a 'Plant of the Day' feature which gives a random plant each day to users when revealed.
 
-![Search feature](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaSearch.png)
+![Search feature](./client/public/assets/PlanticaSearch.png)
 
-![Plant of the Day feature](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaPlantoftheDay.png)
+![Plant of the Day feature](./client/public/assets/PlanticaPlantoftheDay.png)
 
 If you have an account and are logged in, then you can then access a profile page from the sidebar menu as well as an upload page to add your own plants to your database.
 
 2.  Login page:
 
-![Profile Page](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaLoginValidation.png)
+![Profile Page](./client/public/assets/PlanticaLoginValidation.png)
     
 When logging into your account, the form uses validation to ensure credentials are valid and match.
 
 
 3.  User profile:
   
-![Profile Page](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaProfile.png)
+![Profile Page](./client/public/assets/PlanticaProfile.png)
     
 When a user creates an account the data provided will be automatically populated in the profile page, including username, date of birth, joined date and location.
 There is the option to add your own profile image also.
 
 The profile page houses other users within the app which you can search through and also is where you will find your own plant collections.
-![Friends List](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaFriendsList.png)
+![Friends List](./client/public/assets/PlanticaFriendsList.png)
 
 
 4.  Upload page:
-![Upload page](https://github.com/PavN93/Project-3/blob/han/updateReadMe/client/public/assets/PlanticaUpload.png)
+![Upload page](./client/public/assets/PlanticaUpload.png)
 
 This page allows users to add their own plants to their collections which will then be viewable via the profile page.
 
