@@ -59,7 +59,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
 
   return (
     <section className="ui container profileWrapper">
-      <Weather/>
+      <Weather />
       <h1>My profile</h1>
       <div className="profileContainer">
         <img className="image avatar" src={item} alt="placeholder" />
@@ -131,38 +131,48 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, duration: 5 }}
         >
-          <h2>My plants</h2>
+          {collectionFromDB.length === 0 ?
+            (
+              <h2>No plants saved</h2>
+            ) :
+            (
+              <>
+                <h2>My plants</h2>
+                <motion.div
+                  initial={{ y: 2500 }}
+                  animate={{ y: 10 }}
+                  transition={{ delay: 0.5, duration: 1, type: "spring" }}
+                  className="ui container"
+                >
+                  <div className="ui relaxed divided items">
+                    {
+                      collectionFromDB.map((collectionFromDB) => (
+                        <div className="item" key={collectionFromDB.trefleId}>
+                          <div className="image">
+                            <img src={collectionFromDB.imageURL} alt={collectionFromDB.commonName} />
+                          </div>
+                          <div className="content">
+                            <div className="header">{collectionFromDB.commonName}
+                            </div>
+                            <div className="description">
+                              Scientific name: {collectionFromDB.sciName}
+                            </div>
+                            <div className="description">
+                              Family name: {collectionFromDB.familyName}
+                            </div>
+                            <div className="description">
+                              Native to: {collectionFromDB.occurence}
+                            </div>
+                            <i className="leaf olive icon"></i>
+                          </div>
+                        </div>
+                      ))
+                    }
+                  </div>
+                </motion.div>
+              </>
+            )}
 
-          <motion.div
-            initial={{ y: 2500 }}
-            animate={{ y: 10 }}
-            transition={{ delay: 0.5, duration: 1, type: "spring" }}
-            className="ui container"
-          >
-            <div className="ui relaxed divided items">
-              {collectionFromDB.map((collectionFromDB) => (
-                <div className="item">
-                <div className="image">
-                  <img src={collectionFromDB.imageURL} alt={collectionFromDB.commonName} />
-                </div>
-                <div className="content">
-                  <div className="header">{collectionFromDB.commonName}
-                  </div>
-                  <div className="description">
-                    Scientific name: {collectionFromDB.sciName}
-                  </div>
-                  <div className="description">
-                    Family name: {collectionFromDB.familyName}
-                  </div>
-                  <div className="description">
-                    Native to: {collectionFromDB.occurence}
-                  </div>
-                  <i className="leaf olive icon"></i>
-                </div>
-              </div>
-              ))}
-            </div>
-          </motion.div>
         </motion.div>
       )}
 
@@ -227,15 +237,15 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
                     <div className="description">
                       Location: {planticaMembers.currentCity}
                     </div>
-                    <div className="description">
+                    {/* <div className="description">
                       <i className="leaf olive icon"></i>
                       {planticaMembers.collections} uploaded plants
-                    </div>
-                    <div className="extra content">
+                    </div> */}
+                    {/* <div className="extra content">
                       <button className="ui olive right floated button">
                         <i className="add user icon"></i>Add friend
                       </button>
-                    </div>
+                    </div> */}
                   </div>
                 </div>
               ))}

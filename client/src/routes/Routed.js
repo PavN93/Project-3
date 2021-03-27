@@ -17,8 +17,6 @@ const Routed = () => {
       <Route exact path="/" component={Home} />
       <Route exact path="/upload" component={Upload} />
       <Route exact path="/user" component={UserProfile} />
-      {/* <Route exact path="/login" component={Login} /> */}
-      {/* <Route exact path="/signup" component={SignUp} /> */}
       <Route exact path="/logout" component={Logout} />
     </Router>
   );

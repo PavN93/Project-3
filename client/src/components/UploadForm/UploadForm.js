@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import "./UploadForm.css";
 import Imageupload from "../Imageupload/Image";
 import { motion } from "framer-motion";
@@ -6,6 +6,7 @@ import fetcher from "../../functions/fetcher";
 import { v4 as uuidv4 } from "uuid";
 import { Loader } from "semantic-ui-react";
 import { useHistory } from "react-router-dom";
+import CollectionContext from "../../context/CollectionContext";
 
 const Upload = () => {
 
@@ -13,9 +14,10 @@ const Upload = () => {
   const [sciName, setSciName] = useState("");
   const [familyName, setFamilyName] = useState("");
   const [occurence, setOccurence] = useState("");
-  const imageUrl = "https://res.cloudinary.com/pavn93/image/upload/v1616801394/plantica/zry4xvxnxenheb9vcb41.jpg";
+  const imageURL = "https://res.cloudinary.com/pavn93/image/upload/v1616801394/plantica/zry4xvxnxenheb9vcb41.jpg";
   const [savingPlant, setSavingPlant] = useState(false);
   const [saveError, setSaveError] = useState("");
+  const { syncCollectionWithDB } = useContext(CollectionContext);
 
   const location = useHistory("")
 
@@ -53,7 +55,7 @@ const Upload = () => {
     const signupData = {
       trefleId: uuidv4(),
       commonName,
-      imageUrl,
+      imageURL,
       sciName,
       familyName,
       occurence,
@@ -69,6 +71,7 @@ const Upload = () => {
         return;
       }
       setSavingPlant(savingPlant => !savingPlant);
+      await syncCollectionWithDB();
       location.push("/user");
     }
   }
