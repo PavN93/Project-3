@@ -147,7 +147,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
                   <div className="ui relaxed divided items">
                     {
                       collectionFromDB.map((collectionFromDB) => (
-                        <div className="item">
+                        <div className="item" key={collectionFromDB.trefleId}>
                           <div className="image">
                             <img src={collectionFromDB.imageURL} alt={collectionFromDB.commonName} />
                           </div>
