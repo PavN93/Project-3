@@ -8,7 +8,7 @@ const plantSchema = new Schema({
     unique: true
   },
   userId: String, // points to specific user
-  imageUrl: {
+  imageURL: {
     type: String,
   },
   commonName: {

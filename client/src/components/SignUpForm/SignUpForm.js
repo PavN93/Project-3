@@ -115,8 +115,8 @@ const SignUp = () => {
         }}
         className="signupContainer"
       >
-        <p>It's free and only takes a minute</p>
         <form className={"ui form " + (busySignUp && "loading")}>
+        <p>It's free and only takes a minute</p>
           <div
             className={"field " + (validationError.length > 0 ? "error" : "")}
           >

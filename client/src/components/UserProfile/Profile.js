@@ -20,6 +20,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   useWindowEvent("storage", checkLocalStorage);
 
   const { collectionFromDB } = useContext(CollectionContext);
+  console.log("collection", collectionFromDB)
 
   const scroll = Scroll.animateScroll;
   const [view, setView] = useState(""); // plants, userList, searchResult
@@ -141,22 +142,24 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
             <div className="ui relaxed divided items">
               {collectionFromDB.map((collectionFromDB) => (
                 <div className="item">
-                  <div className="ui small image">
-                    <img src="#" />
-                  </div>
-                  <div className="content">
-                    <div className="header">
-                      Scientific name: {collectionFromDB.sciName}
-                    </div>
-                    <div className="meta">
-                      Family: {collectionFromDB.familyName}
-                    </div>
-                    <div className="description">
-                      Native to:
-                      {collectionFromDB.occurence}
-                    </div>
-                  </div>
+                <div className="image">
+                  <img src={collectionFromDB.imageURL} alt={collectionFromDB.commonName} />
                 </div>
+                <div className="content">
+                  <div className="header">{collectionFromDB.commonName}
+                  </div>
+                  <div className="description">
+                    Scientific name: {collectionFromDB.sciName}
+                  </div>
+                  <div className="description">
+                    Family name: {collectionFromDB.familyName}
+                  </div>
+                  <div className="description">
+                    Native to: {collectionFromDB.occurence}
+                  </div>
+                  <i className="leaf olive icon"></i>
+                </div>
+              </div>
               ))}
             </div>
           </motion.div>

@@ -1,10 +1,10 @@
 .signupContainer {
   background-color: #efebe8;
-  color: #2a3b19;
   margin: 50px;
   padding: 20px;
-  text-align: center;
   border-radius: 10px;
+  display: flex;
+  justify-content: center;
 }
 
 .container.signupWrapper {
@@ -18,14 +18,10 @@
   font-size: 1em;
 }
 
-form.form {
-  text-align: left;
-}
-
 .passwordIconSignUp {
   color: #2a3b19;
   position: absolute;
-  top: 338px;
+  top: 390px;
   right: 10px;
   z-index: 1000;
 }
@@ -44,4 +40,8 @@ form.form {
   .signupContainer {
     margin: 0;
   }
+}
+
+.ui.form p {
+  text-align: center;
 }
