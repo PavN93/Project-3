@@ -36,6 +36,8 @@ function Home() {
       const body = {
         trefleId: plantData.id,
         userId: _id,
+        commonName: plantData.common_name,
+        imageURL: plantData.image_url,
         sciName: plantData.scientific_name,
         familyName: plantData.family_common_name,
         occurence: plantData.observations,

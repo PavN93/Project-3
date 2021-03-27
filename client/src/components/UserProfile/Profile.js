@@ -92,7 +92,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
                 }}
                 className="ui button dataButton"
               >
-                <i className="users icon"></i>Friends
+                <i className="users icon"></i>Users
                 <p className="dataDigit">{planticaMembers.length}</p>
               </motion.button>
             </div>
@@ -176,7 +176,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
         </motion.div>
       )}
 
-      {/* Friends section */}
+      {/* User section */}
       {view === "userList" && (
         <>
           <motion.div
@@ -186,7 +186,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
           >
             <div className="ui stackable divided relaxed two column grid">
               <div className="column">
-                <h2>My friends</h2>
+                <h2>Plantica users</h2>
               </div>
               <div className="column">
                 <form className="ui form friendSearch">
