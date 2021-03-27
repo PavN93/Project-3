@@ -20,7 +20,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
   useWindowEvent("storage", checkLocalStorage);
 
   const { collectionFromDB } = useContext(CollectionContext);
-  console.log("collection", collectionFromDB)
+  // console.log("collection", collectionFromDB)
 
   const scroll = Scroll.animateScroll;
   const [view, setView] = useState(""); // plants, userList, searchResult
@@ -127,7 +127,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
       {/* Plants section */}
       {view === "plants" && (
         <motion.div
-          className="ui segment"
+          className="ui segment myPlantsWrapper"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1, duration: 5 }}
         >
@@ -170,7 +170,7 @@ const Bio = ({ fetchUsers, searchError, usersFromDB }) => {
       {view === "userList" && (
         <>
           <motion.div
-            className="ui segment"
+            className="ui segment userSearchWrapper"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, duration: 5 }}
           >

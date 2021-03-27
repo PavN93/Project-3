@@ -12,6 +12,12 @@
   border-radius: 30px;
 }
 
+.segment.myPlantsWrapper {
+  border-radius: 25px;
+  background-color: #efebe8;
+}
+
+
 button.ui.button.editProfile {
   background-color: #a4b792;
   color: #2a3b19;
@@ -70,8 +76,13 @@ button.ui.button.editProfile:hover {
 
 .friendsList {
   background: #efebe8;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 25px;
+  border-radius: 25px;
+}
+
+.ui.segment.userSearchWrapper {
+  background-color: #efebe8;
+  border-radius: 25px;
 }
 
 @media only screen and (max-width: 800px) {
