@@ -43,6 +43,7 @@ Plantica aims to provide this by streamlining the process of finding a species o
 - **Trefle API** to retrieve plant data
 - **Open Weather API** for location based weather data
 - **Moment.js** for displaying dates and times
+- **Slick** for responsive carousel
 - **Framer Motion** for animation
 
 ---
@@ -78,6 +79,8 @@ The functionality differs depending on if a user is logged in or not. To incenti
 ![Plantica Page](./client/public/assets/PlanticaHomepage.png)
 From the homepage all users are able to explore a range of plants using the search functionality which fetches data from the Trefle Api. Each plant can be viewed individually to find out more information and if you are logged in, you have the option to save these plants to your personal collection.
 There is also a 'Plant of the Day' feature which gives a random plant each day to users when revealed.
+
+The application has a manifest file added so that users are able to download the app directly to their desktop instead of having to type in the URL.
 
 ![Search feature](./client/public/assets/PlanticaSearch.png)
 
